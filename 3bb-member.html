@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.replace('no-js','js');</script>
 <title>3BB Member — Case Study · Natthapath Damrongsri</title>
 <meta name="description" content="Working inside an inherited design file with years of stacked versions — the first problem wasn't design, it was finding which screen was current. Live on Play Store & App Store.">
 
@@ -90,7 +91,45 @@
     <h2 class="sect-label">Evidence</h2>
     <div class="screens">
       <div class="screen-item">
-        <a class="screen-link" href="assets/projects/3bb-member/screen_proof.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/3bb-member/screen_proof.png" width="1420" height="1000" alt="3BB Member app flows — home screen, My Package detail, and a login error state prepared as a development-ready state."></a>
+        <div class="anno-fig" tabindex="0" aria-label="3BB Member flows, with design annotations written over the screen">
+          <img src="assets/projects/3bb-member/screen_proof.png" width="1420" height="1000" alt="3BB Member app flows — home screen, My Package detail, and a login error state prepared as a development-ready state.">
+          <svg class="anno-layer" viewBox="0 0 1420 1000" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <filter id="pencil-wobble" x="-15%" y="-15%" width="130%" height="130%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="6" result="warp"/>
+                <feDisplacementMap in="SourceGraphic" in2="warp" scale="3.2" xChannelSelector="R" yChannelSelector="G"/>
+              </filter>
+            </defs>
+            <g filter="url(#pencil-wobble)">
+
+              <!-- 1 · 🔵 PATTERN — keep an existing component (connector into the screen) -->
+              <circle class="a-dot think" style="--d:0s" cx="870" cy="170" r="5"/>
+              <path class="a-conn think" pathLength="1" style="--d:0s" d="M 870 170 C 950 198, 1000 228, 1040 258"/>
+              <path class="a-head think" style="--d:.65s" d="M 1024 240 L 1042 260 L 1018 262"/>
+              <text class="a-kick" style="--d:.45s" x="618" y="152">PATTERN</text>
+              <text class="a-note think" style="--d:.6s" x="618" y="196">existing component — keep</text>
+              <circle class="a-pen think" style="--d:.6s; --pen-dx:430px" cx="618" cy="182" r="6"/>
+
+              <!-- 2 · 🔵 STATE — migration changes this state (ring around the region) -->
+              <ellipse class="a-ring think" pathLength="1" style="--d:1.1s" cx="1070" cy="690" rx="135" ry="78" transform="rotate(-3 1070 690)"/>
+              <circle class="a-dot think" style="--d:1.5s" cx="870" cy="820" r="5"/>
+              <path class="a-conn think" pathLength="1" style="--d:1.55s" d="M 870 820 C 925 796, 965 762, 990 735"/>
+              <path class="a-head think" style="--d:2.1s" d="M 976 720 L 991 736 L 970 740"/>
+              <text class="a-kick" style="--d:1.9s" x="612" y="828">STATE</text>
+              <text class="a-note think" style="--d:2.05s" x="612" y="872">migration flips the</text>
+              <text class="a-note think" style="--d:2.45s" x="612" y="912">state shown here</text>
+              <circle class="a-pen think" style="--d:2.05s; --pen-dx:340px" cx="612" cy="858" r="6"/>
+
+              <!-- 3 · 🔴 self-bite — the scoping decision, crossed out -->
+              <text class="a-strike" style="--d:2.95s" x="64" y="636">
+                <tspan class="gone">full redesign</tspan>
+                <tspan dx="8">&#8594;</tspan>
+                <tspan class="kept" dx="8">selected updates only</tspan>
+              </text>
+
+            </g>
+          </svg>
+        </div>
         <p class="screen-caption"><span class="screen-fig">Fig 1.1</span> — Selected member flows: development-ready states for migration conditions.</p>
       </div>
       <div class="screen-item">
@@ -130,6 +169,25 @@
     <p class="foot">Natthapath Damrongsri · 2026</p>
   </div>
 </footer>
+
+<script>
+/* Pencil-writing annotations: draw once when the figure scrolls into view. */
+(function () {
+  'use strict';
+  var figs = document.querySelectorAll('.anno-fig');
+  if (!figs.length) return;
+  if (!('IntersectionObserver' in window)) {
+    figs.forEach(function (el) { el.classList.add('is-drawn'); });
+    return;
+  }
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('is-drawn'); obs.unobserve(e.target); }
+    });
+  }, { rootMargin: '-15% 0px -15% 0px', threshold: 0 });
+  figs.forEach(function (el) { obs.observe(el); });
+})();
+</script>
 
 </body>
 </html>

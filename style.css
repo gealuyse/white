@@ -367,6 +367,87 @@ a.proj-card .pc-title{
 .anno.is-mid{top:42%;}
 .anno.is-card{top:62px;}   /* work cards: sit beside the title, clear of the wide screenshot below */
 
+/* ---------------------------------------------------------
+   PENCIL-WRITING TRACE — annotations drawn over a screenshot
+   (ref-style). Connector lines / rings draw in via dashoffset;
+   notes + kickers are "written" left→right (clip wipe) with a
+   moving pen tip; turbulence filter gives the graphite wobble.
+   Colour follows our system: 🔵 .think = ink blue · 🔴 .bite = grey.
+   Plays once when .is-drawn lands on the figure (JS on scroll-in),
+   then rests faint; hover lifts to full.
+   --------------------------------------------------------- */
+:root{
+  --anno-write:.85s;            /* time to "write" a note      */
+  --anno-line:.75s;             /* time to draw a connector    */
+  --anno-ease:cubic-bezier(.22,1,.36,1);
+  --anno-spring:cubic-bezier(.32,.72,0,1);
+}
+.anno-fig{position:relative; display:block; line-height:0;}
+.anno-fig img{display:block; width:100%; height:auto;}
+.anno-fig:focus-visible{outline:2px solid var(--ink); outline-offset:2px;}
+.anno-layer{
+  position:absolute; inset:0; width:100%; height:100%;
+  pointer-events:none; overflow:visible; opacity:.8;
+  filter:blur(3px); transform:translateY(5px) scale(.994); transform-origin:60% 50%;
+  transition:opacity .6s var(--anno-spring), filter .9s var(--anno-spring), transform .9s var(--anno-spring);
+}
+.is-drawn .anno-layer{filter:blur(0); transform:none;}
+.anno-fig:hover .anno-layer, .anno-fig:focus-within .anno-layer{opacity:1; transform:translateY(-2px) scale(1.006);}
+
+/* ink */
+.a-conn, .a-head{fill:none; stroke-width:1.7; vector-effect:non-scaling-stroke; stroke-linecap:round; stroke-linejoin:round;}
+.a-ring{fill:none; stroke-width:1.9; vector-effect:non-scaling-stroke;}
+.a-conn.think, .a-head.think, .a-ring.think{stroke:var(--think); stroke-opacity:.7;}
+.a-conn.bite, .a-head.bite, .a-ring.bite{stroke:var(--bite); stroke-opacity:.8;}
+.a-dot.think{fill:var(--think); fill-opacity:.8;}
+.a-dot.bite{fill:var(--bite); fill-opacity:.85;}
+.a-note{font-family:var(--script); font-weight:600; font-size:40px;}
+.a-note.think{fill:var(--think); fill-opacity:.96;}
+.a-note.bite{fill:var(--bite); fill-opacity:.96;}
+.a-kick{font-family:var(--sans); font-weight:600; font-size:15px; letter-spacing:2.5px; fill:var(--sub); text-transform:uppercase;}
+.a-strike{font-family:var(--sans); font-weight:500; font-size:20px; fill:var(--bite);}
+.a-strike .gone{text-decoration:line-through;}
+.a-strike .kept{fill:var(--ink);}
+.a-pen{fill:var(--think); fill-opacity:.85;}
+.a-pen.bite{fill:var(--bite);}
+
+/* ---- draw machine ---- */
+.a-conn, .a-ring{stroke-dasharray:1; stroke-dashoffset:1;}
+.a-note, .a-kick, .a-strike{clip-path:inset(0 100% 0 -8%);}
+.a-head{opacity:0;}
+.a-dot{opacity:0; transform:scale(0); transform-box:fill-box; transform-origin:center;}
+.a-pen{opacity:0; transform-box:fill-box; transform-origin:center;}
+
+.js .is-drawn .a-conn, .js .is-drawn .a-ring{
+  stroke-dashoffset:0; transition:stroke-dashoffset var(--anno-line) var(--anno-ease) var(--d,0s);
+}
+.js .is-drawn .a-note, .js .is-drawn .a-kick, .js .is-drawn .a-strike{
+  clip-path:inset(0 -8% 0 -8%); transition:clip-path var(--anno-write) linear var(--d,0s);
+}
+.js .is-drawn .a-head{opacity:1; transition:opacity .3s var(--anno-ease) calc(var(--d,0s) + var(--anno-line));}
+.js .is-drawn .a-dot{opacity:1; transform:scale(1); transition:opacity .25s, transform .45s var(--anno-spring); transition-delay:var(--d,0s);}
+.js .is-drawn .a-pen{animation:anno-penrun var(--anno-write) var(--anno-spring) var(--d,0s) forwards;}
+@keyframes anno-penrun{
+  0%   {opacity:0; transform:translateX(0) scale(.9);}
+  8%   {opacity:1; transform:translateX(2%) scale(1);}
+  88%  {opacity:1; transform:translateX(var(--pen-dx,300px)) scale(1);}
+  100% {opacity:0; transform:translateX(calc(var(--pen-dx,300px) + 10px)) scale(.8) translateY(-3px);}
+}
+
+/* no-JS: everything settled & visible */
+.no-js .anno-layer{filter:none; transform:none;}
+.no-js .a-conn, .no-js .a-ring{stroke-dashoffset:0;}
+.no-js .a-note, .no-js .a-kick, .no-js .a-strike{clip-path:none;}
+.no-js .a-head{opacity:1;} .no-js .a-dot{opacity:1; transform:scale(1);} .no-js .a-pen{display:none;}
+
+@media (prefers-reduced-motion:reduce){
+  .anno-layer{filter:none; transform:none;}
+  .anno-fig *{transition:none !important; animation:none !important;}
+  .a-conn, .a-ring{stroke-dashoffset:0;}
+  .a-note, .a-kick, .a-strike{clip-path:none;}
+  .a-head{opacity:1;} .a-dot{opacity:1; transform:scale(1);} .a-pen{display:none;}
+}
+
 @media (max-width:1160px){
   /* not enough right margin — reflow notes into the flow */
   .anno{
