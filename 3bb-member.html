@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3BB Member — Case Study · Natthapath Damrongsri</title>
+<meta name="description" content="Working inside an inherited design file with years of stacked versions — the first problem wasn't design, it was finding which screen was current. Live on Play Store & App Store.">
+
+<!-- TODO: replace https://natthapath.example with your real published URL -->
+<link rel="canonical" href="https://natthapath.example/3bb-member.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3BB Member — Case Study">
+<meta property="og:description" content="Inside an inherited file with years of stacked versions — the first problem was finding which screen was current.">
+<meta property="og:url" content="https://natthapath.example/3bb-member.html">
+<meta property="og:image" content="https://natthapath.example/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="3BB Member — Case Study">
+<meta name="twitter:description" content="Inside an inherited file with years of stacked versions — the first problem was finding which screen was current.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23FCFBF9'/><text x='16' y='24' font-family='Georgia,serif' font-size='24' text-anchor='middle' fill='%231C1B1A'>N</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&amp;family=Inter:wght@400;500;600&amp;family=Caveat:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="site-nav" aria-label="Main">
+    <a class="name" href="index.html">Natthapath Damrongsri</a>
+    <ul>
+      <li><a href="index.html#work">Work</a></li>
+      <li class="nav-approach"><a href="index.html#approach">Approach</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <div class="project-header">
+    <span class="proposal-label">Mobile App / Migration UX</span>
+    <h1 class="project-title">3BB Member</h1>
+  </div>
+
+  <section class="proj-sect" id="setup">
+    <h2 class="sect-label">The setup</h2>
+    <div class="reading">
+      <p>3BB Member already had an app. Millions of users on Play Store and App Store. Billing, packages, service access, account management — established flows that people used every day without thinking.</p>
+      <p class="anno-host">I didn't redesign the product. I worked inside a shared design file that held years of flows, versions, archived pages, and migration-era decisions stacked on top of each other.<span class="anno anno-think">the file was the archaeology site — every layer was a different era</span></p>
+      <p class="anno-host">The first problem wasn't design. It was figuring out which screen was the real one.<span class="anno anno-bite">design problem zero: which version is current?</span></p>
+    </div>
+  </section>
+
+  <section class="proj-sect" id="locked">
+    <h2 class="sect-label">What was locked</h2>
+    <div class="anno-host">
+      <ul class="locked-list">
+        <li>Established user journeys — members knew the app. Unnecessary redesign risks confusing routine tasks.</li>
+        <li>A large inherited file — previous versions, migration sets, archived sections all living together.</li>
+        <li>Migration-state complexity — same screen, different behavior depending on customer group.</li>
+        <li>Phased delivery — flows had to hold together mid-transition, not just in a final-state mockup.</li>
+      </ul>
+      <span class="anno anno-think">"don't break what works" — sounds simple until you have to find what works first</span>
+    </div>
+  </section>
+
+  <section class="proj-sect" id="did">
+    <h2 class="sect-label">What I actually did</h2>
+    <div class="decisions">
+      <div class="decision anno-host">
+        <h3 class="d-title">Map current vs. legacy before touching anything</h3>
+        <div class="d-row"><span class="d-key">Problem</span><p class="d-val">The file contained years of accumulated work. Not every screen needed updating — most didn't. But no one had clearly marked which flow was intended and which was leftover.</p></div>
+        <div class="d-row"><span class="d-key">Decision</span><p class="d-val">I separated active states from inherited content, then updated only where migration logic, service state, or implementation requirements actually changed the user's path.</p></div>
+        <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">Less visually dramatic. More stable, more shippable.</p></div>
+        <span class="anno anno-think">restraint is a design decision — the hardest one</span>
+      </div>
+      <div class="decision anno-host">
+        <h3 class="d-title">Treat errors and service changes as first-class screens</h3>
+        <div class="d-row"><span class="d-key">Problem</span><p class="d-val">Login errors, registration conditions, billing options — these aren't edge cases. These are the moments where users feel the most uncertainty.</p></div>
+        <div class="d-row"><span class="d-key">Decision</span><p class="d-val">I added and refined specific states: login error handling, mobile OTP registration, auto-pay setup, bill-delivery channel selection. Each got clear copy, hierarchy, and a next action QA and dev could implement consistently.</p></div>
+        <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">More screens to maintain. Fewer implementation gaps to argue about.</p></div>
+        <span class="anno anno-bite">edge cases are where trust is built or lost</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-sect" id="evidence">
+    <h2 class="sect-label">Evidence</h2>
+    <div class="screens">
+      <div class="screen-item">
+        <a class="screen-link" href="assets/projects/3bb-member/screen_proof.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/3bb-member/screen_proof.png" width="1420" height="1000" alt="3BB Member app flows — home screen, My Package detail, and a login error state prepared as a development-ready state."></a>
+        <p class="screen-caption"><span class="screen-fig">Fig 1.1</span> — Selected member flows: development-ready states for migration conditions.</p>
+      </div>
+      <div class="screen-item">
+        <div class="screen-frame" role="img" aria-label="Figure 2.1 — image pending">Fig 2.1</div>
+        <p class="screen-caption"><span class="screen-fig">Fig 2.1</span> — Contribution scope: inherited context vs. selected updates.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-sect" id="differently">
+    <h2 class="sect-label">What I'd do differently</h2>
+    <div class="reflection anno-host">
+      <p>Map the inherited-vs-contribution boundary on day one. I found it eventually. But the time spent figuring out which screen was current and which was legacy could have been saved with an explicit audit upfront. That clarity was worth more to the team than any single screen I delivered.</p>
+      <span class="anno anno-bite">next time: audit first, design second</span>
+    </div>
+  </section>
+
+  <dl class="proj-meta proj-meta-foot">
+    <div><dt>Role</dt><dd>UX/UI Designer</dd></div>
+    <div><dt>Platform</dt><dd>Mobile app · Website</dd></div>
+    <div><dt>Year</dt><dd>2024 – Present</dd></div>
+    <div><dt>Status</dt><dd>Live — Play Store &amp; App Store</dd></div>
+    <div><dt>Scope</dt><dd>My Package · Home · Login error · SME DIY · Register OTP · Auto-pay · Bill Delivery</dd></div>
+    <div><dt>Team</dt><dd>Product · Business · Developers · QA</dd></div>
+  </dl>
+
+  <nav class="case-nav" aria-label="More work">
+    <a class="cn-prev" href="cdp.html"><span class="cn-label">Previous case</span><span class="cn-title">Customer Data Platform</span></a>
+    <a class="cn-next" href="counter-service-pos.html"><span class="cn-label">Next case</span><span class="cn-title">Counter Service POS</span></a>
+  </nav>
+  <a class="back-link" href="index.html">← Back to all work</a>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="foot">Natthapath Damrongsri · 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>

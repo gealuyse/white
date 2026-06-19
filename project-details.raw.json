@@ -1,0 +1,463 @@
+{
+  "source": "Extracted from projects/*/index.html",
+  "projects": [
+    {
+      "file": "01",
+      "slug": "3bb-member",
+      "path": "projects/3bb-member/index.html",
+      "title": "Making Inherited 3BB Member Flows Development-Ready",
+      "displayTitle": "3BB Member Migration Flows",
+      "category": "Migration UX / Inherited Product File",
+      "thesis": "Refining selected 3BB Member journeys inside an inherited migration file - from existing screens to development-ready service states.",
+      "summary": "3BB Member already had established app and web journeys. My contribution was not to redesign the whole product. It was to work inside an inherited migration design file and update selected flows where the user path, service state, or implementation requirement changed, then prepare those screens so developers, QA, and business could review and build them.",
+      "metadata": {
+        "role": "UX/UI Designer",
+        "platform": "Mobile app / website",
+        "projectType": "Migration UX / service flow refinement",
+        "contribution": "Inherited-file contribution / flow refinement / dev handoff",
+        "scope": "Selected updates: My Package, Home dev state, login error, SME DIY, Register OTP, Auto-pay, Bill Delivery",
+        "team": "Product, business, developers, QA"
+      },
+      "shortVersion": {
+        "whatItWas": "An existing 3BB Member app and website design file with many inherited flows, previous versions, archived pages, and migration-related service states.",
+        "whatWasHard": "The challenge was understanding what was current, what was legacy, and where migration requirements actually changed the user's path inside a large shared file.",
+        "whatIChanged": "Contributed selected updates to package, home, login, SME, registration, auto-pay, and bill-delivery flows, focused on development-ready states and practical handoff.",
+        "whatEvidenceExists": "Dated Figma sections, development-phase frames, login error states, registration updates, billing and account flow variants, and Thai/English service screens.",
+        "whatHappenedNext": "The updated flows supported phased implementation, review, and handoff across product, development, and QA."
+      },
+      "context": [
+        "This was not a clean-slate redesign. It was inherited product work.",
+        "The 3BB Member app and website already had established journeys. Customers used them for service access, billing, package management, support, and account tasks. The design file I worked in was a large, shared, central file: it already contained many flows, previous versions, design-system pages, archived sections, and earlier migration sets - much of it created before my contribution window.",
+        "During the migration context, the challenge was not to reinvent the app. It was to understand which parts of the existing product could stay, which parts needed updates, and where new states or redirects were actually required - then prepare those selected screens so a team could implement them."
+      ],
+      "constraints": [
+        {
+          "title": "Existing product file",
+          "description": "The file already held many flows, versions, archived sections, and previous work. Finding the current, intended version was a task in itself before any update could begin."
+        },
+        {
+          "title": "Existing user familiarity",
+          "description": "Members already knew the app. Unnecessary redesign risked confusing tasks people performed routinely, so changes had to be minimal and purposeful."
+        },
+        {
+          "title": "Migration-state complexity",
+          "description": "Some flows changed depending on service ownership, customer state, or migration requirement. The same screen could behave differently across customer groups."
+        },
+        {
+          "title": "Development feasibility",
+          "description": "Updates had to be practical for dev and QA, not just visually cleaner. Each change was weighed against backend reality and the migration timeline."
+        },
+        {
+          "title": "Phased delivery",
+          "description": "The work had to support live or staged implementation, not only an ideal final state. Flows needed to hold together mid-transition."
+        }
+      ],
+      "matrix": {
+        "inheritedContextLeftAsIs": [
+          "Established member journeys and the existing design system.",
+          "Earlier migration sets, archived, and backup pages.",
+          "Older feature and campaign work created before my window."
+        ],
+        "whereIContributed": [
+          "Selected service-flow updates and layout iterations.",
+          "Development-ready states and login error handling.",
+          "Registration, auto-pay, and bill-delivery refinements."
+        ]
+      },
+      "decisions": [
+        {
+          "title": "Define what should change and what should stay",
+          "problem": "The file contained many inherited flows, and not every screen needed redesign.",
+          "decision": "Preserve existing patterns where the user path stayed the same. Update only the areas where migration logic, service state, or implementation requirements changed.",
+          "reason": "This reduced unnecessary change and kept the work feasible for development.",
+          "tradeOff": "The result was less visually dramatic, but more stable and realistic for a live product."
+        },
+        {
+          "title": "Use development-ready states as handoff anchors",
+          "problem": "In a large inherited file, developers and reviewers need to know which version is intended for implementation.",
+          "decision": "Prepare selected screens - like the Home entry point - as development-phase states, and align related flows for easier review.",
+          "reason": "This made the file more useful as a handoff artifact, not just a design canvas, and helped separate active states from inherited or archived content.",
+          "tradeOff": "It meant working within the existing file structure rather than creating a cleaner new structure from scratch."
+        },
+        {
+          "title": "Treat errors and service changes as designed states",
+          "problem": "Login errors, registration conditions, and billing options could not be handled as afterthoughts.",
+          "decision": "Add or refine specific states - login error handling, mobile OTP registration, auto-pay, and bill-delivery variants - and reflect them in the design reference area.",
+          "reason": "These states are where users feel the most uncertainty, so they needed clear copy, hierarchy, and a next action that QA and dev could implement consistently.",
+          "tradeOff": "More states meant more screens to maintain, but fewer ambiguous implementation gaps."
+        },
+        {
+          "title": "Keep service utility flows practical, not decorative",
+          "problem": "Billing and account settings are not visually exciting, but they are high-trust user tasks.",
+          "decision": "Focus updates on clarity, action, and consistency in flows like Auto-pay and Bill Delivery Channel, adapting the existing service-management structure rather than replacing it.",
+          "reason": "These flows support real service continuity and reduce confusion around account management during a migration.",
+          "tradeOff": "The design stays restrained and familiar rather than visually expressive."
+        }
+      ],
+      "evidence": [
+        {
+          "figure": "Fig 1.1",
+          "image": "assets/projects/3bb-member/screen_proof.png",
+          "caption": "Selected member flows prepared as development-ready states - where a migration condition, service state, or error case changed what the screen had to show."
+        },
+        {
+          "figure": "Fig 2.1",
+          "image": "assets/projects/3bb-member/fig-2-1.png",
+          "caption": "Contribution scope: which areas were inherited context and which were my selected updates - My Package layout, Home development state, login error, SME DIY, Register OTP, Auto-pay, and Bill Delivery.",
+          "note": "Evidence pending: dated development-phase frames, the My Package layout iterations, and the login error / billing variant screens will be added here as additional numbered figures."
+        }
+      ],
+      "handoff": [
+        {
+          "title": "Selected flow updates",
+          "description": "Refined and development-ready screens for My Package, Home, login, SME DIY, registration, and billing flows."
+        },
+        {
+          "title": "Error & service states",
+          "description": "Login error states and service-change variants, aligned with the design reference area for consistent implementation."
+        },
+        {
+          "title": "Development-phase frames",
+          "description": "Selected screens marked as intended-for-build states, separated from inherited and archived content."
+        },
+        {
+          "title": "Feasibility reviews",
+          "description": "Updates discussed and revised with developers, PM, business, and QA."
+        }
+      ],
+      "outcome": "The outcome was not a visual transformation. It was clearer service-flow logic and better handoff readiness. The selected updates supported phased implementation and review, and helped the team identify intended states inside a complex, shared file without disturbing the inherited journeys that still worked.",
+      "statusNote": "Scope note: this case study covers a contribution to an inherited live-product file, not ownership of the full 3BB Member app or the full migration system. Formal post-migration metrics are not part of this case study.",
+      "reflection": "The lesson I kept from this one: in an inherited file, the first real design work is reading the file - separating current from legacy before changing anything. Once I could point to which screen was the intended version and why, the updates themselves were small and the handoff stopped being ambiguous. Next time I'd map that inherited-vs-contribution boundary explicitly on day one, because that clarity was worth more to the team than any single screen."
+    },
+    {
+      "file": "02",
+      "slug": "cdp",
+      "path": "projects/cdp/index.html",
+      "title": "Customer Data Platform / CDP",
+      "displayTitle": "Customer Data Platform / CDP",
+      "category": "Enterprise SaaS / Analytics",
+      "thesis": "Making complex customer data workflows clearer for marketing teams.",
+      "summary": "I redesigned key UX/UI patterns for a customer data platform used by marketing teams to manage customer segments, consent visibility, campaign setup, and journey-related conditions. The main challenge was turning layered data and condition logic into clearer workflows that users could understand and developers could implement.",
+      "metadata": {
+        "role": "UX/UI Designer (core feature design)",
+        "platform": "Web application",
+        "timeline": "3 months (2024)",
+        "team": "Tech lead, product manager, front-end engineers, QA",
+        "scope": "Advanced search / condition builder / IA / handoff documentation",
+        "status": "Handed off / implementation supported"
+      },
+      "shortVersion": {
+        "whatItWas": "A customer data platform where marketing teams manage segments, consent visibility, campaign setup, and journey conditions.",
+        "whatWasHard": "Many attributes, events, and consent conditions. The existing workflow made it difficult to scan, search, and build logic confidently.",
+        "whatIChanged": "Redesigned flows, information architecture, UI hierarchy, and reusable interaction patterns across search, condition building, and campaign workflows.",
+        "whatEvidenceExists": "Search patterns, condition-builder behavior, screen specifications, prototype flows, and layout/state documentation.",
+        "whatHappenedNext": "Handed off for implementation, with design review support during dev walkthroughs and design QA."
+      },
+      "context": [
+        "Bridging raw data and marketing actions.",
+        "The platform helped marketing teams work with customer data across segments, consent visibility, campaign setup, and journey-related conditions. Because the platform handled many types of attributes and events, the interface needed to make complex logic easier to search, configure, and review."
+      ],
+      "constraints": [
+        {
+          "title": "Event scanning",
+          "description": "A large and growing event and attribute catalog made simple list dropdowns hard to scan."
+        },
+        {
+          "title": "Layout constraints",
+          "description": "Nested condition groups (around 2-3 levels) needed clear visual hierarchy without creating layout overflow on 1440px desktop workspaces."
+        },
+        {
+          "title": "Input adaptability",
+          "description": "Different input types needed to adapt dynamically based on the selected condition or attribute."
+        },
+        {
+          "title": "Engineering alignment",
+          "description": "Backend and data-logic constraints required close alignment with developers and QA."
+        }
+      ],
+      "matrix": {
+        "lockedConstraints": [
+          "Legacy data schemas and variable mappings stored in the centralized system.",
+          "Backend and data-logic constraints.",
+          "Limited dev resources, no complete rebuild."
+        ],
+        "flexibleZones": [
+          "Input selector states and advanced search patterns for events.",
+          "Visual flow diagrams for marketing journey mapping.",
+          "UI hierarchy, menu organization, and CTA placement."
+        ]
+      },
+      "decisions": [
+        {
+          "title": "Search & categorized autocomplete selector",
+          "problem": "Finding custom events in a large, growing catalog through long dropdown lists was slow and error-prone.",
+          "decision": "An advanced search selector using categorized auto-complete matching, with metadata shown inside the result rows.",
+          "reason": "Metadata in the rows lets users verify a selection without leaving the search; categories reduce reliance on long manual scanning.",
+          "tradeOff": "A richer selector is heavier to specify and build than a plain dropdown, and needs explicit rules for empty, loading, and overflow states."
+        },
+        {
+          "title": "Nested condition groups with grid spacing rules",
+          "problem": "Nested AND/OR groups needed clear hierarchy without overflowing the 1440px desktop workspace.",
+          "decision": "Conditional rules structured into logical cards separated by distinct AND/OR operator blocks, enforced on an 8px spacing standard.",
+          "reason": "Strict horizontal sizing guidelines keep nested child cards inside the workspace and make group boundaries scannable at a glance.",
+          "tradeOff": "Hard sizing rules limit how deep nesting can go before the UI must summarize groups rather than display them in full."
+        },
+        {
+          "title": "Component state & handoff documentation",
+          "problem": "Dynamic inputs and validation behavior left too much ambiguity for developers at implementation time.",
+          "decision": "Interactive specifications mapping button configurations, focus rings, validation alerts, and input adapters per data variable.",
+          "reason": "Clearer references for edge cases and states reduce back-and-forth between design, development, and QA during the build.",
+          "tradeOff": "Increased upfront design-mapping workload before development could start."
+        }
+      ],
+      "evidence": [
+        {
+          "figure": "Fig 1.1",
+          "image": "assets/projects/cdp/screen_proof.png",
+          "caption": "Proposed UI layout of the primary segment builder workspace, introducing structured event and condition setups."
+        },
+        {
+          "figure": "Fig 2.1",
+          "image": "assets/projects/cdp/fig-2-1.png",
+          "caption": "UI detail of the Advanced Search and Event Selector, using categorized auto-complete rows to simplify event attribute discovery."
+        },
+        {
+          "figure": "Fig 2.2",
+          "image": "assets/projects/cdp/fig-2-2.png",
+          "caption": "Logical component diagram of nested query blocks (AND/OR logic groups) conforming to spacing parameters on standard desktop widths."
+        },
+        {
+          "figure": "Fig 2.3",
+          "image": "assets/projects/cdp/fig-2-3.png",
+          "caption": "Design handoff specifications showing component layouts, interaction states, and edge-case behavior."
+        }
+      ],
+      "handoff": [
+        {
+          "title": "Figma screen specs",
+          "description": "Screen specifications covering layouts, components, and responsive behavior."
+        },
+        {
+          "title": "Prototype flows",
+          "description": "Interactive prototype flows for search, condition building, and campaign setup."
+        },
+        {
+          "title": "Layout & state docs",
+          "description": "Layout and state documentation for inputs, validation, and edge cases."
+        },
+        {
+          "title": "Review support",
+          "description": "Implementation reviews, dev walkthroughs, and design QA to help developers translate visual flows into code patterns."
+        }
+      ],
+      "outcome": "The project delivered clearer search patterns, structured condition-builder behavior, and reusable interaction rules, plus the specifications and documentation developers needed to implement them. The advanced search pattern was made reusable across the platform, and the handoff material reduced ambiguity during the build.",
+      "statusNote": "Implementation status: formal post-deployment metrics are not part of this case study. The outcome is framed around delivered design assets and implementation support.",
+      "reflection": "What I'd do differently: catch the dead ends earlier. The riskiest moment in this tool is a marketer building condition logic that quietly resolves to zero people, so I'd add a validation check that warns before an empty campaign goes out. I'd also watch how deep real users actually nest their groups, to confirm the 2-3 level limit I designed for matches how people really work."
+    },
+    {
+      "file": "03",
+      "slug": "counter-service-pos",
+      "path": "projects/counter-service-pos/index.html",
+      "title": "Counter Service POS",
+      "displayTitle": "Counter Service POS",
+      "category": "Operational UX / POS",
+      "thesis": "Modernizing a constrained POS interface while preserving the layout patterns staff already relied on.",
+      "summary": "POS terminals are high-volume operational utilities: cashiers process hundreds of transactions per shift on muscle memory. This case is about improving visual hierarchy and consistency where the flow, the button positions, and the brand identity were all fixed, and the screens ranged from 800x600 to 1920x1080.",
+      "metadata": {
+        "role": "UX/UI Designer",
+        "platform": "POS terminal / 800x600 and 1920x1080 layouts",
+        "timeline": "4 months (2023)",
+        "constraint": "Fixed flow, fixed button positions, fixed core CI / icons / fonts",
+        "scope": "Visual hierarchy / spacing system / dual-resolution layouts",
+        "status": "Mockup / prototype redesign / review completed"
+      },
+      "shortVersion": {
+        "whatItWas": "A retail counter-service POS interface used by cashiers for high-volume transactions on legacy and modern screens.",
+        "whatWasHard": "The interface needed clearer hierarchy and consistency, but the core flow, button positions, and staff familiarity could not be disrupted.",
+        "whatIChanged": "Refined hierarchy, spacing, and component patterns within the fixed structure, across low- and high-resolution layouts.",
+        "whatEvidenceExists": "Updated POS mockups and review prototypes for 800x600 and 1920x1080, plus spacing and alignment specifications.",
+        "whatHappenedNext": "Delivered as visual guidelines and review prototypes; review completed with operational stakeholders."
+      },
+      "context": [
+        "Designing for peak-hour performance.",
+        "Cashiers handle hundreds of transactions per shift, relying heavily on visual muscle memory developed over months or years of using the same button layouts. In this environment, even minor structural changes can slow down transaction speeds and create longer checkout lines.",
+        "The objective was to modernize the interface and resolve visual inconsistencies without changing the core workflow, the physical key alignments, or the brand identity directions already in use."
+      ],
+      "constraints": [
+        {
+          "title": "Preserving cashier muscle memory",
+          "description": "Changing the sequence of steps or moving common buttons (like Pay or Cancel) would disrupt cashiers' fast, automated keystrokes. Every critical button needed to remain in its exact spatial coordinate."
+        },
+        {
+          "title": "Adapting across distant resolutions",
+          "description": "The interface had to operate on legacy 800x600 screens as well as 1920x1080 widescreen displays, keeping text legible and tap targets large enough at both ends of the spectrum."
+        },
+        {
+          "title": "Fixed brand identity",
+          "description": "Core CI colors, fonts, and icon assets were locked. Modernization had to come from hierarchy, spacing, and contrast alone."
+        }
+      ],
+      "matrix": {
+        "lockedConstraints": [
+          "Fixed keyboard-shortcut flow and button grid structure.",
+          "Original icon assets, typeface, and core brand guidelines.",
+          "Target hardware aspect ratios and legacy resolution limits."
+        ],
+        "flexibleZones": [
+          "Visual contrast, component outlines, and hierarchy styles.",
+          "Internal text alignments, spacing, and label wording.",
+          "High-visibility color states for critical checkout feedback."
+        ]
+      },
+      "decisions": [
+        {
+          "title": "Standardized spacing rules within a rigid grid",
+          "problem": "Uneven margins and varying local offsets made the screen hard to scan during busy hours.",
+          "decision": "A consistent spacing system across all button groups and transaction lists, aligning text and values to a unified baseline.",
+          "reason": "Peak-hour scanning speed depends on predictable alignment more than on any individual component style.",
+          "tradeOff": "The standard grid reduced the total text space available for very long item names."
+        },
+        {
+          "title": "Adaptive scaling patterns for dual resolutions",
+          "problem": "Linear scaling produced oversized buttons on 1920x1080 and unreadable text on 800x600.",
+          "decision": "A fluid layout system: compact rows with essential transaction metadata on 800x600, expanded sections with extra purchase details on 1920x1080.",
+          "reason": "Each hardware profile gets a layout designed for its real legibility and tap-target limits, instead of one stretched compromise.",
+          "tradeOff": "Two separate wireframe layouts had to be maintained through every revision."
+        }
+      ],
+      "evidence": [
+        {
+          "figure": "Fig 1.1",
+          "image": "assets/projects/counter-service-pos/screen_proof.png",
+          "caption": "Optimized POS interface showing enhanced visual hierarchy, layout spacing, and clear status indicators while maintaining standard key coordinate alignments."
+        },
+        {
+          "figure": "Fig 2.1",
+          "image": "assets/projects/counter-service-pos/fig-2-1.png",
+          "caption": "Dual-resolution specifications showing how the transaction grid adjusts margins, padding, and button borders across hardware profiles."
+        }
+      ],
+      "handoff": [
+        {
+          "title": "POS mockups",
+          "description": "Updated interface mockups for both the 800x600 and 1920x1080 layouts."
+        },
+        {
+          "title": "Review prototypes",
+          "description": "Interactive prototypes used to walk stakeholders through the changes against real checkout sequences."
+        },
+        {
+          "title": "Visual guidelines",
+          "description": "Spacing, alignment, and state guidelines usable as design specifications for future deployment cycles."
+        }
+      ],
+      "outcome": "The work clarified UI hierarchy and made the visual system consistent across both hardware profiles without touching the operational structure cashiers rely on. The review with operational stakeholders was completed.",
+      "statusNote": "Implementation status: the proposed refinements are at the mockup and prototype review stage, serving as design specifications for future deployment cycles.",
+      "reflection": "What this project still needs is proof. The design rests on one claim: that better hierarchy and spacing speed up checkout without moving a single control. If it reaches live testing, I'd log keystroke timing on the terminals to compare the old layout against the new one, gathering real transaction-speed data without interrupting a cashier's shift."
+    },
+    {
+      "file": "04",
+      "slug": "naaraan",
+      "path": "projects/naaraan/index.html",
+      "title": "Naaraan Store Builder",
+      "displayTitle": "Naaraan Store Builder",
+      "category": "E-commerce SaaS / Store Builder",
+      "thesis": "Designing clearer merchant setup and management workflows for non-technical sellers.",
+      "summary": "Naaraan helps local merchants establish digital shops. The platform offered rich catalog management features, but its onboarding was technically detailed and caused drop-offs among non-technical sellers. This case is about restructuring the seller experience into a task-focused system: setup as a guided path, daily operations as a clean workspace.",
+      "metadata": {
+        "role": "UX/UI Designer",
+        "platform": "Web / mobile web",
+        "timeline": "8 months (2022)",
+        "projectType": "Operational UX / seller portal",
+        "scope": "Onboarding wizard / dashboard / listings management",
+        "status": "Design specs delivered / prototypes reviewed"
+      },
+      "shortVersion": {
+        "whatItWas": "An e-commerce store builder for local small-business owners: setup, catalog, payments, and daily store management.",
+        "whatWasHard": "Non-technical merchants faced onboarding and setup friction inside a feature-heavy interface built around platform capabilities, not seller tasks.",
+        "whatIChanged": "Redesigned the onboarding wizard and main dashboard around task grouping, separating one-time setup from day-to-day operations.",
+        "whatEvidenceExists": "Structured setup flows, dashboard layout specifications, and simplified listing templates for desktop and mobile viewports.",
+        "whatHappenedNext": "Interactive prototypes were completed for usability review; the patterns serve as reference for front-end development planning."
+      },
+      "context": [
+        "Simplifying store creation for small business owners.",
+        "While the platform offered rich back-end catalog management, its onboarding process was technically detailed, which caused drop-offs among non-technical sellers. The goal was a task-focused store builder: by separating configuration tasks (like payment gateways) from day-to-day operations (like catalog updates), the proposed layout helps merchants manage their setup without it overwhelming their daily work."
+      ],
+      "constraints": [
+        {
+          "title": "Non-technical users",
+          "description": "Sellers were small-business owners, not platform operators. Terminology, defaults, and task order had to assume no technical background."
+        },
+        {
+          "title": "Feature-heavy platform",
+          "description": "The existing back-end capabilities (catalog, payments, orders) defined what the interface had to expose. Features could be reorganized and re-staged, not removed."
+        },
+        {
+          "title": "Small-screen reality",
+          "description": "Merchants manage stores from phones between daily tasks; listings and setup steps had to stay usable on mobile web."
+        }
+      ],
+      "matrix": {
+        "lockedConstraints": [
+          "Existing back-end catalog and payment capabilities.",
+          "The platform's overall feature set."
+        ],
+        "flexibleZones": [
+          "Onboarding structure and setup task order.",
+          "Dashboard layout and navigation grouping.",
+          "Listing templates and field hierarchy."
+        ]
+      },
+      "decisions": [
+        {
+          "title": "Structured setup progress tracker",
+          "problem": "Technically detailed onboarding caused drop-offs. Sellers couldn't tell what to do next or how much remained.",
+          "decision": "A linear progression widget mapping setup steps (account setup -> product upload -> store launch), replacing a complex settings panel.",
+          "reason": "A checklist with a visible next action reads like a task, not a console. Merchants always know where they are.",
+          "tradeOff": "A linear path can hide advanced options that some merchants need earlier than the flow assumes."
+        },
+        {
+          "title": "Task-focused navigation & simplified listings",
+          "problem": "One-time setup tasks and daily operations were mixed in a single interface, creating noise during routine work.",
+          "decision": "Separate setup (payment integrations, store configuration) from routine management (products, orders); the listing grid highlights primary fields (inventory status, price, media) with auxiliary configuration grouped into tabs.",
+          "reason": "Reducing visible options during daily work lowers decision load and keeps smaller displays usable.",
+          "tradeOff": "Settings sit one level deeper, adding a step for power users who configure often."
+        }
+      ],
+      "evidence": [
+        {
+          "figure": "Fig 1.1",
+          "image": "assets/projects/naaraan/screen_proof.png",
+          "caption": "Merchant onboarding home view introducing step-by-step setup guides for catalog initialization and payment settings."
+        },
+        {
+          "figure": "Fig 2.1",
+          "image": "assets/projects/naaraan/fig-2-1.png",
+          "caption": "Dashboard and setup tracker layout: setup tasks staged as a guided path, daily operations kept separate.",
+          "note": "Evidence pending: onboarding flow diagram and listing-template comparisons to be added as additional numbered figures."
+        }
+      ],
+      "handoff": [
+        {
+          "title": "Setup flows",
+          "description": "Structured seller setup flows from registration to store launch."
+        },
+        {
+          "title": "Dashboard specs",
+          "description": "Dashboard layout specifications covering navigation grouping and task separation."
+        },
+        {
+          "title": "Listing templates",
+          "description": "Simplified listing templates optimized for desktop and mobile viewports."
+        },
+        {
+          "title": "Review prototypes",
+          "description": "Interactive prototypes completed for usability review and front-end planning."
+        }
+      ],
+      "outcome": "The work clarified the seller-facing structure of the product: setup became a guided, finite path and daily management became a cleaner workspace. The delivered flows, specifications, and templates serve as reference patterns for front-end development planning.",
+      "statusNote": "Implementation status: the proposed layouts are at the design specification and review stage. No production metrics are claimed in this case study.",
+      "reflection": "What I learned here: non-technical sellers don't fail at features, they fail at sequence. Splitting one-time setup from daily operations was the move that unstuck them, because it stopped asking a first-day merchant to think like a power user. What I'd validate next is where people actually stall inside setup, so the guided path can follow the real drop-off points instead of the ones I assumed."
+    }
+  ]
+}
