@@ -1,0 +1,11 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/
+.idea/
+
+# Jekyll build output (in case Pages is ever built locally)
+_site/
+.jekyll-cache/

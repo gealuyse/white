@@ -1,0 +1,7 @@
+# GitHub Pages (Jekyll) config.
+# Keeps authoring-only files out of the published site.
+# IMPORTANT: do NOT add a .nojekyll file — that disables Jekyll and these
+# excludes stop working, exposing docs/ publicly.
+exclude:
+  - docs/
+  - README.md
