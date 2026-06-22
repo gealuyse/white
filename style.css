@@ -9,8 +9,6 @@
   --hair:#D8D5D0;
   --paper:#FCFBF9;
   --panel:#F4F2EE;
-  --think:#3E5C8A;        /* annotation: muted ink blue (Thinking Mark) */
-  --bite:#8C857B;         /* annotation: readable light grey (Self-bite) */
   --serif:'Newsreader', Georgia, serif;
   --sans:'Inter', -apple-system, 'Segoe UI', sans-serif;
   --script:'Caveat', 'Segoe Script', cursive;
@@ -330,6 +328,139 @@ a.proj-card .pc-title{
 }
 
 /* =========================================================
+   WORK — EDITORIAL PROJECT INDEX (index)
+   archive-sheet rows: number · main content · preview image
+   ========================================================= */
+.proj-index{border-top:1px solid var(--hair);}
+.proj-row{
+  display:grid;
+  grid-template-columns:48px minmax(0,1fr) 300px;
+  column-gap:56px; align-items:start;
+  padding:54px 0 58px; border-bottom:1px solid var(--hair);
+  color:inherit; text-decoration:none;
+}
+a.proj-row:focus-visible{outline:2px solid var(--ink); outline-offset:4px;}
+.pr-num{
+  font:300 22px/1 var(--serif); color:var(--sub);
+  letter-spacing:.02em; padding-top:9px;
+}
+.pr-headline{
+  font:400 clamp(27px,2.7vw,38px)/1.13 var(--serif);
+  letter-spacing:-0.01em; color:var(--ink);
+  margin:0 0 18px; max-width:19ch;
+}
+a.proj-row .pr-headline{
+  text-decoration:underline; text-decoration-color:var(--hair);
+  text-decoration-thickness:1px; text-underline-offset:6px;
+}
+.pr-meta{
+  font:500 12px/1.5 var(--sans); letter-spacing:.07em; text-transform:uppercase;
+  color:var(--sub); margin:0 0 10px;
+}
+.pr-meta .dot{padding:0 9px; color:var(--hair);}
+.pr-title{font:500 15px/1.45 var(--sans); color:var(--ink); margin:0 0 14px;}
+.pr-desc{font:400 16px/1.62 var(--sans); color:var(--sub); margin:0; max-width:54ch;}
+.pr-preview{display:block; padding-top:4px;}
+.pr-img{
+  display:block; position:relative; border:1px solid var(--hair); background:var(--panel);
+  overflow:hidden; line-height:0;
+}
+/* unify previews into one warm, printed-on-paper mood (source images untouched):
+   desaturate + ease contrast + lift brightness + a touch of warmth */
+.pr-img img{
+  display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover;
+  /* faded-on-paper at rest: low saturation + lifted brightness reads "pale", not "yellow";
+     sepia kept tiny + hue nudged off yellow */
+  filter:saturate(.74) contrast(.92) brightness(1.06) sepia(.02) hue-rotate(-8deg);
+  transition:filter .5s ease;
+}
+/* very light, near-neutral paper tint — unify without yellowing */
+.pr-img::after{
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:#EFEDE7; mix-blend-mode:multiply; opacity:.05;
+  transition:opacity .5s ease;
+}
+/* strong-hue projects (e.g. the green 3BB cover) — knock saturation down further,
+   never all the way to grey: identity + context must still read */
+.pr-img.is-muted img{
+  filter:saturate(.52) contrast(.92) brightness(1.06) sepia(.03) hue-rotate(-8deg);
+}
+.pr-link{
+  display:block; text-align:right; margin:13px 0 0;
+  font:500 13px/1 var(--sans); color:var(--ink);
+}
+a.proj-row .pr-link{
+  text-decoration:underline; text-decoration-color:var(--hair); text-underline-offset:4px;
+}
+@media(hover:hover) and (pointer:fine){
+  a.proj-row:hover .pr-headline{text-decoration-color:var(--ink);}
+  a.proj-row:hover .pr-link{text-decoration-color:var(--ink);}
+  /* hover wakes the preview back to full colour, eased over 0.5s */
+  a.proj-row:hover .pr-img img,
+  a.proj-row:hover .pr-img.is-muted img{filter:saturate(1.05) contrast(1.02) brightness(1.01);}
+  a.proj-row:hover .pr-img::after{opacity:0;}
+}
+@media (prefers-reduced-motion:reduce){
+  .pr-img img,.pr-img::after{transition:none;}
+}
+/* tablet + mobile — single column, full-width preview (desktop 3-col untouched) */
+@media (max-width:1080px){
+  .proj-row{grid-template-columns:1fr; column-gap:0;}
+  .pr-num{padding-top:0; margin:0 0 10px;}
+  .pr-preview{margin-top:20px; padding-top:0;}
+  .pr-link{text-align:left; margin-top:12px;}
+}
+/* mobile — tighten type + spacing */
+@media (max-width:860px){
+  .proj-row{padding:38px 0 40px;}
+  .pr-num{font-size:19px;}
+  .pr-headline{font-size:26px; margin-bottom:14px; max-width:none;}
+  .pr-desc{max-width:none;}
+}
+
+/* =========================================================
+   HANDWRITTEN — reasoning mark (single ink tone #34404C)
+   reusable component: anchor (hand underline) · connector · note.
+   reuse elsewhere: wrap a phrase in .anno-anchor + add a sibling
+   .anno-mark inside a position:relative host.  solid = reasoning.
+   ========================================================= */
+.easier{position:relative;}
+
+/* 1 · anchor — ONE clean hand underline, stretched under the phrase
+   (NEVER text-decoration: that reads as a link) */
+.anno-anchor{
+  background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='90'%20height='6'%3E%3Cpath%20d='M1%204%20C18%202%2030%205%2046%203%20S74%204%2089%203'%20fill='none'%20stroke='%2334404C'%20stroke-width='2'%20stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left bottom;
+  background-size:100% 6px;
+  padding-bottom:3px;
+  -webkit-box-decoration-break:clone; box-decoration-break:clone;
+}
+
+/* 2 + 3 · connector + note, in the right reading-margin (clear of the text);
+   the arrow tip sits just past the line-end (the wrap point of the phrase) */
+.anno-mark{position:absolute; top:-4px; left:662px; width:300px; pointer-events:none;}
+.anno-conn{position:absolute; left:-4px; top:4px; width:96px; height:54px; overflow:visible;}
+.anno-conn path{
+  fill:none; stroke:#34404C; stroke-width:2;
+  stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke;
+}
+.anno-conn.is-gloss path{stroke-dasharray:2 6;}   /* dashed = gloss (reserved, unused) */
+.anno-note{
+  display:block; margin-left:100px;
+  font:500 23px/1.25 var(--script); color:#34404C;
+}
+
+/* margin collapses — note drops directly under the anchor, line shortens to a stub */
+@media (max-width:1080px){
+  .anno-mark{position:relative; top:auto; left:auto; width:auto; display:block; margin:16px 0 0; padding-left:26px;}
+  .anno-conn{display:none;}
+  .anno-note{margin-left:0; font-size:22px;}
+  .anno-mark::before{
+    content:''; position:absolute; left:2px; top:2px; width:17px; height:26px;
+    background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='17'%20height='26'%3E%3Cpath%20d='M4%201%20C4%2011%2014%2012%2013%2023'%20fill='none'%20stroke='%2334404C'%20stroke-width='2'%20stroke-linecap='round'/%3E%3Cpath%20d='M13%2023%20L8%2019%20M13%2023%20L17%2018'%20fill='none'%20stroke='%2334404C'%20stroke-width='2'%20stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
+  }
+}
+
+/* =========================================================
    PROJECT PAGE — "what was locked" list
    ========================================================= */
 .locked-list{list-style:none; margin:0; padding:0; max-width:720px;}
@@ -338,127 +469,6 @@ a.proj-card .pc-title{
 }
 .locked-list li:last-child{margin-bottom:0;}
 .locked-list li::before{content:'—'; position:absolute; left:0; color:var(--hair);}
-
-/* =========================================================
-   ANNOTATION SYSTEM  (handwritten margin notes)
-   🔵 Thinking Mark = ink blue, leader line, observational
-   🔴 Self-bite     = light grey, free-floating, lowercase, witty
-   Hosts carry .anno-host (position:relative); notes float in the
-   right reading-margin on wide screens, reflow inline below ~1160px.
-   ========================================================= */
-.anno-host{position:relative;}
-.anno{
-  position:absolute; top:2px; left:760px; width:282px; z-index:3;
-  font-family:var(--script); font-size:23px; line-height:1.24;
-  pointer-events:none;
-}
-.anno em{font-style:normal;}
-/* 🔵 Thinking Mark */
-.anno-think{color:var(--think); font-weight:500;}
-.anno-think::before{
-  content:''; position:absolute; left:-42px; top:14px;
-  width:36px; height:0; border-top:1.5px solid var(--think);
-  transform:rotate(-7deg); transform-origin:right center;
-}
-/* 🔴 Self-bite */
-.anno-bite{color:var(--bite); font-weight:400; text-transform:lowercase; transform:rotate(-2.4deg);}
-/* a couple of varied offsets so stacked notes don't look mechanical */
-.anno.is-lower{top:auto; bottom:6px;}
-.anno.is-mid{top:42%;}
-.anno.is-card{top:62px;}   /* work cards: sit beside the title, clear of the wide screenshot below */
-
-/* ---------------------------------------------------------
-   PENCIL-WRITING TRACE — annotations drawn over a screenshot
-   (ref-style). Connector lines / rings draw in via dashoffset;
-   notes + kickers are "written" left→right (clip wipe) with a
-   moving pen tip; turbulence filter gives the graphite wobble.
-   Colour follows our system: 🔵 .think = ink blue · 🔴 .bite = grey.
-   Plays once when .is-drawn lands on the figure (JS on scroll-in),
-   then rests faint; hover lifts to full.
-   --------------------------------------------------------- */
-:root{
-  --anno-write:.85s;            /* time to "write" a note      */
-  --anno-line:.75s;             /* time to draw a connector    */
-  --anno-ease:cubic-bezier(.22,1,.36,1);
-  --anno-spring:cubic-bezier(.32,.72,0,1);
-}
-.anno-fig{position:relative; display:block; line-height:0;}
-.anno-fig img{display:block; width:100%; height:auto;}
-.anno-fig:focus-visible{outline:2px solid var(--ink); outline-offset:2px;}
-.anno-layer{
-  position:absolute; inset:0; width:100%; height:100%;
-  pointer-events:none; overflow:visible; opacity:.8;
-  filter:blur(3px); transform:translateY(5px) scale(.994); transform-origin:60% 50%;
-  transition:opacity .6s var(--anno-spring), filter .9s var(--anno-spring), transform .9s var(--anno-spring);
-}
-.is-drawn .anno-layer{filter:blur(0); transform:none;}
-.anno-fig:hover .anno-layer, .anno-fig:focus-within .anno-layer{opacity:1; transform:translateY(-2px) scale(1.006);}
-
-/* ink */
-.a-conn, .a-head{fill:none; stroke-width:1.7; vector-effect:non-scaling-stroke; stroke-linecap:round; stroke-linejoin:round;}
-.a-ring{fill:none; stroke-width:1.9; vector-effect:non-scaling-stroke;}
-.a-conn.think, .a-head.think, .a-ring.think{stroke:var(--think); stroke-opacity:.7;}
-.a-conn.bite, .a-head.bite, .a-ring.bite{stroke:var(--bite); stroke-opacity:.8;}
-.a-dot.think{fill:var(--think); fill-opacity:.8;}
-.a-dot.bite{fill:var(--bite); fill-opacity:.85;}
-.a-note{font-family:var(--script); font-weight:600; font-size:40px;}
-.a-note.think{fill:var(--think); fill-opacity:.96;}
-.a-note.bite{fill:var(--bite); fill-opacity:.96;}
-.a-kick{font-family:var(--sans); font-weight:600; font-size:15px; letter-spacing:2.5px; fill:var(--sub); text-transform:uppercase;}
-.a-strike{font-family:var(--sans); font-weight:500; font-size:20px; fill:var(--bite);}
-.a-strike .gone{text-decoration:line-through;}
-.a-strike .kept{fill:var(--ink);}
-.a-pen{fill:var(--think); fill-opacity:.85;}
-.a-pen.bite{fill:var(--bite);}
-
-/* ---- draw machine ---- */
-.a-conn, .a-ring{stroke-dasharray:1; stroke-dashoffset:1;}
-.a-note, .a-kick, .a-strike{clip-path:inset(0 100% 0 -8%);}
-.a-head{opacity:0;}
-.a-dot{opacity:0; transform:scale(0); transform-box:fill-box; transform-origin:center;}
-.a-pen{opacity:0; transform-box:fill-box; transform-origin:center;}
-
-.js .is-drawn .a-conn, .js .is-drawn .a-ring{
-  stroke-dashoffset:0; transition:stroke-dashoffset var(--anno-line) var(--anno-ease) var(--d,0s);
-}
-.js .is-drawn .a-note, .js .is-drawn .a-kick, .js .is-drawn .a-strike{
-  clip-path:inset(0 -8% 0 -8%); transition:clip-path var(--anno-write) linear var(--d,0s);
-}
-.js .is-drawn .a-head{opacity:1; transition:opacity .3s var(--anno-ease) calc(var(--d,0s) + var(--anno-line));}
-.js .is-drawn .a-dot{opacity:1; transform:scale(1); transition:opacity .25s, transform .45s var(--anno-spring); transition-delay:var(--d,0s);}
-.js .is-drawn .a-pen{animation:anno-penrun var(--anno-write) var(--anno-spring) var(--d,0s) forwards;}
-@keyframes anno-penrun{
-  0%   {opacity:0; transform:translateX(0) scale(.9);}
-  8%   {opacity:1; transform:translateX(2%) scale(1);}
-  88%  {opacity:1; transform:translateX(var(--pen-dx,300px)) scale(1);}
-  100% {opacity:0; transform:translateX(calc(var(--pen-dx,300px) + 10px)) scale(.8) translateY(-3px);}
-}
-
-/* no-JS: everything settled & visible */
-.no-js .anno-layer{filter:none; transform:none;}
-.no-js .a-conn, .no-js .a-ring{stroke-dashoffset:0;}
-.no-js .a-note, .no-js .a-kick, .no-js .a-strike{clip-path:none;}
-.no-js .a-head{opacity:1;} .no-js .a-dot{opacity:1; transform:scale(1);} .no-js .a-pen{display:none;}
-
-@media (prefers-reduced-motion:reduce){
-  .anno-layer{filter:none; transform:none;}
-  .anno-fig *{transition:none !important; animation:none !important;}
-  .a-conn, .a-ring{stroke-dashoffset:0;}
-  .a-note, .a-kick, .a-strike{clip-path:none;}
-  .a-head{opacity:1;} .a-dot{opacity:1; transform:scale(1);} .a-pen{display:none;}
-}
-
-@media (max-width:1160px){
-  /* not enough right margin — reflow notes into the flow */
-  .anno{
-    position:static; left:auto; top:auto; bottom:auto; width:auto;
-    display:block; max-width:540px; margin:18px 0 0;
-    padding-left:14px; border-left:2px solid currentColor;
-    font-size:20px; transform:none;
-  }
-  .anno-think::before{display:none;}
-  .anno-bite{transform:none;}
-}
 
 /* =========================================================
    MOBILE
@@ -536,7 +546,6 @@ a.proj-card .pc-title{
   .pc-img{margin-top:22px;}
   .proj-card.is-thumb .pc-title{font-size:22px;}
   .locked-list li{font-size:16px;}
-  .anno{font-size:18px; max-width:none;}
 
   footer{margin-top:80px;}
 }
