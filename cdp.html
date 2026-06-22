@@ -47,24 +47,8 @@
     <h2 class="sect-label">The setup</h2>
     <div class="reading">
       <p>A customer data platform for marketing teams. Segments, consent rules, campaign conditions, journey logic — layers of data that had to become something a marketer could scan, configure, and trust.</p>
-      <p class="anno-host">The interface already existed. It worked. But "works" and "<span class="anno-anchor">works confidently</span>" are different things.
-        <span class="anno-mark">
-          <svg class="anno-conn" viewBox="0 0 96 54" aria-hidden="true">
-            <path d="M92 8 C60 6 34 14 6 17"/>
-            <path d="M6 17 L16 12 M6 17 L15 23"/>
-          </svg>
-          <span class="anno-note">works ≠ works confidently</span>
-        </span>
-      </p>
-      <p class="anno-host">A marketer could build a segment from event conditions, <span class="anno-anchor">nest AND/OR groups three levels deep</span>, and never know that the logic quietly resolved to zero people.
-        <span class="anno-mark">
-          <svg class="anno-conn" viewBox="0 0 96 54" aria-hidden="true">
-            <path d="M92 8 C60 6 34 14 6 17"/>
-            <path d="M6 17 L16 12 M6 17 L15 23"/>
-          </svg>
-          <span class="anno-note">Query ซับซ้อนที่สุดในระบบ ซ่อนอยู่หลัง UI ที่ดูง่ายที่สุด</span>
-        </span>
-      </p>
+      <p>The interface already existed. It worked. But "works" and "works confidently" are different things.</p>
+      <p>A marketer could build a segment from event conditions, nest AND/OR groups three levels deep, and never know that the logic quietly resolved to zero people.</p>
       <p>That was the problem.</p>
     </div>
   </section>
@@ -74,15 +58,7 @@
     <div>
       <ul class="locked-list">
         <li>Legacy data schemas and variable mappings — untouchable.</li>
-        <li class="anno-host"><span class="anno-anchor">Backend logic constraints</span> — what the system could actually query.
-          <span class="anno-mark">
-            <svg class="anno-conn" viewBox="0 0 96 54" aria-hidden="true">
-              <path d="M92 8 C60 6 34 14 6 17"/>
-              <path d="M6 17 L16 12 M6 17 L15 23"/>
-            </svg>
-            <span class="anno-note">this is where design actually starts</span>
-          </span>
-        </li>
+        <li>Backend logic constraints — what the system could actually query.</li>
         <li>No complete rebuild. Limited dev resources. Improve what exists.</li>
       </ul>
       
@@ -94,30 +70,14 @@
     <div class="decisions">
       <div class="decision">
         <h3 class="d-title">Search that shows what you're choosing</h3>
-        <div class="d-row"><span class="d-key">Problem</span><p class="d-val anno-host">The event catalog was large and growing. A plain dropdown meant <span class="anno-anchor">scrolling through hundreds of entries</span> hoping the name looked right.
-          <span class="anno-mark">
-            <svg class="anno-conn" viewBox="0 0 96 54" aria-hidden="true">
-              <path d="M92 8 C60 6 34 14 6 17"/>
-              <path d="M6 17 L16 12 M6 17 L15 23"/>
-            </svg>
-            <span class="anno-note">dropdowns show labels without meaning</span>
-          </span>
-        </p></div>
+        <div class="d-row"><span class="d-key">Problem</span><p class="d-val">The event catalog was large and growing. A plain dropdown meant scrolling through hundreds of entries hoping the name looked right.</p></div>
         <div class="d-row"><span class="d-key">Decision</span><p class="d-val">A categorized auto-complete selector with metadata visible inside each result row — so a marketer could verify a selection without leaving the search.</p></div>
         <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">A richer selector is heavier to specify and build. Every empty state, loading state, and overflow case needed explicit rules.</p></div>
         
       </div>
       <div class="decision">
         <h3 class="d-title">Nested logic that doesn't overflow the screen</h3>
-        <div class="d-row"><span class="d-key">Problem</span><p class="d-val anno-host">Condition groups needed AND/OR nesting — 2 to 3 levels deep. On a 1440px workspace, <span class="anno-anchor">deep nesting breaks fast</span>.
-          <span class="anno-mark">
-            <svg class="anno-conn" viewBox="0 0 96 54" aria-hidden="true">
-              <path d="M92 8 C60 6 34 14 6 17"/>
-              <path d="M6 17 L16 12 M6 17 L15 23"/>
-            </svg>
-            <span class="anno-note">at some point, showing everything becomes showing nothing</span>
-          </span>
-        </p></div>
+        <div class="d-row"><span class="d-key">Problem</span><p class="d-val">Condition groups needed AND/OR nesting — 2 to 3 levels deep. On a 1440px workspace, deep nesting breaks fast.</p></div>
         <div class="d-row"><span class="d-key">Decision</span><p class="d-val">Conditions structured as logical cards separated by distinct operator blocks, enforced on an 8px spacing standard with strict horizontal sizing rules.</p></div>
         <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">Hard sizing limits how deep nesting can go before the UI has to summarize instead of display.</p></div>
         
@@ -157,15 +117,7 @@
   <section class="proj-sect" id="differently">
     <h2 class="sect-label">What I'd do differently</h2>
     <div class="reflection">
-      <p class="anno-host">The riskiest moment in this tool is invisible: a marketer builds conditions that resolve to zero people and launches an empty campaign without knowing. I'd add a validation layer — a check that warns before nothing goes out to nobody. I'd also watch how deep real users actually nest their groups. I designed for 2–3 levels. <span class="anno-anchor">I don't know if that matches how people really work</span>.
-        <span class="anno-mark">
-          <svg class="anno-conn" viewBox="0 0 96 54" aria-hidden="true">
-            <path d="M92 8 C60 6 34 14 6 17"/>
-            <path d="M6 17 L16 12 M6 17 L15 23"/>
-          </svg>
-          <span class="anno-note">still thinking about this one</span>
-        </span>
-      </p>
+      <p>The riskiest moment in this tool is invisible: a marketer builds conditions that resolve to zero people and launches an empty campaign without knowing. I'd add a validation layer — a check that warns before nothing goes out to nobody. I'd also watch how deep real users actually nest their groups. I designed for 2–3 levels. I don't know if that matches how people really work.</p>
       
     </div>
   </section>

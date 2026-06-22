@@ -299,7 +299,7 @@ a.proj-row .pr-link{
    reuse elsewhere: wrap a phrase in .anno-anchor + add a sibling
    .anno-mark inside a position:relative host.  solid = reasoning.
    ========================================================= */
-.easier, .anno-host{position:relative;}
+.easier{position:relative;}
 
 /* 1 · anchor — ONE clean hand underline, stretched under the phrase
    (NEVER text-decoration: that reads as a link) */
