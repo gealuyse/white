@@ -47,7 +47,15 @@
     <h2 class="sect-label">The setup</h2>
     <div class="reading">
       <p>3BB Member already had an app. Millions of users on Play Store and App Store. Billing, packages, service access, account management — established flows that people used every day without thinking.</p>
-      <p>I didn't redesign the product. I worked inside a shared design file that held years of flows, versions, archived pages, and migration-era decisions stacked on top of each other.</p>
+      <p class="anno-host">I didn't redesign the product. I worked inside a shared design file that held <span class="anno-anchor">years of flows, versions, archived pages</span>, and migration-era decisions stacked on top of each other.
+        <span class="anno-mark">
+          <svg class="anno-conn" viewBox="0 0 96 54" aria-hidden="true">
+            <path d="M92 8 C60 6 34 14 6 17"/>
+            <path d="M6 17 L16 12 M6 17 L15 23"/>
+          </svg>
+          <span class="anno-note">the file was the archaeology site — every layer was a different era</span>
+        </span>
+      </p>
       <p>The first problem wasn't design. It was figuring out which screen was the real one.</p>
     </div>
   </section>
@@ -71,14 +79,38 @@
       <div class="decision">
         <h3 class="d-title">Map current vs. legacy before touching anything</h3>
         <div class="d-row"><span class="d-key">Problem</span><p class="d-val">The file contained years of accumulated work. Not every screen needed updating — most didn't. But no one had clearly marked which flow was intended and which was leftover.</p></div>
-        <div class="d-row"><span class="d-key">Decision</span><p class="d-val">I separated active states from inherited content, then updated only where migration logic, service state, or implementation requirements actually changed the user's path.</p></div>
+        <div class="d-row"><span class="d-key">Decision</span><p class="d-val anno-host">I separated active states from inherited content, then <span class="anno-anchor">updated only where migration logic, service state</span>, or implementation requirements actually changed the user's path.
+          <span class="anno-mark">
+            <svg class="anno-conn" viewBox="0 0 96 54" aria-hidden="true">
+              <path d="M92 8 C60 6 34 14 6 17"/>
+              <path d="M6 17 L16 12 M6 17 L15 23"/>
+            </svg>
+            <span class="anno-note">restraint is a design decision — the hardest one</span>
+          </span>
+        </p></div>
         <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">Less visually dramatic. More stable, more shippable.</p></div>
         
       </div>
       <div class="decision">
         <h3 class="d-title">Treat errors and service changes as first-class screens</h3>
-        <div class="d-row"><span class="d-key">Problem</span><p class="d-val">Login errors, registration conditions, billing options — these aren't edge cases. These are the moments where users feel the most uncertainty.</p></div>
-        <div class="d-row"><span class="d-key">Decision</span><p class="d-val">I added and refined specific states: login error handling, mobile OTP registration, auto-pay setup, bill-delivery channel selection. Each got clear copy, hierarchy, and a next action QA and dev could implement consistently.</p></div>
+        <div class="d-row"><span class="d-key">Problem</span><p class="d-val anno-host">Login errors, registration conditions, billing options — <span class="anno-anchor">these aren't edge cases</span>. These are the moments where users feel the most uncertainty.
+          <span class="anno-mark">
+            <svg class="anno-conn" viewBox="0 0 96 54" aria-hidden="true">
+              <path d="M92 8 C60 6 34 14 6 17"/>
+              <path d="M6 17 L16 12 M6 17 L15 23"/>
+            </svg>
+            <span class="anno-note">edge cases are where trust is built or lost</span>
+          </span>
+        </p></div>
+        <div class="d-row"><span class="d-key">Decision</span><p class="d-val anno-host">I added and refined specific states: <span class="anno-anchor">login error handling</span>, mobile OTP registration, auto-pay setup, bill-delivery channel selection. Each got clear copy, hierarchy, and a next action QA and dev could implement consistently.
+          <span class="anno-mark">
+            <svg class="anno-conn" viewBox="0 0 96 54" aria-hidden="true">
+              <path d="M92 8 C60 6 34 14 6 17"/>
+              <path d="M6 17 L16 12 M6 17 L15 23"/>
+            </svg>
+            <span class="anno-note">หน้านี้ไม่มีใครอยากเจอ ออกแบบให้มันยังพอทนได้</span>
+          </span>
+        </p></div>
         <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">More screens to maintain. Fewer implementation gaps to argue about.</p></div>
         
       </div>
@@ -104,7 +136,15 @@
   <section class="proj-sect" id="differently">
     <h2 class="sect-label">What I'd do differently</h2>
     <div class="reflection">
-      <p>Map the inherited-vs-contribution boundary on day one. I found it eventually. But the time spent figuring out which screen was current and which was legacy could have been saved with an explicit audit upfront. That clarity was worth more to the team than any single screen I delivered.</p>
+      <p class="anno-host">Map the inherited-vs-contribution boundary on day one. I found it eventually. But the time spent figuring out which screen was current and which was legacy could have been saved with an <span class="anno-anchor">explicit audit upfront</span>. That clarity was worth more to the team than any single screen I delivered.
+        <span class="anno-mark">
+          <svg class="anno-conn" viewBox="0 0 96 54" aria-hidden="true">
+            <path d="M92 8 C60 6 34 14 6 17"/>
+            <path d="M6 17 L16 12 M6 17 L15 23"/>
+          </svg>
+          <span class="anno-note">next time: audit first, design second</span>
+        </span>
+      </p>
       
     </div>
   </section>

@@ -66,11 +66,10 @@ as provenance (superseded; the spec wins).
   GSAP / any JS motion · the "pencil-writing trace" (it never shipped).
 
 ## Status & open issues
-- [ ] Annotations barely started: only ONE mark exists site-wide (the `index.html`
-      demo). Add more per the per-page budget in the spec.
+- [x] Annotations added site-wide per the per-page budget in the spec.
 - [x] Connected to GitHub (`gealuyse/portfoilo`); `git push` deploys. No custom domain.
 - [x] SEO: canonical / og:url / og:image set to `https://gealuyse.github.io/portfoilo/`; `og.png` added.
-- [ ] Finalize About + Contact copy.
+- [x] Finalize About + Contact copy.
 
 ## License
 © Natthapath Damrongsri. All rights reserved. Code and content in this repository

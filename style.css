@@ -165,7 +165,9 @@ section{padding:0;}
 .screen-item{border:1px solid var(--hair); overflow:hidden;}
 .screen-link{display:block; line-height:0;}
 .screen-link:focus-visible{outline:2px solid var(--ink); outline-offset:2px;}
-.screen-item img{display:block; width:100%; height:auto;}
+/* min-height + paper bg = a broken/missing image degrades to a framed paper
+   box (not a collapsed row); the alt text + caption below still explain it */
+.screen-item img{display:block; width:100%; height:auto; min-height:120px; background:var(--panel);}
 .screen-frame{
   display:flex; align-items:center; justify-content:center;
   background:var(--panel); border-bottom:1px solid var(--hair);
@@ -297,7 +299,7 @@ a.proj-row .pr-link{
    reuse elsewhere: wrap a phrase in .anno-anchor + add a sibling
    .anno-mark inside a position:relative host.  solid = reasoning.
    ========================================================= */
-.easier{position:relative;}
+.easier, .anno-host{position:relative;}
 
 /* 1 · anchor — ONE clean hand underline, stretched under the phrase
    (NEVER text-decoration: that reads as a link) */
