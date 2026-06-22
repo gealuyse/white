@@ -3,7 +3,7 @@
 Static portfolio. Plain HTML + CSS, no build step, no framework, **no JavaScript**.
 Open `index.html` in a browser to view.
 
-> Live: **https://natthapath.d/** (once the first deploy finishes).
+> Live: **https://gealuyse.github.io/portfoilo/** (once the first deploy finishes).
 
 ## Stack
 - HTML5 + one shared `style.css` — fully static, no JS
@@ -51,13 +51,11 @@ as provenance (superseded; the spec wins).
 5. Nav → update the prev/next links in the adjacent case-study pages
 
 ## Deploy
-**GitHub Pages**, repo `gealuyse/portfoilo`, custom domain via `CNAME` (`natthapath.d`).
+**GitHub Pages**, repo `gealuyse/portfoilo`. No custom domain.
 - Pages source: branch `main`, folder `/ (root)`. `git push origin main` triggers the build.
 - `_config.yml` excludes `docs/` and `README.md` from the published site. Do **NOT**
   add `.nojekyll` — that disables Jekyll and the excludes stop working (exposes `docs/`).
-- URL: `https://natthapath.d/`. ⚠️ `.d` is not a real TLD — the site will not resolve
-  there until `CNAME` points at a valid domain (e.g. `.dev` / `.com`). Update `CNAME`
-  and the canonical / og URLs together when it changes.
+- URL: `https://gealuyse.github.io/portfoilo/`.
 
 ## For AI agents
 - Edit HTML/CSS directly — nothing to compile, no JS to wire up.
@@ -70,10 +68,8 @@ as provenance (superseded; the spec wins).
 ## Status & open issues
 - [ ] Annotations barely started: only ONE mark exists site-wide (the `index.html`
       demo). Add more per the per-page budget in the spec.
-- [x] Connected to GitHub (`gealuyse/portfoilo`) + `CNAME`; `git push` deploys.
-- [x] SEO: canonical / og:url / og:image set to `https://natthapath.d/`; `og.png` added.
-- [ ] Custom domain `natthapath.d` has no valid TLD — point `CNAME` at a real domain
-      so the site actually resolves, then update the canonical / og URLs to match.
+- [x] Connected to GitHub (`gealuyse/portfoilo`); `git push` deploys. No custom domain.
+- [x] SEO: canonical / og:url / og:image set to `https://gealuyse.github.io/portfoilo/`; `og.png` added.
 - [ ] Finalize About + Contact copy.
 
 ## License
