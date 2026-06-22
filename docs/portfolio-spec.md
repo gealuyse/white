@@ -24,6 +24,8 @@ CDP (01) → 3BB (02) → POS (03) → Naaraan (04, reserve — kept, not a prim
   (handwritten notes, `var(--script)`).
 - NOT used (dropped brief ideas): Fraunces / DM Sans fonts · GSAP · any JS motion.
 - Name on site: **Natthapath Damrongsri** (older drafts use placeholder "G").
+- Spacing: every gap uses scale tokens `--sp-1`…`--sp-10` (4px base —
+  8/12/16/20/24/32/48/64/96/128). Keep new spacing on these steps; don't hand-pick px.
 
 ## Annotation / margin-voice system (current)
 One handwritten voice. Single ink tone **`#34404C`**, Caveat. The old two-color
