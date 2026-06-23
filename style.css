@@ -165,16 +165,7 @@ section{padding:0;}
 .screen-item{border:1px solid var(--hair); overflow:hidden;}
 .screen-link{display:block; line-height:0;}
 .screen-link:focus-visible{outline:2px solid var(--ink); outline-offset:2px;}
-/* min-height + paper bg = a broken/missing image degrades to a framed paper
-   box (not a collapsed row); the alt text + caption below still explain it */
-.screen-item img{display:block; width:100%; height:auto; min-height:120px; background:var(--panel);}
-.screen-frame{
-  display:flex; align-items:center; justify-content:center;
-  background:var(--panel); border-bottom:1px solid var(--hair);
-  color:var(--sub); font:500 12px/1 var(--sans);
-  letter-spacing:.08em; text-transform:uppercase; aspect-ratio:16/9;
-}
-.screen-frame.compact{aspect-ratio:4/3;}
+.screen-item img{display:block; width:100%; height:auto;}
 .screen-caption{font:400 13px/1.6 var(--sans); color:var(--sub); padding:var(--sp-2) var(--sp-3) var(--sp-3);}
 .screen-fig{font-weight:500; color:var(--ink);}
 
@@ -243,7 +234,7 @@ a.proj-row .pr-headline{
 /* unify previews into one warm, printed-on-paper mood (source images untouched):
    desaturate + ease contrast + lift brightness + a touch of warmth */
 .pr-img img{
-  display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover;
+  display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover;
   /* faded-on-paper at rest: low saturation + lifted brightness reads "pale", not "yellow";
      sepia kept tiny + hue nudged off yellow */
   filter:saturate(.74) contrast(.92) brightness(1.06) sepia(.02) hue-rotate(-8deg);
