@@ -129,13 +129,21 @@ section{padding:0;}
 }
 .project-intro{font:400 18px/1.65 var(--sans); max-width:660px; margin:0 0 var(--sp-7);}
 
+/* cover / hero — opens the case study; true colour (no homepage fade filter) */
+.project-cover{
+  margin:0; border:1px solid var(--hair); background:var(--panel);
+  overflow:hidden; line-height:0;
+}
+.project-cover img{display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover;}
+
 /* fact strip */
 .proj-meta{
   display:grid; grid-template-columns:repeat(3, minmax(0,1fr));
   gap:var(--sp-5) var(--sp-7); max-width:860px; margin:0;
   border-top:1px solid var(--hair); padding-top:var(--sp-6);
 }
-.proj-meta-foot{margin-top:var(--sp-9);}
+/* fact strip lifted to the top of the case study, just under the cover */
+.proj-meta-head{margin-top:var(--sp-7);}
 .proj-meta dt{
   font:500 11px/1 var(--sans); letter-spacing:.08em; text-transform:uppercase;
   color:var(--sub); margin:0 0 var(--sp-1);
@@ -144,20 +152,21 @@ section{padding:0;}
 
 /* content sections */
 .proj-sect{padding:var(--sp-9) 0 0;}
-.proj-sect .reading p{font:400 18px/1.65 var(--sans); margin:0 0 var(--sp-4);}
+.proj-sect .reading{max-width:600px;}
+.proj-sect .reading p{font:400 18px/1.7 var(--sans); margin:0 0 var(--sp-5);}
 .proj-sect .reading p:last-child{margin-bottom:0;}
 
 /* decisions */
-.decisions{border-top:1px solid var(--hair); max-width:760px;}
-.decision{padding:var(--sp-6) 0; border-bottom:1px solid var(--hair);}
+.decisions{border-top:1px solid var(--hair); max-width:880px;}
+.decision{padding:var(--sp-7) 0; border-bottom:1px solid var(--hair);}
 .d-title{font:400 25px/1.25 var(--serif); letter-spacing:-0.005em; margin:0 0 var(--sp-5);}
-.d-row{margin:0 0 var(--sp-3);}
+.d-row{margin:0 0 var(--sp-4);}
 .d-row:last-child{margin-bottom:0;}
 .d-key{
   font:500 11px/1 var(--sans); letter-spacing:.07em; text-transform:uppercase;
   color:var(--sub); display:block; margin:0 0 var(--sp-1);
 }
-.d-val{font:400 16px/1.62 var(--sans); margin:0; max-width:62ch;}
+.d-val{font:400 16px/1.7 var(--sans); margin:0; max-width:56ch;}
 .d-row.is-tradeoff .d-val{color:var(--sub);}
 
 /* evidence / screens */
@@ -168,6 +177,13 @@ section{padding:0;}
 .screen-item img{display:block; width:100%; height:auto;}
 .screen-caption{font:400 13px/1.6 var(--sans); color:var(--sub); padding:var(--sp-2) var(--sp-3) var(--sp-3);}
 .screen-fig{font-weight:500; color:var(--ink);}
+/* inline case figure — evidence placed inside the decision it supports
+   (wider than the text measure so it punctuates the reading rhythm) */
+.case-fig{margin:var(--sp-5) 0 0; max-width:880px;}
+/* short lead that frames the figure right below it (used to split a two-part decision) */
+.fig-lead{font:400 16px/1.7 var(--sans); max-width:56ch; margin:var(--sp-6) 0 var(--sp-2);}
+.fig-lead .fig-step{font:600 12px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; color:var(--sub); margin-right:8px;}
+.fig-lead + .case-fig{margin-top:0;}
 
 /* reflection — editorial pull */
 .reflection{border-left:2px solid var(--ink); padding-left:var(--sp-5); max-width:686px;}
@@ -228,7 +244,8 @@ a.proj-row .pr-headline{
 .pr-desc{font:400 16px/1.62 var(--sans); color:var(--sub); margin:0; max-width:54ch;}
 .pr-preview{display:block; padding-top:4px;}
 .pr-img{
-  display:block; position:relative; border:1px solid var(--hair); background:var(--panel);
+  /* frame line softened to ~30% strength — the hairline around the preview read too dark/heavy */
+  display:block; position:relative; border:1px solid rgba(216,213,208,.3); background:var(--panel);
   overflow:hidden; line-height:0;
 }
 /* unify previews into one warm, printed-on-paper mood (source images untouched):

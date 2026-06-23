@@ -1,20 +1,20 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Counter Service POS — Case Study · Natthapath Damrongsri</title>
-<meta name="description" content="Everything was locked except spacing and contrast — modernizing a constrained POS interface across 800×600 and 1920×1080 without moving a single control.">
+<meta name="description" content="A POS design proposal improving hierarchy, spacing, and contrast across 800×600 and 1920×1080 terminals without moving cashier controls.">
 
 <link rel="canonical" href="https://gealuyse.github.io/portfoilo/counter-service-pos.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Counter Service POS — Case Study">
-<meta property="og:description" content="Everything was locked except spacing and contrast. Modernizing a constrained POS interface without moving a single control.">
+<meta property="og:description" content="A POS design proposal improving hierarchy, spacing, and contrast across 800×600 and 1920×1080 terminals without moving cashier controls.">
 <meta property="og:url" content="https://gealuyse.github.io/portfoilo/counter-service-pos.html">
 <meta property="og:image" content="https://gealuyse.github.io/portfoilo/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Counter Service POS — Case Study">
-<meta name="twitter:description" content="Everything was locked except spacing and contrast. Modernizing a constrained POS interface without moving a single control.">
+<meta name="twitter:description" content="A POS design proposal improving hierarchy, spacing, and contrast across 800×600 and 1920×1080 terminals without moving cashier controls.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23FCFBF9'/><text x='16' y='24' font-family='Georgia,serif' font-size='24' text-anchor='middle' fill='%231C1B1A'>N</text></svg>">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,14 +41,27 @@
   <div class="project-header">
     <span class="proposal-label">Operational UX / POS</span>
     <h1 class="project-title">Counter Service POS</h1>
+    <p class="project-intro">Everything was locked except spacing and contrast — and cashiers run on muscle memory, so the screen had to read better without making a single hand relearn where anything was.</p>
   </div>
+
+  <figure class="project-cover">
+    <img src="assets/projects/counter-service-pos/cover.png" alt="Counter Service POS — categorized billers grid on the cashier home screen.">
+  </figure>
+
+  <dl class="proj-meta proj-meta-head">
+    <div><dt>Role</dt><dd>UX/UI Designer</dd></div>
+    <div><dt>Platform</dt><dd>POS terminal · 800×600 &amp; 1920×1080</dd></div>
+    <div><dt>Year</dt><dd>2023</dd></div>
+    <div><dt>Status</dt><dd>Design spec · Review completed</dd></div>
+    <div><dt>Scope</dt><dd>Visual hierarchy · Spacing system · Dual-resolution layouts</dd></div>
+  </dl>
 
   <section class="proj-sect" id="setup">
     <h2 class="sect-label">The setup</h2>
     <div class="reading">
-      <p>Cashiers process hundreds of transactions per shift. They don't read the screen — they hit coordinates on muscle memory built over months of the same layout, the same buttons, the same flow.</p>
-      <p>The interface needed better hierarchy and consistency. But the flow was fixed. The button positions were fixed. The brand identity was fixed. The screens ranged from 800×600 to 1920×1080.</p>
-      <p>Everything was locked except spacing and contrast.</p>
+      <p>Cashiers process hundreds of transactions per shift. They do not read every screen from scratch — they rely on positions, repeated flows, and muscle memory built over time.</p>
+      <p>The interface needed clearer hierarchy and more consistent spacing. But the flow was fixed. The button positions were fixed. The brand identity was fixed. The screens ranged from 800×600 to 1920×1080.</p>
+      <p>Everything was locked except spacing, hierarchy, and contrast.</p>
     </div>
   </section>
 
@@ -56,31 +69,32 @@
     <h2 class="sect-label">What I actually did</h2>
     <div class="decisions">
       <div class="decision">
-        <h3 class="d-title">Spacing rules inside a rigid grid</h3>
-        <div class="d-row"><span class="d-key">Problem</span><p class="d-val">Uneven margins and local offsets made the screen hard to scan during peak hours.</p></div>
-        <div class="d-row"><span class="d-key">Decision</span><p class="d-val">I standardized spacing across all button groups and transaction lists. Peak-hour scanning speed depends on predictable alignment more than any individual component style.</p></div>
+        <h3 class="d-title">Improve hierarchy without moving the controls</h3>
+        <div class="d-row"><span class="d-key">Problem</span><p class="d-val">The interface had uneven spacing, weak grouping, and competing visual weight. During routine transactions, important information had to stand out without changing the controls cashiers already knew.</p></div>
+        <div class="d-row"><span class="d-key">Decision</span><p class="d-val">I kept the button positions in place and adjusted hierarchy through spacing, grouping, contrast, and clearer separation between transaction areas and action areas.</p></div>
+        <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">The result is less dramatic than a full redesign. That was the point — a cashier should not have to relearn the screen to read it better.</p></div>
+        <p class="fig-lead"><span class="fig-step">Part 1</span>The proposed interface — the same controls, now grouped and weighted so the next action reads first.</p>
+        <figure class="screen-item case-fig">
+          <a class="screen-link" href="assets/projects/counter-service-pos/screen_proof.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/counter-service-pos/screen_proof.png" width="1920" height="1080" alt="Counter Service POS wide-screen proposal — current-order panel, product catalogue grid, payment actions, and grouped operational controls."></a>
+        </figure>
       </div>
       <div class="decision">
-        <h3 class="d-title">Adaptive scaling for two worlds</h3>
-        <div class="d-row"><span class="d-key">Problem</span><p class="d-val">Linear scaling produced oversized buttons on 1080p and unreadable text on 800×600.</p></div>
-        <div class="d-row"><span class="d-key">Decision</span><p class="d-val">I designed two separate layout profiles — compact rows with essential metadata for legacy screens, expanded sections with purchase details for modern ones.</p></div>
-        <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">Two wireframe sets maintained through every revision.</p></div>
-        
+        <h3 class="d-title">Build layout rules for two screen realities</h3>
+        <div class="d-row"><span class="d-key">Problem</span><p class="d-val">The same POS experience had to work across legacy 800×600 terminals and wider 1920×1080 displays. A simple scale-up or scale-down would either crowd the small screen or overinflate the larger one.</p></div>
+        <div class="d-row"><span class="d-key">Decision</span><p class="d-val">I designed separate layout profiles for compact and expanded screens. The compact version prioritized essential metadata and tighter rows. The wider version gave more room to transaction details, product areas, and payment actions without simply enlarging everything.</p></div>
+        <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">Two layout profiles meant more design maintenance. But one flexible mockup would have hidden the real hardware constraint.</p></div>
+        <p class="fig-lead"><span class="fig-step">Part 2</span>The same screen on legacy 800×600 hardware — a compact profile that keeps the essentials legible without crowding.</p>
+        <figure class="screen-item case-fig">
+          <a class="screen-link" href="assets/projects/counter-service-pos/fig-2-1.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/counter-service-pos/fig-2-1.png" alt="Counter Service POS legacy 800×600 cashier screen — categorized biller grid with compact rows and essential metadata."></a>
+        </figure>
       </div>
     </div>
   </section>
 
-  <section class="proj-sect" id="evidence">
-    <h2 class="sect-label">Evidence</h2>
-    <div class="screens">
-      <div class="screen-item">
-        <a class="screen-link" href="assets/projects/counter-service-pos/screen_proof.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/counter-service-pos/screen_proof.png" width="1920" height="1080" alt="Counter Service POS wide-screen proposal — current-order panel, product catalogue grid, payment actions, and grouped operational controls."></a>
-        <p class="screen-caption"><span class="screen-fig">Fig 1.1</span> — Optimized POS interface: enhanced hierarchy within standard key alignments.</p>
-      </div>
-      <div class="screen-item">
-        <a class="screen-link" href="assets/projects/counter-service-pos/fig-2-1.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/counter-service-pos/fig-2-1.png" alt="Counter Service POS legacy 800×600 cashier screen — categorized biller grid with compact rows and essential metadata."></a>
-        <p class="screen-caption"><span class="screen-fig">Fig 2.1</span> — Dual-resolution specs: margin/padding/border adjustments across hardware profiles.</p>
-      </div>
+  <section class="proj-sect" id="shipped">
+    <h2 class="sect-label">What it shipped</h2>
+    <div class="reading">
+      <p>It delivered as a review-approved spec: two layout profiles — compact and expanded — with hierarchy, spacing, and contrast rules defined per screen size, and every control left exactly where cashiers' hands already expected it.</p>
     </div>
   </section>
 
@@ -88,17 +102,8 @@
     <h2 class="sect-label">What I'd do differently</h2>
     <div class="reflection">
       <p>This project needs proof. The entire design rests on one claim: better hierarchy and spacing speed up checkout without moving a single control. If it reaches live testing, I'd log keystroke timing on the terminals — real transaction-speed data, no cashier interrupted.</p>
-      
     </div>
   </section>
-
-  <dl class="proj-meta proj-meta-foot">
-    <div><dt>Role</dt><dd>UX/UI Designer</dd></div>
-    <div><dt>Platform</dt><dd>POS terminal · 800×600 &amp; 1920×1080</dd></div>
-    <div><dt>Year</dt><dd>2023</dd></div>
-    <div><dt>Status</dt><dd>Design spec · Review completed</dd></div>
-    <div><dt>Scope</dt><dd>Visual hierarchy · Spacing system · Dual-resolution layouts</dd></div>
-  </dl>
 
   <nav class="case-nav" aria-label="More work">
     <a class="cn-prev" href="3bb-member.html"><span class="cn-label">Previous case</span><span class="cn-title">3BB Member</span></a>

@@ -1,20 +1,20 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Customer Data Platform (CDP) — Case Study · Natthapath Damrongsri</title>
-<meta name="description" content="Making complex customer data workflows clearer for marketing teams — advanced search, a nested condition builder, IA, and handoff documentation.">
+<title>Customer Data Platform — Segment & Condition Builder · Natthapath Damrongsri</title>
+<meta name="description" content="Segment builder for a CDP where marketers build audience logic from attributes, events, consent rules, and nested conditions.">
 
 <link rel="canonical" href="https://gealuyse.github.io/portfoilo/cdp.html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Customer Data Platform (CDP) — Case Study">
-<meta property="og:description" content="Making complex customer data workflows clearer for marketing teams.">
+<meta property="og:title" content="Customer Data Platform — Segment & Condition Builder">
+<meta property="og:description" content="Segment builder for a CDP where marketers build audience logic from attributes, events, consent rules, and nested conditions.">
 <meta property="og:url" content="https://gealuyse.github.io/portfoilo/cdp.html">
 <meta property="og:image" content="https://gealuyse.github.io/portfoilo/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Customer Data Platform (CDP) — Case Study">
-<meta name="twitter:description" content="Making complex customer data workflows clearer for marketing teams.">
+<meta name="twitter:title" content="Customer Data Platform — Segment & Condition Builder">
+<meta name="twitter:description" content="Segment builder for a CDP where marketers build audience logic from attributes, events, consent rules, and nested conditions.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23FCFBF9'/><text x='16' y='24' font-family='Georgia,serif' font-size='24' text-anchor='middle' fill='%231C1B1A'>N</text></svg>">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,16 +39,30 @@
 <main class="wrap">
 
   <div class="project-header">
-    <span class="proposal-label">Enterprise SaaS / Analytics</span>
-    <h1 class="project-title">Customer Data Platform</h1>
+    <span class="proposal-label">Enterprise SaaS / Customer Data Platform</span>
+    <h1 class="project-title">Customer Data Platform — Segment & Condition Builder</h1>
+    <p class="project-intro">The hardest query logic in the system had to feel like the easiest screen — so marketers could nest conditions three levels deep and still trust the audience it resolved to.</p>
   </div>
+
+  <figure class="project-cover">
+    <img src="assets/projects/cdp/cover.png" alt="Customer Data Platform — overview of the segment and condition builder workspace.">
+  </figure>
+
+  <dl class="proj-meta proj-meta-head">
+    <div><dt>Role</dt><dd>UX/UI Designer (core feature design)</dd></div>
+    <div><dt>Platform</dt><dd>Web application</dd></div>
+    <div><dt>Timeline</dt><dd>3 months · 2024</dd></div>
+    <div><dt>Team</dt><dd>Tech lead · PM · Front-end engineers · QA</dd></div>
+    <div><dt>Scope</dt><dd>Segment builder · Condition logic · Advanced search · Handoff docs</dd></div>
+    <div><dt>Status</dt><dd>Handed off · Implementation supported</dd></div>
+  </dl>
 
   <section class="proj-sect" id="setup">
     <h2 class="sect-label">The setup</h2>
     <div class="reading">
-      <p>A customer data platform for marketing teams. Segments, consent rules, campaign conditions, journey logic — layers of data that had to become something a marketer could scan, configure, and trust.</p>
+      <p>Marketing teams used this customer data platform to build audience segments from attributes, events, consent rules, and campaign conditions. The hard part was not showing more data. It was turning layered logic into a workspace they could read, configure, and trust.</p>
       <p>The interface already existed. It worked. But "works" and "works confidently" are different things.</p>
-      <p>A marketer could build a segment from event conditions, nest AND/OR groups three levels deep, and never know that the logic quietly resolved to zero people.</p>
+      <p>A marketer could build a segment, nest AND/OR groups two or three levels deep, and still miss that the logic quietly resolved to zero people.</p>
       <p>That was the problem.</p>
     </div>
   </section>
@@ -59,7 +73,7 @@
       <ul class="locked-list">
         <li>Legacy data schemas and variable mappings — untouchable.</li>
         <li>Backend logic constraints — what the system could actually query.</li>
-        <li>No complete rebuild. Limited dev resources. Improve what exists.</li>
+        <li>No complete rebuild. Limited dev resources. Improve the workspace inside the existing platform.</li>
       </ul>
       
     </div>
@@ -69,48 +83,46 @@
     <h2 class="sect-label">What I actually did</h2>
     <div class="decisions">
       <div class="decision">
-        <h3 class="d-title">Search that shows what you're choosing</h3>
-        <div class="d-row"><span class="d-key">Problem</span><p class="d-val">The event catalog was large and growing. A plain dropdown meant scrolling through hundreds of entries hoping the name looked right.</p></div>
-        <div class="d-row"><span class="d-key">Decision</span><p class="d-val">A categorized auto-complete selector with metadata visible inside each result row — so a marketer could verify a selection without leaving the search.</p></div>
-        <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">A richer selector is heavier to specify and build. Every empty state, loading state, and overflow case needed explicit rules.</p></div>
-        
+        <h3 class="d-title">A workspace for layered audience logic</h3>
+        <div class="d-row"><span class="d-key">Problem</span><p class="d-val">Marketers had to combine attributes, events, consent rules, and AND/OR groups inside one workspace. The risk was not only choosing the wrong condition — it was building logic that looked valid while quietly resolving to the wrong audience.</p></div>
+        <div class="d-row"><span class="d-key">Decision</span><p class="d-val">I structured the builder around visible condition groups, clear operator blocks, and an estimated-reach panel, so the user could understand the segment as it was being assembled.</p></div>
+        <p class="fig-lead"><span class="fig-step">Part 1</span>What that looks like in use — the whole segment stays readable as it's built, with estimated reach updating in the same view.</p>
+        <figure class="screen-item case-fig">
+          <a class="screen-link" href="assets/projects/cdp/fig-1-1.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cdp/fig-1-1.png" alt="CDP customer segment builder workspace — a visible condition group and estimated-reach summary panel for audience logic."></a>
+        </figure>
+        <p class="fig-lead"><span class="fig-step">Part 2</span>And when the logic goes deep — AND/OR groups nest two or three levels without becoming a wall of brackets.</p>
+        <figure class="screen-item case-fig">
+          <a class="screen-link" href="assets/projects/cdp/fig-2-2.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cdp/fig-2-2.png" alt="CDP nested query blocks — AND/OR condition groups nested with spacing parameters."></a>
+        </figure>
+        <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">Showing logic clearly takes space. The interface had to stay readable before it tried to show everything.</p></div>
       </div>
       <div class="decision">
-        <h3 class="d-title">Nested logic that doesn't overflow the screen</h3>
-        <div class="d-row"><span class="d-key">Problem</span><p class="d-val">Condition groups needed AND/OR nesting — 2 to 3 levels deep. On a 1440px workspace, deep nesting breaks fast.</p></div>
-        <div class="d-row"><span class="d-key">Decision</span><p class="d-val">Conditions structured as logical cards separated by distinct operator blocks, enforced on an 8px spacing standard with strict horizontal sizing rules.</p></div>
-        <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">Hard sizing limits how deep nesting can go before the UI has to summarize instead of display.</p></div>
-        
+        <h3 class="d-title">Search that shows what you're choosing</h3>
+        <div class="d-row"><span class="d-key">Problem</span><p class="d-val">The event and attribute catalog was large and growing. A plain dropdown meant scrolling through entries and trusting that a label meant what it seemed to mean.</p></div>
+        <div class="d-row"><span class="d-key">Decision</span><p class="d-val">I designed a categorized auto-complete selector with metadata visible inside each result row, so users could verify a condition before adding it to the segment.</p></div>
+        <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">A richer selector is heavier to specify and build. Every empty state, loading state, and overflow case needed explicit rules.</p></div>
+        <p class="fig-lead"><span class="fig-step">Part 3</span>In the selector itself — every result carries the metadata to verify a condition before it goes into the segment.</p>
+        <figure class="screen-item case-fig">
+          <a class="screen-link" href="assets/projects/cdp/fig-2-1.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cdp/fig-2-1.png" alt="CDP advanced search selector — categorized auto-complete with metadata visible in each result row."></a>
+        </figure>
       </div>
       <div class="decision">
         <h3 class="d-title">Specs that answer the questions devs actually ask</h3>
         <div class="d-row"><span class="d-key">Problem</span><p class="d-val">Dynamic inputs changed behavior based on selected conditions. Without explicit specs, developers had to guess — and every guess became a QA ticket.</p></div>
-        <div class="d-row"><span class="d-key">Decision</span><p class="d-val">I mapped button states, focus rings, validation alerts, and input adapters per data variable into interactive spec documents.</p></div>
-        <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">More upfront design work before any code gets written. But fewer conversations that start with "what should this do when…"</p></div>
-        
+        <div class="d-row"><span class="d-key">Decision</span><p class="d-val">I mapped button states, focus rings, validation alerts, and input adapters per data variable into handoff specs the team could implement and QA against.</p></div>
+        <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">More upfront design work before any code gets written. But fewer conversations that start with "what should this do when..."</p></div>
+        <p class="fig-lead"><span class="fig-step">Part 4</span>And the spec the team built from — states, validation, and per-variable input rules documented so behaviour wasn't left to guesswork.</p>
+        <figure class="screen-item case-fig">
+          <a class="screen-link" href="assets/projects/cdp/fig-2-3.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cdp/fig-2-3.png" alt="CDP handoff specs — component layouts, interaction states, and edge cases mapped for developers."></a>
+        </figure>
       </div>
     </div>
   </section>
 
-  <section class="proj-sect" id="evidence">
-    <h2 class="sect-label">Evidence</h2>
-    <div class="screens">
-      <div class="screen-item">
-        <a class="screen-link" href="assets/projects/cdp/fig-1-1.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cdp/fig-1-1.png" alt="CDP customer segment builder workspace — an AND condition group with a categorized event/attribute/consent autocomplete selector and an estimated-reach summary panel."></a>
-        <p class="screen-caption"><span class="screen-fig">Fig 1.1</span> — Segment builder workspace: structured event and condition setup.</p>
-      </div>
-      <div class="screen-item">
-        <a class="screen-link" href="assets/projects/cdp/fig-2-1.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cdp/fig-2-1.png" alt="CDP advanced search selector — categorized auto-complete listing events, attributes, and consent options, each result row showing metadata for verification."></a>
-        <p class="screen-caption"><span class="screen-fig">Fig 2.1</span> — Advanced search selector: categorized auto-complete with metadata rows.</p>
-      </div>
-      <div class="screen-item">
-        <a class="screen-link" href="assets/projects/cdp/fig-2-2.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cdp/fig-2-2.png" alt="CDP nested query blocks — AND/OR condition groups nested two to three levels deep with explicit spacing parameters."></a>
-        <p class="screen-caption"><span class="screen-fig">Fig 2.2</span> — Nested query blocks: AND/OR logic groups with spacing parameters.</p>
-      </div>
-      <div class="screen-item">
-        <a class="screen-link" href="assets/projects/cdp/fig-2-3.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cdp/fig-2-3.png" alt="CDP handoff specs — component layouts with interaction states and edge cases mapped for developers."></a>
-        <p class="screen-caption"><span class="screen-fig">Fig 2.3</span> — Handoff specs: component layouts, interaction states, edge cases.</p>
-      </div>
+  <section class="proj-sect" id="shipped">
+    <h2 class="sect-label">What it shipped</h2>
+    <div class="reading">
+      <p>It handed off as developer- and QA-ready specs: condition logic, search states, and per-variable input rules mapped explicitly — so the build ran on documented behaviour instead of guesswork, and the questions that usually turn into QA tickets were answered before any code was written.</p>
     </div>
   </section>
 
@@ -121,15 +133,6 @@
       
     </div>
   </section>
-
-  <dl class="proj-meta proj-meta-foot">
-    <div><dt>Role</dt><dd>UX/UI Designer (core feature design)</dd></div>
-    <div><dt>Platform</dt><dd>Web application</dd></div>
-    <div><dt>Timeline</dt><dd>3 months · 2024</dd></div>
-    <div><dt>Team</dt><dd>Tech lead · PM · Front-end engineers · QA</dd></div>
-    <div><dt>Scope</dt><dd>Advanced search · Condition builder · IA · Handoff docs</dd></div>
-    <div><dt>Status</dt><dd>Handed off · Implementation supported</dd></div>
-  </dl>
 
   <nav class="case-nav" aria-label="More work">
     <a class="cn-prev" href="index.html#work"><span class="cn-label">Index</span><span class="cn-title">All work</span></a>
