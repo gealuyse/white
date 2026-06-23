@@ -16,7 +16,8 @@ Contents:
 # PART 1 — CURRENT RULES
 
 ## Project order (locked)
-CDP (01) → 3BB (02) → POS (03) → Naaraan (04, reserve — kept, not a primary case study)
+CDP (01) → 3BB (02) → POS (03)
+(Naaraan was dropped — see Part 3. Do not re-add it.)
 
 ## Tech facts (verified against code)
 - Pure static HTML + one shared `style.css`. **No JavaScript anywhere.**
@@ -62,7 +63,7 @@ B — line weight (solid = primary · dashed = secondary). Default: reasoning→
 **Rejected on purpose:** checkmarks · asterisk-footnotes · standalone `?` · numbered
 circles · highlighter fill · multiple ink colors.
 
-**Per-page budget:** Landing ~1–2 · one per project card (Naaraan excluded) ·
+**Per-page budget:** Landing ~1–2 · one per project card ·
 CDP 4–6 · 3BB 4–5 · POS 3.
 
 ## The component (as built in `style.css`)
@@ -174,19 +175,6 @@ The only thing left to design was the space between them.
 
 🔴 **Self-bite:**
 > _800×600 in 2023 — yes, really_
-
----
-
-### CARD 04 — Naaraan (thumbnail)
-
-**04** · E-COMMERCE · 2022 · Prototype
-
-**Title:** Naaraan Store Builder
-
-**One-liner:**
-Sellers didn't fail at features. They failed at sequence.
-
-(ไม่มี annotation — card เล็ก)
 
 ---
 
@@ -519,28 +507,16 @@ Scope: Visual hierarchy · Spacing system · Dual-resolution layouts
 
 ---
 
-## ═══════════════════════════════════════
-## ส่วนที่ 6: NAARAAN — THUMBNAIL ONLY
-## ═══════════════════════════════════════
-
-Naaraan Store Builder
-E-commerce SaaS · 2022 · Prototype
-
-Sellers didn't fail at features. They failed at sequence.
-Setup and daily operations were mixed in one interface —
-first-day merchants had to think like power users.
-
-Separated one-time setup from routine management.
-Setup became a guided path. Daily work became a cleaner workspace.
-
-(ไม่มี full case study page — card + short description เท่านั้น)
-
----
-
 # PART 3 — HISTORY & SUPERSEDED (do not rebuild)
 
 This site evolved, and the earlier docs contradict the shipped code. Kept here so the
 reasoning isn't lost. The original files are in `archive/`.
+
+**Naaraan Store Builder — dropped (2026-06-23).** Previously project 04 (a reserve
+thumbnail, e-commerce SaaS · 2022 prototype). Removed from the portfolio entirely: no
+card, page, or nav reference remains, and it is no longer mentioned in the active rules
+above. `naaraan.html` and its assets were moved to `docs/archive/naaraan/`. Do **not**
+re-add it.
 
 **Original v2 brief (`claude-code-brief.md`) — historical.** The first plan. Several
 ideas were later dropped: a two-color blue/red annotation system, Fraunces/DM Sans

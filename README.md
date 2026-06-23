@@ -17,7 +17,6 @@ Open `index.html` in a browser to view.
 | cdp.html | Case study 01 — Customer Data Platform |
 | 3bb-member.html | Case study 02 — 3BB Member |
 | counter-service-pos.html | Case study 03 — Counter Service POS (short) |
-| naaraan.html | Project 04 — Naaraan — **reserve case only** (kept, not a primary case study) |
 | style.css | All styles, shared across pages |
 | assets/projects/<slug>/ | cover.png + screen_proof.png used by the site |
 | docs/portfolio-spec.md | **Single source of truth** — rules + page copy + history |
@@ -25,7 +24,14 @@ Open `index.html` in a browser to view.
 | docs/ref/ | Reference images |
 
 ## Project order (locked)
-CDP (01) → 3BB (02) → POS (03) → Naaraan (04, reserve)
+CDP (01) → 3BB (02) → POS (03)
+
+## Dropped projects
+**Naaraan Store Builder — removed from the portfolio (2026-06-23).** No longer part of
+this project and not referenced anywhere on the live site. The page and its assets were
+moved to `docs/archive/naaraan/` (`naaraan.html` + `assets/`) for provenance only. Do
+**not** re-add it to `index.html`, the nav, or the spec's active rules. Treat it like
+anything else in `docs/archive/`: superseded, not to be rebuilt.
 
 ## Annotation system — definition (stable)
 Single ink tone (`#34404C`) handwritten margin note (Caveat). CSS-only, static.
