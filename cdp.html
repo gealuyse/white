@@ -42,6 +42,7 @@
     <span class="proposal-label">Enterprise SaaS / Customer Data Platform</span>
     <h1 class="project-title">Customer Data Platform — Segment & Condition Builder</h1>
     <p class="project-intro">The hardest query logic in the system had to feel like the easiest screen — so marketers could nest conditions three levels deep and still trust the audience it resolved to.</p>
+    <p class="project-result"><span class="res-key">Outcome</span>Handed off as developer- and QA-ready specs — built on documented behaviour, not guesswork.</p>
   </div>
 
   <figure class="project-cover">
@@ -49,18 +50,19 @@
   </figure>
 
   <dl class="proj-meta proj-meta-head">
-    <div><dt>Role</dt><dd>UX/UI Designer (core feature design)</dd></div>
+    <div class="fact-key"><dt>Role</dt><dd>UX/UI Designer (core feature design)</dd></div>
     <div><dt>Platform</dt><dd>Web application</dd></div>
     <div><dt>Timeline</dt><dd>3 months · 2024</dd></div>
     <div><dt>Team</dt><dd>Tech lead · PM · Front-end engineers · QA</dd></div>
     <div><dt>Scope</dt><dd>Segment builder · Condition logic · Advanced search · Handoff docs</dd></div>
-    <div><dt>Status</dt><dd>Handed off · Implementation supported</dd></div>
+    <div class="fact-key"><dt>Status</dt><dd>Handed off · Implementation supported</dd></div>
   </dl>
 
   <section class="proj-sect" id="setup">
     <h2 class="sect-label">The setup</h2>
     <div class="reading">
-      <p>Marketing teams used this customer data platform to build audience segments from attributes, events, consent rules, and campaign conditions. The hard part was not showing more data. It was turning layered logic into a workspace they could read, configure, and trust.</p>
+      <p>Marketing teams used this customer data platform to build audience segments from attributes, events, consent rules, and campaign conditions.</p>
+      <p>The hard part was not showing more data. It was turning layered logic into a workspace they could read, configure, and trust.</p>
       <p>The interface already existed. It worked. But "works" and "works confidently" are different things.</p>
       <p>A marketer could build a segment, nest AND/OR groups two or three levels deep, and still miss that the logic quietly resolved to zero people.</p>
       <p>That was the problem.</p>
@@ -92,7 +94,7 @@
         </figure>
         <p class="fig-lead"><span class="fig-step">Part 2</span>And when the logic goes deep — AND/OR groups nest two or three levels without becoming a wall of brackets.</p>
         <figure class="screen-item case-fig">
-          <a class="screen-link" href="assets/projects/cdp/fig-2-2.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cdp/fig-2-2.png" alt="CDP nested query blocks — AND/OR condition groups nested with spacing parameters."></a>
+          <a class="screen-link" href="assets/projects/cdp/fig-2-1.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cdp/fig-2-1.png" alt="CDP nested query blocks — AND/OR condition groups nested with spacing parameters."></a>
         </figure>
         <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">Showing logic clearly takes space. The interface had to stay readable before it tried to show everything.</p></div>
       </div>
@@ -103,7 +105,7 @@
         <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">A richer selector is heavier to specify and build. Every empty state, loading state, and overflow case needed explicit rules.</p></div>
         <p class="fig-lead"><span class="fig-step">Part 3</span>In the selector itself — every result carries the metadata to verify a condition before it goes into the segment.</p>
         <figure class="screen-item case-fig">
-          <a class="screen-link" href="assets/projects/cdp/fig-2-1.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cdp/fig-2-1.png" alt="CDP advanced search selector — categorized auto-complete with metadata visible in each result row."></a>
+          <a class="screen-link" href="assets/projects/cdp/fig-2-2.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/cdp/fig-2-2.png" alt="CDP advanced search selector — categorized auto-complete with metadata visible in each result row."></a>
         </figure>
       </div>
       <div class="decision">
@@ -119,18 +121,18 @@
     </div>
   </section>
 
+  <section class="proj-sect" id="differently">
+    <h2 class="sect-label">What I'd do differently</h2>
+    <div class="reflection">
+      <p>The riskiest moment in this tool is invisible: a marketer builds conditions that resolve to zero people and launches an empty campaign without knowing. I'd add a validation layer — a check that warns before nothing goes out to nobody.</p>
+      <p>I'd also watch how deep real users actually nest their groups. I designed for 2–3 levels. I don't know if that matches how people really work.</p>
+    </div>
+  </section>
+
   <section class="proj-sect" id="shipped">
     <h2 class="sect-label">What it shipped</h2>
     <div class="reading">
       <p>It handed off as developer- and QA-ready specs: condition logic, search states, and per-variable input rules mapped explicitly — so the build ran on documented behaviour instead of guesswork, and the questions that usually turn into QA tickets were answered before any code was written.</p>
-    </div>
-  </section>
-
-  <section class="proj-sect" id="differently">
-    <h2 class="sect-label">What I'd do differently</h2>
-    <div class="reflection">
-      <p>The riskiest moment in this tool is invisible: a marketer builds conditions that resolve to zero people and launches an empty campaign without knowing. I'd add a validation layer — a check that warns before nothing goes out to nobody. I'd also watch how deep real users actually nest their groups. I designed for 2–3 levels. I don't know if that matches how people really work.</p>
-      
     </div>
   </section>
 

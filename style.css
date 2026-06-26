@@ -58,6 +58,9 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:2px;}
   letter-spacing:-0.018em;
   margin:0; max-width:1000px;
 }
+/* scannable credibility line — the recruiter's 5-second proof, right under the h1 */
+.hero-proof{font:500 16px/1.6 var(--sans); color:var(--ink); margin:var(--sp-5) 0 0; max-width:720px;}
+.hero-proof .dot{color:var(--sub); padding:0 8px;}
 .hero-para{font:400 18px/1.65 var(--sans); margin:var(--sp-6) 0 0; max-width:640px;}
 
 /* button — reusable component (currently unused in markup) */
@@ -94,6 +97,7 @@ section{padding:0;}
 /* ---------- around the table (index) ---------- */
 .table-opener{font:500 23px/1.5 var(--sans); letter-spacing:-0.005em; margin:0 0 var(--sp-5);}
 .table-breath{font:400 18px/1.65 var(--sans); margin:0 0 var(--sp-4);}
+.table-breath:last-child{margin-bottom:0;}   /* clean section end → uniform 96 gap to next */
 .table-close{font:400 18px/1.68 var(--sans); margin:0;}
 
 /* ---------- working habits (index) ---------- */
@@ -127,7 +131,10 @@ section{padding:0;}
   font:300 clamp(34px,4.4vw,62px)/1.08 var(--serif);
   letter-spacing:-0.018em; margin:0 0 var(--sp-4); max-width:800px;
 }
-.project-intro{font:400 18px/1.65 var(--sans); max-width:660px; margin:0 0 var(--sp-7);}
+.project-intro{font:400 18px/1.65 var(--sans); max-width:660px; margin:0 0 var(--sp-5);}
+/* outcome up front — recruiter sees the result without scrolling to the close */
+.project-result{font:400 16px/1.55 var(--sans); color:var(--ink); margin:0 0 var(--sp-7); max-width:660px;}
+.project-result .res-key{font:600 12px/1 var(--sans); letter-spacing:.07em; text-transform:uppercase; color:var(--sub); margin-right:var(--sp-2);}
 
 /* cover / hero — opens the case study; true colour (no homepage fade filter) */
 .project-cover{
@@ -140,25 +147,31 @@ section{padding:0;}
 .proj-meta{
   display:grid; grid-template-columns:repeat(3, minmax(0,1fr));
   gap:var(--sp-5) var(--sp-7); max-width:860px; margin:0;
-  border-top:1px solid var(--hair); padding-top:var(--sp-6);
 }
-/* fact strip lifted to the top of the case study, just under the cover */
-.proj-meta-head{margin-top:var(--sp-7);}
+/* fact strip sits just under the cover — separated by space, no rule (image above) */
+.proj-meta-head{margin-top:var(--sp-8);}
 .proj-meta dt{
   font:500 11px/1 var(--sans); letter-spacing:.08em; text-transform:uppercase;
   color:var(--sub); margin:0 0 var(--sp-1);
 }
 .proj-meta dd{font:400 15px/1.45 var(--sans); margin:0;}
+/* recruiter-relevant fields carry more weight than the rest */
+.proj-meta .fact-key dd{font-weight:600; color:var(--ink);}
 
-/* content sections */
-.proj-sect{padding:var(--sp-9) 0 0;}
+/* content sections — separated by space, not lines (spacing first).
+   section gap (--sp-10) > decision gap (--sp-6) > row gap, so the read
+   tiers itself by proximity alone; no rule needed to mark a new part. */
+.proj-sect{padding-top:var(--sp-10);}
 .proj-sect .reading{max-width:600px;}
 .proj-sect .reading p{font:400 18px/1.7 var(--sans); margin:0 0 var(--sp-5);}
 .proj-sect .reading p:last-child{margin-bottom:0;}
 
-/* decisions */
-.decisions{border-top:1px solid var(--hair); max-width:880px;}
-.decision{padding:var(--sp-7) 0; border-bottom:1px solid var(--hair);}
+/* decisions — peers separated by space only (each ends in a figure, so a
+   rule between them would sit against an image — not allowed) */
+.decisions{max-width:880px;}
+.decision{padding:var(--sp-6) 0;}
+.decision:first-child{padding-top:0;}
+.decision:last-child{padding-bottom:0;}
 .d-title{font:400 25px/1.25 var(--serif); letter-spacing:-0.005em; margin:0 0 var(--sp-5);}
 .d-row{margin:0 0 var(--sp-4);}
 .d-row:last-child{margin-bottom:0;}
@@ -206,8 +219,8 @@ section{padding:0;}
 .back-link:hover{color:var(--ink);}
 
 /* ---------- footer ---------- */
-footer{margin-top:140px; border-top:1px solid var(--hair);}
-.foot{font:400 12px/1 var(--sans); color:var(--sub); padding:26px 0 40px;}
+footer{margin-top:var(--sp-10); border-top:1px solid var(--hair);}
+.foot{font:400 12px/1 var(--sans); color:var(--sub); padding:var(--sp-5) 0 var(--sp-7);}
 
 /* =========================================================
    WORK — EDITORIAL PROJECT INDEX (index)
@@ -295,7 +308,7 @@ a.proj-row .pr-link{
 }
 /* mobile — tighten type + spacing */
 @media (max-width:860px){
-  .proj-row{padding:var(--sp-6) 0;}
+  .proj-row{padding:var(--sp-8) 0;}
   .pr-num{font-size:19px;}
   .pr-headline{font-size:26px; margin-bottom:14px; max-width:none;}
   .pr-desc{max-width:none;}
@@ -362,7 +375,7 @@ a.proj-row .pr-link{
   .site-nav .name{font-size:13px;}
   .site-nav ul{font-size:13px;}
   .site-nav li + li::before{padding:0 7px;}
-  .nav-approach{display:none;}
+  .site-nav .nav-approach{display:none;}  /* beats .site-nav li display:flex (0,1,1) */
 
   .hero{min-height:0; padding:var(--sp-8) 0 var(--sp-7);}
   .role-label{font-size:11px; margin-bottom:var(--sp-5);}
@@ -393,8 +406,9 @@ a.proj-row .pr-link{
   /* case study */
   .project-header{padding:var(--sp-7) 0 0;}
   .project-intro{font-size:16px; line-height:1.66; margin-bottom:var(--sp-6);}
-  .proj-meta{grid-template-columns:1fr 1fr; gap:var(--sp-4) var(--sp-5); padding-top:var(--sp-5);}
-  .proj-sect{padding-top:var(--sp-8);}
+  .proj-meta{grid-template-columns:1fr 1fr; gap:var(--sp-4) var(--sp-5);}
+  .proj-sect{padding-top:var(--sp-8);}              /* section gap 64 — biggest tier */
+  .decision{padding:var(--sp-5) 0;}                 /* decision gap 48 — below section */
   .proj-sect .reading p{font-size:16px; line-height:1.66;}
   .d-title{font-size:21px;}
   .d-val{font-size:15px;}

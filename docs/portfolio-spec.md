@@ -28,6 +28,53 @@ CDP (01) → 3BB (02) → POS (03)
 - Spacing: every gap uses scale tokens `--sp-1`…`--sp-10` (4px base —
   8/12/16/20/24/32/48/64/96/128). Keep new spacing on these steps; don't hand-pick px.
 
+## Layout rhythm & grouping (Laws of UX)
+The reader must always know which part they're in without thinking. **Space does the work;
+lines are the exception.** Build to these:
+
+1. **Spacing first — separate parts with space, not lines.** Tier every gap so the structure
+   reads by proximity alone: section gap (`--sp-10`) **>** group/decision gap (`--sp-6`) **>**
+   row gap (`--sp-4/5`). If the read feels flat, *increase the gap before reaching for a rule.*
+   *(Law of Proximity.)*
+2. **A line never touches an image.** If a figure sits directly above or below, there is **no
+   rule** in that seam — ever. (This is why decisions, which each end in a figure, are spaced,
+   not divided; and why the fact strip under the cover has no top rule.)
+3. **Lines are for emphasis or the ending only.** A divider must earn its place. One job per
+   line; never trailing/doubled. A line is allowed **only** in these cases — anywhere else,
+   use space:
+   - **Image frame** — the 1px box around a cover / figure / preview thumbnail (it frames, it
+     doesn't divide).
+   - **Emphasis** — one pulled-out block (the reflection's left bar).
+   - **Ending** — the close of the page (`case-nav` top rule, `footer` top rule).
+   - **Global header** — the `site-nav` underline (one structural rule under the masthead).
+   - **List rows** — repeated peer rows in a scannable list (homepage `proj-index` work rows).
+     This is the *one* place a rule may sit near an image, because it's a list pattern, not a
+     content seam. Do not import it into case-study sections.
+4. **Inter-group gap > intra-group gap, always.** The space *between* parts must be clearly
+   larger than the space *inside* one, or the reader can't tell where a part ends. *(Proximity.)*
+5. **Don't invert hierarchy.** A parent heading must never look smaller/quieter than the
+   children under it. *(Von Restorff — the boundary has to stand out, via space + position.)*
+
+## Figures & evidence (rules)
+Case-study figures are *proof* for a fast-scanning reader. Build every figure to these:
+
+1. **No text baked into the image.** No `Fig x.x`, no title bar, no caption, no watermark
+   inside the PNG. The figure's label lives in HTML only (`.fig-lead` → "Part N"). Caption in
+   both = duplicate, and the baked one can't match the site's type or get fixed without a
+   re-export. *(Current assets violate this — see `image-assets-todo.md`.)*
+2. **One thing, legible at render width.** A figure shows a single focused screen/diagram that
+   reads without zooming. Never a tiny multi-screen board. If multiple screens are essential,
+   show **≤3 at large size**, not a grid of thumbnails.
+3. **Content must match its `fig-lead` and `alt`.** No swapped, placeholder, or wrong-domain
+   images (e.g. never a "banking app" frame on a telecom case). When in doubt, open the file
+   and check it depicts what the lead claims.
+4. **Aspect: `16:9` for everything** — covers and inline figures alike (uniform across the
+   site). Author UI screenshots *composed* to 16:9: pad / letterbox a non-16:9 screen (e.g.
+   the 800×600 legacy POS) within a 16:9 canvas. Do **not** rely on CSS `object-fit:cover` to
+   force the ratio on UI shots — it crops the interface. Covers may crop (they're photographic).
+5. **Filenames lowercase** (`fig-1-1.png`) to match what git tracks (`core.ignorecase` hides
+   case drift locally but breaks on Linux/Pages).
+
 ## Annotation / margin-voice system (current)
 One handwritten voice. Single ink tone **`#34404C`**, Caveat. The old two-color
 blue/red ("Thinking Mark" / "Self-bite") system is **deprecated — do not reintroduce.**
@@ -186,122 +233,56 @@ The only thing left to design was the space between them.
 
 ### THE SETUP
 
-A customer data platform for marketing teams.
-Segments, consent rules, campaign conditions, journey logic —
-layers of data that had to become something a marketer could scan,
-configure, and trust.
+Marketing teams used this customer data platform to build audience segments from attributes, events, consent rules, and campaign conditions. The hard part was not showing more data. It was turning layered logic into a workspace they could read, configure, and trust.
 
-The interface already existed. It worked.
-But "works" and "works confidently" are different things.
+The interface already existed. It worked. But "works" and "works confidently" are different things.
 
-A marketer could build a segment from event conditions,
-nest AND/OR groups three levels deep,
-and never know that the logic quietly resolved to zero people.
+A marketer could build a segment, nest AND/OR groups two or three levels deep, and still miss that the logic quietly resolved to zero people.
 
 That was the problem.
-
-🔵 **Thinking Mark:**
-> _"works" ≠ "works confidently" — this distinction drove the whole project_
-
-🔴 **Self-bite:**
-> _zero-audience segments: the silent failure nobody designed for_
-
----
 
 ### WHAT WAS LOCKED
 
 - Legacy data schemas and variable mappings — untouchable.
 - Backend logic constraints — what the system could actually query.
-- No complete rebuild. Limited dev resources. Improve what exists.
-
-🔵 **Thinking Mark:**
-> _this is where design actually starts_
-
----
+- No complete rebuild. Limited dev resources. Improve the workspace inside the existing platform.
 
 ### WHAT I ACTUALLY DID
 
-**Decision 1: Search that shows what you're choosing**
+**Decision 1: A workspace for layered audience logic**
 
-The event catalog was large and growing.
-A plain dropdown meant scrolling through hundreds of entries
-hoping the name looked right.
+Problem: Marketers had to combine attributes, events, consent rules, and AND/OR groups inside one workspace. The risk was not only choosing the wrong condition — it was building logic that looked valid while quietly resolving to the wrong audience.
 
-I designed a categorized auto-complete selector
-with metadata visible inside each result row —
-so a marketer could verify a selection without leaving the search.
+Decision: I structured the builder around visible condition groups, clear operator blocks, and an estimated-reach panel, so the user could understand the segment as it was being assembled.
 
-The tradeoff: a richer selector is heavier to specify and build.
-Every empty state, loading state, and overflow case
-needed explicit rules.
+Trade-off: Showing logic clearly takes space. The interface had to stay readable before it tried to show everything.
 
-🔵 **Thinking Mark:**
-> _dropdowns show labels without meaning_
+**Decision 2: Search that shows what you're choosing**
 
----
+Problem: The event and attribute catalog was large and growing. A plain dropdown meant scrolling through entries and trusting that a label meant what it seemed to mean.
 
-**Decision 2: Nested logic that doesn't overflow the screen**
+Decision: I designed a categorized auto-complete selector with metadata visible inside each result row, so users could verify a condition before adding it to the segment.
 
-Condition groups needed AND/OR nesting — 2 to 3 levels deep.
-On a 1440px workspace, deep nesting breaks fast.
-
-I structured conditions as logical cards
-separated by distinct operator blocks,
-enforced on an 8px spacing standard
-with strict horizontal sizing rules.
-
-The tradeoff: hard sizing limits how deep nesting can go
-before the UI has to summarize instead of display.
-
-🔴 **Self-bite:**
-> _at some point, showing everything becomes showing nothing_
-
----
+Trade-off: A richer selector is heavier to specify and build. Every empty state, loading state, and overflow case needed explicit rules.
 
 **Decision 3: Specs that answer the questions devs actually ask**
 
-Dynamic inputs changed behavior based on selected conditions.
-Without explicit specs, developers had to guess —
-and every guess became a QA ticket.
+Problem: Dynamic inputs changed behavior based on selected conditions. Without explicit specs, developers had to guess — and every guess became a QA ticket.
 
-I mapped button states, focus rings, validation alerts,
-and input adapters per data variable
-into interactive spec documents.
+Decision: I mapped button states, focus rings, validation alerts, and input adapters per data variable into handoff specs the team could implement and QA against.
 
-The tradeoff: more upfront design work before any code gets written.
-But fewer conversations that start with "what should this do when..."
-
-🔵 **Thinking Mark:**
-> _a spec that doesn't cover edge cases is a wish, not a spec_
-
----
+Trade-off: More upfront design work before any code gets written. But fewer conversations that start with "what should this do when..."
 
 ### EVIDENCE
 
-[Fig 1.1] Segment builder workspace — structured event and condition setup
-[Fig 2.1] Advanced search selector — categorized auto-complete with metadata rows
-[Fig 2.2] Nested query blocks — AND/OR logic groups with spacing parameters
-[Fig 2.3] Handoff specs — component layouts, interaction states, edge cases
-
----
+[Fig 1.1] Primary segment builder workspace: structured event and condition setup.
+[Fig 2.1] Advanced search selector: categorized auto-complete with metadata rows.
+[Fig 2.2] Nested query blocks: AND/OR logic groups with spacing parameters.
+[Fig 2.3] Handoff specs: component layouts, interaction states, edge cases.
 
 ### WHAT I'D DO DIFFERENTLY
 
-The riskiest moment in this tool is invisible:
-a marketer builds conditions that resolve to zero people
-and launches an empty campaign without knowing.
-
-I'd add a validation layer — a check that warns
-before nothing goes out to nobody.
-
-I'd also watch how deep real users actually nest their groups.
-I designed for 2–3 levels.
-I don't know if that matches how people really work.
-
-🔴 **Self-bite:**
-> _still thinking about this one_
-
----
+The riskiest moment in this tool is invisible: a marketer builds conditions that resolve to zero people and launches an empty campaign without knowing. I'd add a validation layer — a check that warns before nothing goes out to nobody. I'd also watch how deep real users actually nest their groups. I designed for 2–3 levels. I don't know if that matches how people really work.
 
 ### METADATA STRIP
 
@@ -309,7 +290,8 @@ Role: UX/UI Designer (core feature design)
 Platform: Web application
 Timeline: 3 months · 2024
 Team: Tech lead · PM · Front-end engineers · QA
-Scope: Advanced search · Condition builder · IA · Handoff documentation
+Scope: Segment builder · Condition logic · Advanced search · Handoff docs
+Status: Handed off · Implementation supported
 
 ---
 
@@ -321,18 +303,7 @@ Scope: Advanced search · Condition builder · IA · Handoff documentation
 
 ### THE SETUP
 
-3BB Member already had an app.
-Millions of users on Play Store and App Store.
-Billing, packages, service access, account management —
-established flows that people used every day without thinking.
-
-I didn't redesign the product.
-I worked inside a shared design file
-that held years of flows, versions, archived pages,
-and migration-era decisions stacked on top of each other.
-
-The first problem wasn't design.
-It was figuring out which screen was the real one.
+3BB Member already had an app. Millions of users on Play Store and App Store. Billing, packages, service access, account management — established flows that people used every day without thinking.
 
 🔵 **Thinking Mark:**
 > _the file was the archaeology site — every layer was a different era_
@@ -344,7 +315,7 @@ It was figuring out which screen was the real one.
 
 ### WHAT WAS LOCKED
 
-- Established user journeys — members knew the app. Unnecessary redesign risks confusing routine tasks.
+- Established user journeys — members already knew the app. Unnecessary redesign could confuse routine tasks.
 - A large inherited file — previous versions, migration sets, archived sections all living together.
 - Migration-state complexity — same screen, different behavior depending on customer group.
 - Phased delivery — flows had to hold together mid-transition, not just in a final-state mockup.
@@ -381,12 +352,7 @@ Login errors, registration conditions, billing options —
 these aren't edge cases. These are the moments
 where users feel the most uncertainty.
 
-I added and refined specific states:
-login error handling, mobile OTP registration,
-auto-pay setup, bill-delivery channel selection.
-
-Each state got clear copy, hierarchy, and a next action
-that QA and dev could implement consistently.
+I added and refined specific states: login error handling, mobile OTP registration, auto-pay setup, and bill-delivery channel selection. Each state got clear copy, hierarchy, and a next action that QA and dev could implement consistently.
 
 The tradeoff: more screens to maintain.
 Fewer implementation gaps to argue about.
@@ -422,10 +388,10 @@ than any single screen I delivered.
 ### METADATA STRIP
 
 Role: UX/UI Designer
-Platform: Mobile app · Website
+Platform: Mobile app · Web
 Year: 2024 – Present
 Status: Live — Play Store & App Store
-Scope: My Package · Home · Login error · SME DIY · Register OTP · Auto-pay · Bill Delivery
+Scope: Selected flow updates · Migration states · Dev/QA handoff
 Team: Product · Business · Developers · QA
 
 ---
@@ -438,64 +404,39 @@ Team: Product · Business · Developers · QA
 
 ### THE SETUP
 
-Cashiers process hundreds of transactions per shift.
-They don't read the screen — they hit coordinates on muscle memory
-built over months of the same layout, the same buttons, the same flow.
+Cashiers process hundreds of transactions per shift. They do not read every screen from scratch — they rely on positions, repeated flows, and muscle memory built over time.
 
-The interface needed better hierarchy and consistency.
-But the flow was fixed. The button positions were fixed.
-The brand identity was fixed. The screens ranged from 800×600 to 1920×1080.
+The interface needed clearer hierarchy and more consistent spacing. But the flow was fixed. The button positions were fixed. The brand identity was fixed. The screens ranged from 800×600 to 1920×1080.
 
-Everything was locked except spacing and contrast.
-
-🔴 **Self-bite:**
-> _design with nothing left to design — that's the brief_
-
----
+Everything was locked except spacing, hierarchy, and contrast.
 
 ### WHAT I ACTUALLY DID
 
-**Spacing rules inside a rigid grid**
-Uneven margins and local offsets made the screen hard to scan during peak hours.
-I standardized spacing across all button groups and transaction lists.
-Peak-hour scanning speed depends on predictable alignment
-more than any individual component style.
+**Improve hierarchy without moving the controls**
 
-**Adaptive scaling for two worlds**
-Linear scaling produced oversized buttons on 1080p
-and unreadable text on 800×600.
-I designed two separate layout profiles —
-compact rows with essential metadata for legacy screens,
-expanded sections with purchase details for modern ones.
+Problem: The interface had uneven spacing, weak grouping, and competing visual weight. During routine transactions, important information had to stand out without changing the controls cashiers already knew.
 
-The tradeoff: two wireframe sets maintained through every revision.
+Decision: I kept the button positions in place and adjusted hierarchy through spacing, grouping, contrast, and clearer separation between transaction areas and action areas.
 
-🔵 **Thinking Mark:**
-> _two resolutions, two layouts, one muscle memory — don't break the third one_
+Trade-off: The result is less dramatic than a full redesign. That was the point — a cashier should not have to relearn the screen to read it better.
 
----
+**Build layout rules for two screen realities**
+
+Problem: The same POS experience had to work across legacy 800×600 terminals and wider 1920×1080 displays. A simple scale-up or scale-down would either crowd the small screen or overinflate the larger one.
+
+Decision: I designed separate layout profiles for compact and expanded screens. The compact version prioritized essential metadata and tighter rows. The wider version gave more room to transaction details, product areas, and payment actions without simply enlarging everything.
+
+Trade-off: Two layout profiles meant more design maintenance. But one flexible mockup would have hidden the real hardware constraint.
 
 ### EVIDENCE
 
-[Fig 1.1] Optimized POS interface — enhanced hierarchy within standard key alignments
-[Fig 2.1] Dual-resolution specs — margin/padding/border adjustments across hardware profiles
+[Fig 1.1] Proposed POS interface: clearer hierarchy within fixed control positions.
 
----
+[Fig 2.1] Dual-resolution specs: spacing, padding, and border adjustments across hardware profiles.
 
 ### WHAT I'D DO DIFFERENTLY
 
-This project needs proof.
-The entire design rests on one claim:
-better hierarchy and spacing speed up checkout
-without moving a single control.
-
-If it reaches live testing, I'd log keystroke timing on the terminals —
-real transaction-speed data, no cashier interrupted.
-
-🔴 **Self-bite:**
-> _the honest answer: I don't know if it's faster yet_
-
----
+This project needs proof. The entire design rests on one claim: better hierarchy and spacing speed up checkout without moving a single control. If it reaches live testing, I'd log keystroke timing on the terminals — real transaction-speed data, no cashier interrupted.
 
 ### METADATA STRIP
 
