@@ -21,6 +21,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&amp;family=Inter:wght@400;500;600&amp;family=Caveat:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<!-- arm the hand-annotation draw before first paint (only when motion is allowed) -->
+<script>if(matchMedia('(prefers-reduced-motion: no-preference)').matches)document.documentElement.classList.add('js-reveal');</script>
 </head>
 <body>
 
@@ -39,16 +41,29 @@
 <main class="wrap">
 
   <!-- ============ hero ============ -->
-  <section class="hero">
-    <p class="role-label">Product Designer — Enterprise &amp; data platforms · Bangkok</p>
+  <section class="hero" data-reveal>
+    <p class="role-label">UX/UI Product Designer · Bangkok</p>
     <h1 class="thesis">I design complex systems people can use with confidence.</h1>
-    <p class="hero-proof">3BB <span class="dot">·</span> AIS migration <span class="dot">·</span> millions of users <span class="dot">·</span> enterprise SaaS <span class="dot">·</span> operational tools</p>
-    <p class="hero-para"><em>Real product work rarely starts from a clear brief.</em> I work where the requirements are still shifting — turning unclear asks into interfaces that make sense, and choosing what works over what just looks good.</p>
-    <p class="hero-status"><em>Open to product design opportunities — <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a></em></p>
+    <p class="hero-para">Real product work rarely starts from a clear brief. I work where the requirements are still shifting — turning unclear asks into interfaces that make sense, and choosing what works over what just looks good.</p>
+    <p class="hero-cta"><a class="btn btn-contact" href="mailto:natthapath.d@gmail.com">Start a conversation</a></p>
+
+    <!-- right-margin hand note: the body of work behind the thesis -->
+    <span class="anno-mark anno-hero">
+      <span class="anno-note"><span class="anno-uline2">mobile app</span> <span class="anno-small">(1,000,000+ users)</span>,<br>CDP, POS &amp; custom tools</span>
+    </span>
+
+    <!-- scroll cue — note + a hand-drawn down arrow that draws itself on reveal -->
+    <span class="anno-mark anno-scroll">
+      <span class="anno-note">the work's just below</span>
+      <svg class="anno-arrow" viewBox="0 0 26 38" aria-hidden="true">
+        <path d="M13 2 C11 14 15 22 13 30"/>
+        <path d="M13 30 L7 23 M13 30 L19 23"/>
+      </svg>
+    </span>
   </section>
 
   <!-- ============ what gets easier ============ -->
-  <section class="sect sect-first" id="easier">
+  <section class="sect sect-first" id="easier" data-reveal>
     <h2 class="sect-label">What gets easier</h2>
     <div class="easier reading">
       <p>Complexity never really disappears — in good design it just <span class="anno-anchor">stops being the user's problem</span>. My job is to absorb it while designing, so the screen stays quiet.</p>
@@ -160,6 +175,9 @@
     <p class="foot">Natthapath Damrongsri · 2026</p>
   </div>
 </footer>
+
+<!-- draw the hand annotations on scroll — native IntersectionObserver, no dependencies -->
+<script src="scroll.js"></script>
 
 </body>
 </html>

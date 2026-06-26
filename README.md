@@ -1,12 +1,13 @@
 # Natthapath Damrongsri — Portfolio
 
-Static portfolio. Plain HTML + CSS, no build step, no framework, **no JavaScript**.
-Open `index.html` in a browser to view.
+Static portfolio. Plain HTML + CSS, no build step, no framework. The only JavaScript is
+`scroll.js` (~28 lines, no dependencies) — it draws the hand annotations on scroll; strip
+it and the page is the same static document. Open `index.html` in a browser to view.
 
 > Live: **https://gealuyse.github.io/portfoilo/** (once the first deploy finishes).
 
 ## Stack
-- HTML5 + one shared `style.css` — fully static, no JS
+- HTML5 + one shared `style.css` — static; one tiny `scroll.js` for the annotation draw
 - Fonts: Newsreader (serif headings) · Inter (UI/labels) · Caveat (handwritten notes)
 - Target: modern evergreen browsers (CSS uses box-decoration-break, data-URI SVG, `vector-effect`)
 
@@ -64,7 +65,8 @@ as provenance (superseded; the spec wins).
 - URL: `https://gealuyse.github.io/portfoilo/`.
 
 ## For AI agents
-- Edit HTML/CSS directly — nothing to compile, no JS to wire up.
+- Edit HTML/CSS directly — nothing to compile. The only JS is `scroll.js` (annotation
+  draw-on-scroll); leave it static-first — JS only toggles a class, CSS does the work.
 - One reference: `docs/portfolio-spec.md`. If it conflicts with the code, the code
   wins (fix the doc). Treat everything in `docs/archive/` as superseded.
 - Keep the name "Natthapath Damrongsri" (older drafts use placeholder "G").

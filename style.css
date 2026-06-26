@@ -19,6 +19,55 @@
 *{box-sizing:border-box; border-radius:0;}
 @media (prefers-reduced-motion: no-preference){
   html{scroll-behavior:smooth;}
+
+  /* ---------- reveal-on-scroll (IntersectionObserver) ----------
+     Scoped to one job: the hand annotations draw themselves when their
+     host section (.hero / #easier) scrolls into view. Page content itself
+     never fades — it renders as the plain static document. Gated by
+     .js-reveal (set in <head> only when motion is allowed), so with no JS
+     or reduced-motion the annotations simply appear, already drawn. */
+
+  /* ---------- annotation draws itself in (the page's one signature move)
+     when #easier reveals: underline wipes on → connector + arrow draw →
+     handwritten note appears. Sequenced by transition-delay so it reads
+     like someone marking up the page by hand. ---------- */
+  .js-reveal #easier .anno-anchor{
+    background-size:0% 6px;                       /* underline retracted */
+    transition:background-size .7s ease .25s;
+  }
+  .js-reveal #easier.in-view .anno-anchor{ background-size:100% 6px; }
+
+  .js-reveal #easier .anno-conn path{
+    stroke-dasharray:140; stroke-dashoffset:140;  /* connector undrawn */
+  }
+  .js-reveal #easier .anno-conn path:first-child{ transition:stroke-dashoffset .6s ease .85s; }
+  .js-reveal #easier .anno-conn path:last-child{  transition:stroke-dashoffset .35s ease 1.35s; } /* arrowhead lands last */
+  .js-reveal #easier.in-view .anno-conn path{ stroke-dashoffset:0; }
+
+  .js-reveal #easier .anno-note{
+    opacity:0;
+    transition:opacity .5s ease 1.55s;            /* note settles after the arrow */
+  }
+  .js-reveal #easier.in-view .anno-note{ opacity:1; }
+
+  /* hero hand note writes itself in too: the double-underline wipes on
+     after the note has settled (same signature as #easier above) */
+  .js-reveal .anno-hero .anno-uline2{
+    background-size:0% 9px;                          /* double-underline retracted */
+    transition:background-size .6s ease .9s;
+  }
+  .js-reveal .hero.in-view .anno-hero .anno-uline2{ background-size:100% 9px; }
+
+  /* scroll cue draws its down-arrow: shaft first, arrowhead lands last,
+     then a gentle bob invites the scroll */
+  .js-reveal .anno-scroll .anno-arrow path{
+    stroke-dasharray:60; stroke-dashoffset:60;       /* arrow undrawn */
+  }
+  .js-reveal .anno-scroll .anno-arrow path:first-child{ transition:stroke-dashoffset .55s ease 1s; }
+  .js-reveal .anno-scroll .anno-arrow path:last-child{  transition:stroke-dashoffset .3s ease 1.5s; }
+  .js-reveal .hero.in-view .anno-scroll .anno-arrow path{ stroke-dashoffset:0; }
+  .js-reveal .hero.in-view .anno-scroll .anno-arrow{ animation:anno-bob 1.8s ease-in-out 2s infinite; }
+  @keyframes anno-bob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(4px);} }
 }
 body{
   margin:0;
@@ -45,6 +94,7 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:2px;}
 
 /* ---------- hero (index) ---------- */
 .hero{
+  position:relative;                 /* host for the right-margin hand notes */
   min-height:calc(70vh - 76px);
   display:flex; flex-direction:column; justify-content:center;
   padding:72px 0 40px;
@@ -56,14 +106,11 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:2px;}
 .thesis{
   font:300 clamp(40px, 6vw, 82px)/1.04 var(--serif);
   letter-spacing:-0.018em;
-  margin:0; max-width:1000px;
+  margin:0; max-width:820px;         /* narrowed to open a clean right margin for the hand notes */
 }
-/* scannable credibility line — the recruiter's 5-second proof, right under the h1 */
-.hero-proof{font:500 16px/1.6 var(--sans); color:var(--ink); margin:var(--sp-5) 0 0; max-width:720px;}
-.hero-proof .dot{color:var(--sub); padding:0 8px;}
 .hero-para{font:400 18px/1.65 var(--sans); margin:var(--sp-6) 0 0; max-width:640px;}
 
-/* button — reusable component (currently unused in markup) */
+/* button — reusable component */
 .btn{
   display:inline-block; font:500 13px/1 var(--sans);
   letter-spacing:.06em; text-transform:uppercase;
@@ -78,7 +125,25 @@ a:focus-visible{outline:2px solid var(--ink); outline-offset:2px;}
   .btn:hover{background:var(--ink); color:var(--paper); border-color:var(--ink);}
   .btn-ghost:hover{background:transparent; color:var(--ink); border-color:var(--ink);}
 }
-.hero-status{font:400 13px/1.6 var(--sans); color:var(--sub); margin:var(--sp-5) 0 0;}
+/* contact — translucent slate fill behind a hairline outline; on hover, black
+   ink sweeps in from the right and the label flips to paper */
+.btn-contact{
+  position:relative; overflow:hidden; isolation:isolate;
+  background:rgba(51,51,51,.2); border-color:rgba(51,51,51,.45); color:var(--ink);
+}
+.btn-contact::before{
+  content:''; position:absolute; inset:0; z-index:-1;
+  background:var(--ink); transform:scaleX(0); transform-origin:right center;
+}
+@media (prefers-reduced-motion: no-preference){
+  .btn-contact{transition:color .35s ease, border-color .35s ease;}
+  .btn-contact::before{transition:transform .45s cubic-bezier(.4,0,.2,1);}
+}
+@media(hover:hover){
+  .btn-contact:hover{background:rgba(51,51,51,.2); border-color:var(--ink); color:var(--paper);}
+  .btn-contact:hover::before{transform:scaleX(1);}
+}
+.hero-cta{margin:var(--sp-6) 0 0;}
 
 /* ---------- shared section structure ---------- */
 section{padding:0;}
@@ -345,6 +410,31 @@ a.proj-row .pr-link{
   font:500 23px/1.25 var(--script); color:#34404C;
 }
 
+/* hand DOUBLE-underline — stress a word inside a handwritten note (two strokes) */
+.anno-uline2{
+  background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='90'%20height='10'%3E%3Cpath%20d='M1%203%20C18%201%2030%204%2046%202%20S74%203%2089%202'%20fill='none'%20stroke='%2334404C'%20stroke-width='2'%20stroke-linecap='round'/%3E%3Cpath%20d='M1%208%20C18%206%2030%209%2046%207%20S74%208%2089%207'%20fill='none'%20stroke='%2334404C'%20stroke-width='2'%20stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left bottom;
+  background-size:100% 9px; padding-bottom:6px;
+  -webkit-box-decoration-break:clone; box-decoration-break:clone;
+}
+/* quieter, smaller aside inside a note (e.g. the user-count parenthetical) */
+.anno-small{font-size:.62em; color:#5A6470;}
+
+/* hero hand notes — sit in the right margin freed by the narrowed thesis.
+   override the base anno-mark margin layout (no connector, no 100px indent) */
+.anno-hero, .anno-scroll{left:auto; right:0;}
+.anno-hero, .anno-scroll{width:auto;}
+.anno-hero{top:44%; transform:translateY(-50%); width:250px;}
+.anno-scroll{left:50%; right:auto; top:auto; bottom:2px; transform:translateX(-50%); white-space:nowrap;}
+.anno-scroll .anno-note{font-size:20px;}
+/* scroll cue down-arrow — same ink + stroke as the connector, drawn on reveal */
+.anno-arrow{display:block; width:26px; height:38px; margin:6px auto 0; overflow:visible;}
+.anno-arrow path{
+  fill:none; stroke:#34404C; stroke-width:2;
+  stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke;
+}
+.anno-hero .anno-note, .anno-scroll .anno-note{margin-left:0; line-height:1.3;}
+.anno-hero .anno-note{transform:rotate(-3deg); transform-origin:left center;}  /* slight hand tilt */
+
 /* margin collapses — note drops directly under the anchor, line shortens to a stub */
 @media (max-width:1080px){
   .anno-mark{position:relative; top:auto; left:auto; width:auto; display:block; margin:16px 0 0; padding-left:26px;}
@@ -354,6 +444,22 @@ a.proj-row .pr-link{
     content:''; position:absolute; left:2px; top:2px; width:17px; height:26px;
     background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='17'%20height='26'%3E%3Cpath%20d='M4%201%20C4%2011%2014%2012%2013%2023'%20fill='none'%20stroke='%2334404C'%20stroke-width='2'%20stroke-linecap='round'/%3E%3Cpath%20d='M13%2023%20L8%2019%20M13%2023%20L17%2018'%20fill='none'%20stroke='%2334404C'%20stroke-width='2'%20stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
   }
+  /* hero notes flow in document order (no absolute right margin, no stub arrow) */
+  .anno-hero, .anno-scroll{position:static; transform:none; width:auto; margin:var(--sp-5) 0 0; padding-left:0;}
+  .anno-hero::before, .anno-scroll::before{display:none;}
+}
+
+/* tablet — keep the hero hand note in the right margin beside the thesis
+   (override the collapse above; narrow the text to free room on the right) */
+@media (min-width:861px) and (max-width:1080px){
+  .thesis{max-width:62%;}
+  .hero-para{max-width:58%;}
+  .anno-hero{
+    position:absolute; right:0; top:44%; transform:translateY(-50%);
+    width:34%; max-width:240px; margin:0; padding-left:0;
+  }
+  .anno-hero::before{display:none;}
+  .anno-hero .anno-note{margin-left:0; transform:rotate(-3deg); transform-origin:left center;}
 }
 
 /* =========================================================
@@ -383,7 +489,7 @@ a.proj-row .pr-link{
   .thesis br{display:none;}
   .hero-para{font-size:16px; line-height:1.66; margin-top:var(--sp-5);}
   .btn{padding:14px 20px; font-size:12px;}
-  .hero-status{font-size:12px; margin-top:var(--sp-5);}
+  .anno-hero{display:none;}   /* hide the work-list hand note on mobile */
 
   .sect{padding-top:var(--sp-8);}
   /* .sect-first inherits .sect top spacing (mobile, unified) */
