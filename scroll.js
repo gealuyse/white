@@ -1,28 +1,38 @@
-/* =========================================================
-   scroll.js — draw the hand annotations on scroll, nothing else.
-   No dependencies. JS only flips a switch; CSS does the drawing.
-     · [data-reveal] → a host section (.hero / #easier). When it enters
-       view it gets .in-view, and the CSS sequences its annotation
-       (underline wipe → connector/arrow draw → note settles).
-   The armed state lives behind .js-reveal on <html> (set by a tiny inline
-   script in <head>), so if this file never runs the annotations just show
-   already-drawn — the page is the plain static document either way.
-   All of it is gated by prefers-reduced-motion in the CSS.
-   ========================================================= */
+/* scroll.js — reveal on scroll, no dependencies.
+   [data-stagger]        → section; staggers [data-reveal-item] children + marks itself .in.
+   [data-reveal-section] → section; whole block fades as one unit.
+   [data-reveal-note]    → hand annotation, observed independently.
+   All fire once then unobserve. Gated by .js-reveal on <html>. */
 (function () {
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
+  if (!('IntersectionObserver' in window)) {
+    document.documentElement.classList.remove('js-reveal');
+    return;
+  }
+
+  var STAGGER = 110; // ms between children
+
+  var io = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add("in-view");
-        io.unobserve(entry.target); /* draw once, then stop watching */
+        var sec = entry.target;
+        if (sec.hasAttribute('data-stagger')) {
+          var items = Array.prototype.slice.call(sec.querySelectorAll('[data-reveal-item]'));
+          items.forEach(function (el, i) {
+            el.style.transitionDelay = (i * STAGGER) + 'ms';
+            el.classList.add('in');
+          });
+          sec.classList.add('in'); // marks section for annotation-draw triggers
+        } else {
+          sec.classList.add('in');
+        }
+        io.unobserve(sec);
       });
     },
-    {
-      threshold: 0.15,
-      rootMargin: "0px 0px -10% 0px", /* trigger a little before fully in view */
-    }
+    { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
   );
 
-  document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
-})();
+  document.querySelectorAll('[data-stagger], [data-reveal-section], [data-reveal-note]').forEach(function (el) {
+    io.observe(el);
+  });
+}());

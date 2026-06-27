@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>3BB Member — Case Study · Natthapath Damrongsri</title>
 <meta name="description" content="Updating selected 3BB Member migration flows inside an inherited design file, preparing current screens for development and QA.">
-
 <link rel="canonical" href="https://gealuyse.github.io/portfoilo/3bb-member.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3BB Member — Case Study">
@@ -16,125 +15,82 @@
 <meta name="twitter:title" content="3BB Member — Case Study">
 <meta name="twitter:description" content="Updating selected 3BB Member migration flows inside an inherited design file, preparing current screens for development and QA.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23FCFBF9'/><text x='16' y='24' font-family='Georgia,serif' font-size='24' text-anchor='middle' fill='%231C1B1A'>N</text></svg>">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&amp;family=Inter:wght@400;500;600&amp;family=Caveat:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script>if(matchMedia('(prefers-reduced-motion: no-preference)').matches)document.documentElement.classList.add('js-reveal');</script>
 </head>
 <body>
 
-<header class="wrap">
-  <nav class="site-nav" aria-label="Main">
+<main class="wrap-ed">
+  <nav class="ed-nav" aria-label="Main">
     <a class="name" href="index.html">Natthapath Damrongsri</a>
-    <ul>
-      <li><a href="index.html#work">Work</a></li>
-      <li class="nav-approach"><a href="index.html#approach">Approach</a></li>
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
-    </ul>
+    <a class="back" href="index.html#work">← All work</a>
   </nav>
-</header>
 
-<main class="wrap">
+  <section class="ed-title-page">
+    <span class="label">Mobile App / Migration UX</span>
+    <h1>3BB Member</h1>
+    <p class="intro">A live app for millions, inside a design file where years of versions had stacked on top of each other — the job was finding which screen was real, then updating only the flows the migration actually changed.</p>
+  </section>
 
-  <div class="project-header">
-    <span class="proposal-label">Mobile App / Migration UX</span>
-    <h1 class="project-title">3BB Member</h1>
-    <p class="project-intro">A live app for millions, inside a design file where years of versions stacked on top of each other — the job was finding which screen was real, then updating only the flows the AIS migration actually changed.</p>
-    <p class="project-result"><span class="res-key">Outcome</span>Live on the Play Store &amp; App Store; migration-critical flows handed off dev- and QA-ready.</p>
+  <div class="ed-stats">
+    <div class="cell"><div class="k">Outcome</div><div class="v">Live — Play Store &amp; App Store</div></div>
+    <div class="cell"><div class="k">Timeline</div><div class="v">2024 – Present</div></div>
+    <div class="cell"><div class="k">Role</div><div class="v">UX/UI Designer</div></div>
   </div>
 
-  <figure class="project-cover">
+  <figure class="ed-cover">
     <img src="assets/projects/3bb-member/cover.png" alt="3BB Member — migration cover, 3BB to AIS, version 4.0.35.">
   </figure>
 
-  <dl class="proj-meta proj-meta-head">
-    <div class="fact-key"><dt>Role</dt><dd>UX/UI Designer</dd></div>
-    <div><dt>Platform</dt><dd>Mobile app · Web</dd></div>
-    <div><dt>Year</dt><dd>2024 – Present</dd></div>
-    <div class="fact-key"><dt>Status</dt><dd>Live — Play Store &amp; App Store</dd></div>
-    <div><dt>Scope</dt><dd>Selected flow updates · Migration states · Dev/QA handoff</dd></div>
-    <div><dt>Team</dt><dd>Product · Business · Developers · QA</dd></div>
-  </dl>
-
-  <section class="proj-sect" id="setup">
-    <h2 class="sect-label">The setup</h2>
-    <div class="reading">
-      <p>3BB Member already had an app. Millions of users on Play Store and App Store.</p>
-      <p>Billing, packages, service access, account management — established flows that people used every day without thinking.</p>
-      <p>I didn't redesign the product. I worked inside a shared design file that held years of flows, versions, archived pages, and migration-era decisions stacked on top of each other.</p>
-      <p>The first problem wasn't design. It was figuring out which screen was the real one.</p>
-    </div>
+  <section class="ed-setup" data-reveal-section>
+    <p class="lead">The first problem wasn't design. It was figuring out which screen was the real one.</p>
+    <p>3BB Member already had an app — millions of users, established flows people used every day without thinking. I worked inside a shared design file holding years of flows, versions, and archived pages stacked on top of each other. Not every screen needed updating. Most didn't. But no one had clearly marked which was current.</p>
   </section>
 
-  <section class="proj-sect" id="locked">
-    <h2 class="sect-label">What was locked</h2>
+  <section class="ed-spread" data-reveal-section>
     <div>
-      <ul class="locked-list">
-        <li>Established user journeys - members already knew the app. Unnecessary redesign could confuse routine tasks.</li>
-        <li>A large inherited file — previous versions, migration sets, archived sections all living together.</li>
-        <li>Migration-state complexity — same screen, different behavior depending on customer group.</li>
-        <li>Phased delivery — flows had to hold together mid-transition, not just in a final-state mockup.</li>
-      </ul>
-      
+      <span class="num">01</span>
+      <h2>Map current vs. legacy before touching anything</h2>
+      <p>I separated active states from inherited content, then updated only where migration logic, service state, or implementation requirements actually changed the user's path.</p>
+      <p class="ed-note">— restraint is a design decision</p>
+    </div>
+    <figure class="ed-fig">
+      <img src="assets/projects/3bb-member/fig-2-1.png" alt="3BB Member — contribution scope: inherited context distinguished from screens selected for update.">
+    </figure>
+  </section>
+
+  <section class="ed-spread tight" data-reveal-section>
+    <figure class="ed-fig">
+      <img src="assets/projects/3bb-member/fig-1-1.png" alt="3BB Member — home, package detail, and login error state prepared as development-ready screens.">
+    </figure>
+    <div>
+      <span class="num">02</span>
+      <h2>Treat errors as first-class screens</h2>
+      <p>Login errors, registration conditions, billing options — these aren't edge cases. Each state got clear copy, hierarchy, and a next action that QA and dev could implement consistently.</p>
+      <p class="ed-note">— edge cases are where trust is built</p>
     </div>
   </section>
 
-  <section class="proj-sect" id="did">
-    <h2 class="sect-label">What I actually did</h2>
-    <div class="decisions">
-      <div class="decision">
-        <h3 class="d-title">Map current vs. legacy before touching anything</h3>
-        <div class="d-row"><span class="d-key">Problem</span><p class="d-val">The file contained years of accumulated work. Not every screen needed updating — most didn't. But no one had clearly marked which flow was intended and which was leftover.</p></div>
-        <div class="d-row"><span class="d-key">Decision</span><p class="d-val">I separated active states from inherited content, then updated only where migration logic, service state, or implementation requirements actually changed the user's path.</p></div>
-        <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">Less visually dramatic. More stable, more shippable.</p></div>
-        <p class="fig-lead"><span class="fig-step">Part 1</span>What's mine versus what's inherited — the screens and states selected for update, separated from the legacy context around them.</p>
-        <figure class="screen-item case-fig">
-          <a class="screen-link" href="assets/projects/3bb-member/fig-2-1.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/3bb-member/fig-2-1.png" alt="3BB Member contribution scope — inherited context distinguished from the screens and states selected for update."></a>
-        </figure>
-      </div>
-      <div class="decision">
-        <h3 class="d-title">Treat errors and service changes as first-class screens</h3>
-        <div class="d-row"><span class="d-key">Problem</span><p class="d-val">Login errors, registration conditions, billing options — these aren't edge cases. These are the moments where users feel the most uncertainty.</p></div>
-<div class="d-row"><span class="d-key">Decision</span><p class="d-val">I added and refined specific states: login error handling, mobile OTP registration, auto-pay setup, and bill-delivery channel selection. Each state got clear copy, hierarchy, and a next action that QA and dev could implement consistently.</p></div>
-        <div class="d-row is-tradeoff"><span class="d-key">Trade-off</span><p class="d-val">More screens to maintain. Fewer implementation gaps to argue about.</p></div>
-        <p class="fig-lead"><span class="fig-step">Part 2</span>The updated flows themselves — home, package detail, and a login-error state prepared as a development-ready screen.</p>
-        <figure class="screen-item case-fig">
-          <a class="screen-link" href="assets/projects/3bb-member/fig-1-1.png" target="_blank" rel="noopener noreferrer"><img src="assets/projects/3bb-member/fig-1-1.png" alt="3BB Member app flows — home screen, My Package detail, and a login error state prepared as a development-ready state."></a>
-        </figure>
-      </div>
-    </div>
+  <section class="ed-reflection" data-reveal-section>
+    <p>"Map the inherited-vs-contribution boundary on day one."</p>
+    <span class="k">What I'd do differently</span>
   </section>
 
-  <section class="proj-sect" id="differently">
-    <h2 class="sect-label">What I'd do differently</h2>
-    <div class="reflection">
-      <p>Map the inherited-vs-contribution boundary on day one. I found it eventually. But the time spent figuring out which screen was current and which was legacy could have been saved with an explicit audit upfront.</p>
-      <p>That clarity was worth more to the team than any single screen I delivered.</p>
-    </div>
-  </section>
-
-  <section class="proj-sect" id="shipped">
-    <h2 class="sect-label">What it shipped</h2>
-    <div class="reading">
-      <p>The migration-critical flows handed off as development- and QA-ready states — each with explicit copy, hierarchy, and a defined next action — and the working file was left with current screens clearly separated from the inherited content around them.</p>
-    </div>
-  </section>
-
-  <nav class="case-nav" aria-label="More work">
-    <a class="cn-prev" href="cdp.html"><span class="cn-label">Previous case</span><span class="cn-title">Customer Data Platform</span></a>
-    <a class="cn-next" href="counter-service-pos.html"><span class="cn-label">Next case</span><span class="cn-title">Counter Service POS</span></a>
+  <nav class="case-nav" aria-label="More work" data-reveal-section>
+    <a class="cn-prev" href="cdp.html"><span class="cn-label">Previous case</span><span class="cn-title">← Customer Data Platform</span></a>
+    <a class="cn-next" href="counter-service-pos.html"><span class="cn-label">Next case</span><span class="cn-title">Counter Service POS →</span></a>
   </nav>
-  <a class="back-link" href="index.html">← Back to all work</a>
-
 </main>
 
 <footer>
-  <div class="wrap">
+  <div class="wrap-ed">
     <p class="foot">Natthapath Damrongsri · 2026</p>
   </div>
 </footer>
 
+<script src="scroll.js"></script>
 </body>
 </html>

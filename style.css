@@ -7,6 +7,9 @@
   --ink:#1C1B1A;
   --sub:#565450;          /* darkened from #6B6864 to pass WCAG AA on paper */
   --hair:#D8D5D0;
+  --hair2:#E7E4DF;
+  --faint:#9A958D;
+  --slate:#34404C;
   --paper:#FCFBF9;
   --panel:#F4F2EE;
   --serif:'Newsreader', Georgia, serif;
@@ -35,20 +38,20 @@
     background-size:0% 6px;                       /* underline retracted */
     transition:background-size .7s ease .25s;
   }
-  .js-reveal #easier.in-view .anno-anchor{ background-size:100% 6px; }
+  .js-reveal #easier.in .anno-anchor{ background-size:100% 6px; }
 
   .js-reveal #easier .anno-conn path{
     stroke-dasharray:140; stroke-dashoffset:140;  /* connector undrawn */
   }
   .js-reveal #easier .anno-conn path:first-child{ transition:stroke-dashoffset .6s ease .85s; }
   .js-reveal #easier .anno-conn path:last-child{  transition:stroke-dashoffset .35s ease 1.35s; } /* arrowhead lands last */
-  .js-reveal #easier.in-view .anno-conn path{ stroke-dashoffset:0; }
+  .js-reveal #easier.in .anno-conn path{ stroke-dashoffset:0; }
 
   .js-reveal #easier .anno-note{
     opacity:0;
     transition:opacity .5s ease 1.55s;            /* note settles after the arrow */
   }
-  .js-reveal #easier.in-view .anno-note{ opacity:1; }
+  .js-reveal #easier.in .anno-note{ opacity:1; }
 
   /* hero hand note writes itself in too: the double-underline wipes on
      after the note has settled (same signature as #easier above) */
@@ -56,18 +59,15 @@
     background-size:0% 9px;                          /* double-underline retracted */
     transition:background-size .6s ease .9s;
   }
-  .js-reveal .hero.in-view .anno-hero .anno-uline2{ background-size:100% 9px; }
+  .js-reveal .hero.in .anno-hero .anno-uline2{ background-size:100% 9px; }
 
-  /* scroll cue draws its down-arrow: shaft first, arrowhead lands last,
-     then a gentle bob invites the scroll */
+  /* scroll cue draws its down-arrow: shaft first, arrowhead lands last */
   .js-reveal .anno-scroll .anno-arrow path{
     stroke-dasharray:60; stroke-dashoffset:60;       /* arrow undrawn */
   }
   .js-reveal .anno-scroll .anno-arrow path:first-child{ transition:stroke-dashoffset .55s ease 1s; }
   .js-reveal .anno-scroll .anno-arrow path:last-child{  transition:stroke-dashoffset .3s ease 1.5s; }
-  .js-reveal .hero.in-view .anno-scroll .anno-arrow path{ stroke-dashoffset:0; }
-  .js-reveal .hero.in-view .anno-scroll .anno-arrow{ animation:anno-bob 1.8s ease-in-out 2s infinite; }
-  @keyframes anno-bob{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(4px);} }
+  .js-reveal .hero.in .anno-scroll .anno-arrow path{ stroke-dashoffset:0; }
 }
 body{
   margin:0;
@@ -172,100 +172,115 @@ section{padding:0;}
 .habits .lead{font-weight:500;}
 .habits .expl{color:var(--sub);}
 
-/* ---------- about / contact (index) ---------- */
+/* ---------- about (index) ---------- */
 .about p{font:400 18px/1.65 var(--sans); margin:0 0 var(--sp-4);}
 .about p:last-child{margin-bottom:0;}
-.contact{padding-top:var(--sp-10);}
-.contact-line{font:400 18px/1.65 var(--sans); margin:0 0 var(--sp-4);}
-.contact-links{font:400 16px/1.6 var(--sans); margin:0;}
-.contact-links a{text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:4px;}
-.contact-links a:hover{text-decoration-thickness:2px;}
-.contact-links .dot{color:var(--sub); padding:0 10px;}
 
 /* =========================================================
-   CASE-STUDY PAGES
+   EDITORIAL — case-study page layout
+   Replaces old project-header / proj-meta / decisions / reflection
    ========================================================= */
 
-.project-header{padding:var(--sp-8) 0 0;}
-.proposal-label{
-  font:500 13px/1 var(--sans); letter-spacing:.08em; text-transform:uppercase;
-  color:var(--sub); margin:0 0 var(--sp-5); display:inline-block;
-  border:1px solid var(--hair); padding:5px 10px;
-}
-.project-title{
-  font:300 clamp(34px,4.4vw,62px)/1.08 var(--serif);
-  letter-spacing:-0.018em; margin:0 0 var(--sp-4); max-width:800px;
-}
-.project-intro{font:400 18px/1.65 var(--sans); max-width:660px; margin:0 0 var(--sp-5);}
-/* outcome up front — recruiter sees the result without scrolling to the close */
-.project-result{font:400 16px/1.55 var(--sans); color:var(--ink); margin:0 0 var(--sp-7); max-width:660px;}
-.project-result .res-key{font:600 12px/1 var(--sans); letter-spacing:.07em; text-transform:uppercase; color:var(--sub); margin-right:var(--sp-2);}
+.wrap-ed{max-width:1128px; margin:0 auto; padding:0 56px;}
 
-/* cover / hero — opens the case study; true colour (no homepage fade filter) */
-.project-cover{
-  margin:0; border:1px solid var(--hair); background:var(--panel);
+/* nav */
+.ed-nav{
+  display:flex; justify-content:space-between; align-items:baseline;
+  padding:24px 0 20px; border-bottom:1px solid var(--hair);
+}
+.ed-nav .name{font:500 14px/1 var(--sans);}
+.ed-nav .back{font:400 13px/1 var(--sans); color:var(--sub);}
+.ed-nav .back:hover{color:var(--ink);}
+
+/* title page */
+.ed-title-page{padding:60px 0 32px;}
+.ed-title-page .label{
+  font:500 12px/1 var(--sans); letter-spacing:.09em; text-transform:uppercase; color:var(--sub);
+}
+.ed-title-page h1{
+  font:300 52px/1.08 var(--serif); letter-spacing:-.02em; margin:20px 0 0; max-width:18ch;
+}
+.ed-title-page .intro{
+  font:400 19px/1.6 var(--sans); color:var(--sub); margin:28px 0 0; max-width:54ch;
+}
+
+/* outcome stat strip */
+.ed-stats{
+  display:grid; grid-template-columns:repeat(3,1fr);
+  border-top:1.5px solid var(--ink); border-bottom:1px solid var(--hair);
+}
+.ed-stats .cell{padding:22px 24px;}
+.ed-stats .cell:not(:last-child){border-right:1px solid var(--hair2);}
+.ed-stats .cell:first-child{padding-left:0;}
+.ed-stats .cell:last-child{padding-right:0;}
+.ed-stats .k{
+  font:500 10px/1 var(--sans); letter-spacing:.08em; text-transform:uppercase;
+  color:var(--faint); margin:0 0 9px;
+}
+.ed-stats .v{font:400 15px/1.4 var(--sans); color:var(--ink);}
+
+/* cover */
+.ed-cover{margin:40px 0 0;}
+.ed-cover img{display:block; width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid var(--hair);}
+
+/* setup text */
+.ed-setup{padding:56px 0 0; max-width:62ch; margin:0 auto;}
+.ed-setup .lead{
+  font:400 22px/1.55 var(--serif); letter-spacing:-.005em; color:var(--ink); margin:0 0 22px;
+}
+.ed-setup p{font:400 17px/1.75 var(--sans); color:var(--sub); margin:0 0 16px;}
+.ed-setup p:last-child{margin-bottom:0;}
+
+/* decision spread */
+.ed-spread{display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:center; padding:64px 0 0;}
+.ed-spread.tight{padding-top:56px;}
+.ed-spread .num{font:300 30px/1 var(--serif); color:var(--hair);}
+.ed-spread h2{font:400 30px/1.18 var(--serif); letter-spacing:-.008em; margin:10px 0 16px; max-width:18ch;}
+.ed-spread p{font:400 16px/1.7 var(--sans); color:var(--sub); margin:0 0 14px;}
+.ed-spread p:last-of-type{margin-bottom:0;}
+
+/* figure well: 4:5 portrait (editorial crop) at rest, desaturated; full colour on hover */
+.ed-fig{
+  aspect-ratio:4/5; background:var(--panel); border:1px solid var(--hair);
   overflow:hidden; line-height:0;
 }
-.project-cover img{display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover;}
-
-/* fact strip */
-.proj-meta{
-  display:grid; grid-template-columns:repeat(3, minmax(0,1fr));
-  gap:var(--sp-5) var(--sp-7); max-width:860px; margin:0;
+.ed-fig img{display:block; width:100%; height:100%; object-fit:cover;}
+@media (prefers-reduced-motion:no-preference){
+  .ed-fig{filter:saturate(.55) brightness(1.05); transition:filter .5s ease;}
 }
-/* fact strip sits just under the cover — separated by space, no rule (image above) */
-.proj-meta-head{margin-top:var(--sp-8);}
-.proj-meta dt{
-  font:500 11px/1 var(--sans); letter-spacing:.08em; text-transform:uppercase;
-  color:var(--sub); margin:0 0 var(--sp-1);
+@media (hover:hover) and (pointer:fine){
+  .ed-spread:hover .ed-fig{filter:none;}
 }
-.proj-meta dd{font:400 15px/1.45 var(--sans); margin:0;}
-/* recruiter-relevant fields carry more weight than the rest */
-.proj-meta .fact-key dd{font-weight:600; color:var(--ink);}
 
-/* content sections — separated by space, not lines (spacing first).
-   section gap (--sp-10) > decision gap (--sp-6) > row gap, so the read
-   tiers itself by proximity alone; no rule needed to mark a new part. */
-.proj-sect{padding-top:var(--sp-10);}
-.proj-sect .reading{max-width:600px;}
-.proj-sect .reading p{font:400 18px/1.7 var(--sans); margin:0 0 var(--sp-5);}
-.proj-sect .reading p:last-child{margin-bottom:0;}
+/* handwritten note inside each spread */
+.ed-note{font:500 18px/1.3 var(--script); color:var(--slate); margin:0;}
 
-/* decisions — peers separated by space only (each ends in a figure, so a
-   rule between them would sit against an image — not allowed) */
-.decisions{max-width:880px;}
-.decision{padding:var(--sp-6) 0;}
-.decision:first-child{padding-top:0;}
-.decision:last-child{padding-bottom:0;}
-.d-title{font:400 25px/1.25 var(--serif); letter-spacing:-0.005em; margin:0 0 var(--sp-5);}
-.d-row{margin:0 0 var(--sp-4);}
-.d-row:last-child{margin-bottom:0;}
-.d-key{
-  font:500 11px/1 var(--sans); letter-spacing:.07em; text-transform:uppercase;
-  color:var(--sub); display:block; margin:0 0 var(--sp-1);
+/* reflection pull */
+.ed-reflection{padding:72px 0 0; text-align:center;}
+.ed-reflection p{
+  font:400 30px/1.4 var(--serif); letter-spacing:-.012em;
+  color:var(--ink); margin:0 auto 16px; max-width:24ch;
 }
-.d-val{font:400 16px/1.7 var(--sans); margin:0; max-width:56ch;}
-.d-row.is-tradeoff .d-val{color:var(--sub);}
+.ed-reflection p:last-of-type{margin-bottom:0;}
+.ed-reflection .k{
+  display:block; font:500 11px/1 var(--sans); letter-spacing:.08em;
+  text-transform:uppercase; color:var(--faint); margin:24px 0 0;
+}
 
-/* evidence / screens */
-.screens{display:flex; flex-direction:column; gap:var(--sp-7); max-width:880px;}
-.screen-item{border:1px solid var(--hair); overflow:hidden;}
-.screen-link{display:block; line-height:0;}
-.screen-link:focus-visible{outline:2px solid var(--ink); outline-offset:2px;}
-.screen-item img{display:block; width:100%; height:auto;}
-.screen-caption{font:400 13px/1.6 var(--sans); color:var(--sub); padding:var(--sp-2) var(--sp-3) var(--sp-3);}
-.screen-fig{font-weight:500; color:var(--ink);}
-/* inline case figure — evidence placed inside the decision it supports
-   (wider than the text measure so it punctuates the reading rhythm) */
-.case-fig{margin:var(--sp-5) 0 0; max-width:880px;}
-/* short lead that frames the figure right below it (used to split a two-part decision) */
-.fig-lead{font:400 16px/1.7 var(--sans); max-width:56ch; margin:var(--sp-6) 0 var(--sp-2);}
-.fig-lead .fig-step{font:600 12px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; color:var(--sub); margin-right:8px;}
-.fig-lead + .case-fig{margin-top:0;}
-
-/* reflection — editorial pull */
-.reflection{border-left:2px solid var(--ink); padding-left:var(--sp-5); max-width:686px;}
-.reflection p{font:400 20px/1.6 var(--serif); letter-spacing:-0.005em; margin:0;}
+/* mobile */
+@media (max-width:860px){
+  .wrap-ed{padding:0 22px;}
+  .ed-title-page{padding:48px 0 24px;}
+  .ed-title-page h1{font-size:34px;}
+  .ed-stats{grid-template-columns:1fr;}
+  .ed-stats .cell{padding:16px 0; border-right:none !important; border-bottom:1px solid var(--hair2);}
+  .ed-stats .cell:last-child{border-bottom:none;}
+  .ed-setup{padding-top:40px;}
+  .ed-spread,.ed-spread.tight{grid-template-columns:1fr; gap:24px; padding-top:48px;}
+  .ed-spread .ed-fig{order:2; aspect-ratio:16/10;}
+  .ed-reflection{padding-top:56px;}
+  .ed-reflection p{font-size:22px;}
+}
 
 /* prev / next + back */
 .case-nav{
@@ -285,7 +300,15 @@ section{padding:0;}
 
 /* ---------- footer ---------- */
 footer{margin-top:var(--sp-10); border-top:1px solid var(--hair);}
-.foot{font:400 12px/1 var(--sans); color:var(--sub); padding:var(--sp-5) 0 var(--sp-7);}
+.foot-row{
+  display:flex; justify-content:space-between; align-items:baseline;
+  flex-wrap:wrap; gap:var(--sp-3); padding:var(--sp-5) 0 var(--sp-7);
+}
+.foot{font:400 12px/1 var(--sans); color:var(--sub); margin:0;}
+.foot-links{font:400 12px/1.5 var(--sans); color:var(--sub); margin:0;}
+.foot-links a{color:var(--ink); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:4px;}
+.foot-links a:hover{text-decoration-thickness:2px;}
+.foot-links .dot{padding:0 8px;}
 
 /* =========================================================
    WORK — EDITORIAL PROJECT INDEX (index)
@@ -444,9 +467,17 @@ a.proj-row .pr-link{
     content:''; position:absolute; left:2px; top:2px; width:17px; height:26px;
     background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='17'%20height='26'%3E%3Cpath%20d='M4%201%20C4%2011%2014%2012%2013%2023'%20fill='none'%20stroke='%2334404C'%20stroke-width='2'%20stroke-linecap='round'/%3E%3Cpath%20d='M13%2023%20L8%2019%20M13%2023%20L17%2018'%20fill='none'%20stroke='%2334404C'%20stroke-width='2'%20stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
   }
-  /* hero notes flow in document order (no absolute right margin, no stub arrow) */
-  .anno-hero, .anno-scroll{position:static; transform:none; width:auto; margin:var(--sp-5) 0 0; padding-left:0;}
-  .anno-hero::before, .anno-scroll::before{display:none;}
+  /* anno-hero flows in document order on medium/mobile */
+  .anno-hero{position:static; transform:none; width:auto; margin:var(--sp-5) 0 0; padding-left:0;}
+  .anno-hero::before{display:none;}
+  /* anno-scroll stays centered at bottom of hero on all screen sizes —
+     reset every property .anno-mark sets at this breakpoint */
+  .anno-scroll{
+    position:absolute; left:50%; right:auto; top:auto; bottom:2px;
+    transform:translateX(-50%); width:auto; display:block;
+    padding-left:0; margin:0; white-space:nowrap;
+  }
+  .anno-scroll::before{display:none;}
 }
 
 /* tablet — keep the hero hand note in the right margin beside the thesis
@@ -471,6 +502,58 @@ a.proj-row .pr-link{
 }
 .locked-list li:last-child{margin-bottom:0;}
 .locked-list li::before{content:'—'; position:absolute; left:0; color:var(--hair);}
+
+/* =========================================================
+   REVEAL SYSTEM — Stagger (children enter in sequence)
+   680ms easeOutCubic · translateY(12px) · 110ms step · IO threshold 0.12
+   Content is never hidden without .js-reveal + motion enabled.
+   ========================================================= */
+@keyframes fade-up{
+  from{opacity:0; transform:translateY(8px);}
+  to{opacity:1; transform:none;}
+}
+
+@media (prefers-reduced-motion:no-preference){
+  /* Non-stagger sections (work rows): whole block fades */
+  .js-reveal [data-reveal-section]{
+    opacity:0; transform:translateY(8px);
+    transition:opacity .62s cubic-bezier(.215,.61,.355,1),
+               transform .62s cubic-bezier(.215,.61,.355,1);
+  }
+  .js-reveal [data-reveal-section].in{opacity:1; transform:none;}
+
+  /* Stagger sections: children hide and reveal in sequence */
+  .js-reveal [data-stagger] [data-reveal-item]{
+    opacity:0; transform:translateY(12px);
+    transition:opacity .68s cubic-bezier(.215,.61,.355,1),
+               transform .68s cubic-bezier(.215,.61,.355,1);
+  }
+  .js-reveal [data-stagger] [data-reveal-item].in{opacity:1; transform:none;}
+
+  /* Hand annotation trails last child by 460ms (Stagger) */
+  .js-reveal [data-reveal-note]{
+    opacity:0; transform:translateY(10px);
+    transition:opacity .62s cubic-bezier(.215,.61,.355,1) 460ms,
+               transform .62s cubic-bezier(.215,.61,.355,1) 460ms;
+  }
+  .js-reveal [data-reveal-note].in{opacity:1; transform:none;}
+
+  /* Scroll-cue note fades in after the hero settles */
+  .js-reveal .anno-scroll .anno-note{opacity:0; transition:opacity .5s ease 600ms;}
+  .js-reveal .hero.in .anno-scroll .anno-note{opacity:1;}
+
+  /* Project pages — stats cells stagger on load */
+  .js-reveal .ed-stats .cell:nth-child(1){animation:fade-up .5s ease both; animation-delay:200ms;}
+  .js-reveal .ed-stats .cell:nth-child(2){animation:fade-up .5s ease both; animation-delay:300ms;}
+  .js-reveal .ed-stats .cell:nth-child(3){animation:fade-up .5s ease both; animation-delay:400ms;}
+
+  /* Cover image fades in after stats */
+  .js-reveal .ed-cover{animation:fade-up .5s ease both; animation-delay:450ms;}
+
+  /* Handwritten note writes in after its spread reveals */
+  .js-reveal .ed-spread .ed-note{opacity:0; transition:opacity .4s ease;}
+  .js-reveal .ed-spread.in .ed-note{opacity:1; transition-delay:400ms;}
+}
 
 /* =========================================================
    MOBILE
@@ -504,23 +587,8 @@ a.proj-row .pr-link{
   .habits li{font-size:17px; margin-bottom:var(--sp-5);}
 
   .about p{font-size:16px; line-height:1.66;}
-  .contact{padding-top:var(--sp-8);}
-  .contact-line{font-size:16px; line-height:1.66;}
-  .contact-links{font-size:15px;}
-  .contact-links .dot{padding:0 7px;}
+  .anno-scroll{display:none;}
 
-  /* case study */
-  .project-header{padding:var(--sp-7) 0 0;}
-  .project-intro{font-size:16px; line-height:1.66; margin-bottom:var(--sp-6);}
-  .proj-meta{grid-template-columns:1fr 1fr; gap:var(--sp-4) var(--sp-5);}
-  .proj-sect{padding-top:var(--sp-8);}              /* section gap 64 — biggest tier */
-  .decision{padding:var(--sp-5) 0;}                 /* decision gap 48 — below section */
-  .proj-sect .reading p{font-size:16px; line-height:1.66;}
-  .d-title{font-size:21px;}
-  .d-val{font-size:15px;}
-  .screens{gap:var(--sp-6);}
-  .reflection{padding-left:var(--sp-4);}
-  .reflection p{font-size:18px; line-height:1.55;}
   .case-nav{margin-top:var(--sp-8);}
   .locked-list li{font-size:16px;}
 
