@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>01 — Reverse Order</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Work comes FIRST — no hero, no intro. The work is the opening argument. */
+
+/* Override default sect padding for first section */
+.work-first { padding-top: 0; border-top: none; }
+.work-first .proj-index { border-top: none; }
+
+/* Project rows */
+.proj-index { border-top: 1px solid var(--hair); }
+.proj-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,420px);
+  gap: 48px; align-items: start;
+  padding: 48px 0; border-bottom: 1px solid var(--hair);
+  color: inherit; text-decoration: none;
+}
+.pr-num { font:300 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin:0 0 16px; display:block; }
+.pr-headline { font:400 clamp(26px,2.5vw,36px)/1.15 var(--serif); letter-spacing:-.01em; color:var(--ink); margin:0 0 12px; }
+a.proj-row .pr-headline { text-decoration:underline; text-decoration-color:var(--hair); text-underline-offset:5px; }
+.pr-meta { font:500 11px/1.5 var(--sans); letter-spacing:.07em; text-transform:uppercase; color:var(--sub); margin:0 0 8px; }
+.pr-meta .dot { padding:0 8px; color:var(--hair); }
+.pr-title { font:500 14px/1.45 var(--sans); color:var(--ink); margin:0 0 8px; }
+.pr-desc { font:400 15px/1.65 var(--sans); color:var(--sub); margin:0; }
+.pr-img { display:block; border:1px solid rgba(216,213,208,.35); background:var(--panel); overflow:hidden; line-height:0; }
+.pr-img img { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; filter:saturate(.7) brightness(1.04); transition:filter .4s ease; }
+a.proj-row:hover .pr-img img { filter:saturate(1.04) brightness(1.01); }
+.pr-link { display:block; text-align:right; margin:10px 0 0; font:500 12px/1 var(--sans); color:var(--sub); }
+
+/* Identity comes LAST — after you've seen the work */
+.who-section { padding: 80px 0 0; }
+.who-inner { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+.who-thesis { font:300 clamp(32px,3.5vw,52px)/1.1 var(--serif); letter-spacing:-.018em; margin:0 0 24px; }
+.who-para { font:400 17px/1.7 var(--sans); color:var(--sub); margin:0 0 16px; max-width:52ch; }
+.who-para:last-child { margin-bottom:0; }
+.who-contact { font:400 14px/1.6 var(--sans); color:var(--sub); }
+.who-contact a { color:var(--ink); text-decoration:underline; text-underline-offset:3px; }
+
+@media(max-width:860px){
+  .proj-row{grid-template-columns:1fr;}
+  .pr-img-wrap{margin-top:20px;}
+  .who-inner{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="site-nav">
+    <a class="name" href="../index.html">Natthapath Damrongsri</a>
+    <ul>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- Work is the opening — no intro, no thesis. You see what was made first. -->
+  <section class="work-first">
+    <div class="proj-index">
+
+      <a class="proj-row" href="../cdp.html">
+        <div>
+          <span class="pr-num">01</span>
+          <h2 class="pr-headline">Complex logic that couldn't be simplified</h2>
+          <p class="pr-meta">SaaS<span class="dot">·</span>Segment Builder<span class="dot">·</span>Condition Logic</p>
+          <p class="pr-title">Customer Data Platform — Segment &amp; Condition Builder</p>
+          <p class="pr-desc">Marketing teams build audience segments out of layered attributes, events, and consent rules. I turned that tangle of logic into a workspace they could read, configure, and trust.</p>
+        </div>
+        <div>
+          <span class="pr-img"><img src="../assets/projects/cdp/cover.png" alt="CDP cover"></span>
+          <span class="pr-link">Case study →</span>
+        </div>
+      </a>
+
+      <a class="proj-row" href="../3bb-member.html">
+        <div>
+          <span class="pr-num">02</span>
+          <h2 class="pr-headline">A migration with a system underneath</h2>
+          <p class="pr-meta">Mobile<span class="dot">·</span>Web<span class="dot">·</span>Migration UX</p>
+          <p class="pr-title">3BB Member App and Website</p>
+          <p class="pr-desc">3BB Member was already live for millions — my job was to work inside a large inherited file, find which screen was actually current, and ship only the flows where the migration changed the user's path.</p>
+        </div>
+        <div>
+          <span class="pr-img"><img src="../assets/projects/3bb-member/cover.png" alt="3BB Member cover" style="filter:saturate(.5) brightness(1.05)"></span>
+          <span class="pr-link">Case study →</span>
+        </div>
+      </a>
+
+      <a class="proj-row" href="../counter-service-pos.html">
+        <div>
+          <span class="pr-num">03</span>
+          <h2 class="pr-headline">A redesign that had to feel like no change at all</h2>
+          <p class="pr-meta">Retail<span class="dot">·</span>Physical Terminal<span class="dot">·</span>Operational UX</p>
+          <p class="pr-title">Counter Service POS</p>
+          <p class="pr-desc">Point-of-sale terminals run on speed and muscle memory. The job was to improve the hierarchy without moving what cashiers' hands already knew.</p>
+        </div>
+        <div>
+          <span class="pr-img"><img src="../assets/projects/counter-service-pos/cover.png" alt="Counter Service POS cover"></span>
+          <span class="pr-link">View proposal →</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Identity is earned — introduced after the work has been seen -->
+  <section class="who-section" id="contact">
+    <div class="who-inner">
+      <div>
+        <p class="sect-label">Who made this</p>
+        <h1 class="who-thesis">I design complex systems people can use with confidence.</h1>
+        <p class="who-para">Bangkok-based UX/UI designer. I work where the requirements are still shifting — finding the actual problem underneath the ask before designing around it.</p>
+      </div>
+      <div>
+        <p class="sect-label">Get in touch</p>
+        <p class="who-para">Open to complex work and the right teams.</p>
+        <p class="who-contact">
+          <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a> ·
+          <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a> ·
+          <a href="https://drive.google.com/file/d/1WIN_KxK0yWkhj0vepfugB8czmD9JqphX/view">Résumé</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><p class="foot">Natthapath Damrongsri · 2026</p></div></footer>
+
+<nav class="proto-bar">
+  <span><strong>01 / 25</strong> — Reverse order</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>

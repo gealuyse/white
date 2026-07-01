@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>11 — Metrics First</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Metrics first — outcome numbers before project title */
+
+.hero { padding: 72px 0 80px; }
+.hero h1 { font:300 clamp(36px,4.5vw,60px)/1.06 var(--serif); letter-spacing:-.018em; margin:0 0 20px; max-width:20ch; }
+.hero p { font:400 18px/1.72 var(--sans); color:var(--sub); max-width:50ch; }
+
+.metrics-list { border-top: 1px solid var(--hair); }
+
+.metrics-item {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--hair);
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 64px;
+  align-items: start;
+}
+
+.mi-left { }
+
+/* Big metrics FIRST */
+.mi-metrics { display:flex; gap: 0; margin:0 0 40px; }
+.mi-metric {
+  flex: 1;
+  padding: 24px 24px;
+  border: 1px solid var(--hair);
+  border-right: none;
+}
+.mi-metric:last-child { border-right: 1px solid var(--hair); }
+.mi-metric-value {
+  font: 500 clamp(28px,3vw,44px)/1 var(--sans);
+  letter-spacing: -.02em;
+  color: var(--ink);
+  display: block;
+  margin: 0 0 8px;
+}
+.mi-metric-label {
+  font: 400 12px/1.4 var(--sans);
+  color: var(--sub);
+}
+
+/* Project identity AFTER the metrics */
+.mi-identity { padding-top: 32px; border-top: 1px solid var(--hair); }
+.mi-num { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin:0 0 10px; display:block; }
+.mi-headline { font:400 clamp(24px,2.4vw,32px)/1.2 var(--serif); letter-spacing:-.01em; margin:0 0 10px; }
+.mi-proj-name { font:500 14px/1 var(--sans); color:var(--ink); margin:0 0 6px; }
+.mi-proj-meta { font:400 12px/1.5 var(--sans); color:var(--sub); margin:0 0 20px; }
+.mi-link { font:500 11px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; text-decoration:underline; text-underline-offset:3px; }
+
+.mi-right { }
+.mi-img { width:100%; aspect-ratio:16/9; object-fit:cover; filter:saturate(.65) brightness(1.04); }
+
+/* Caveat annotation on metrics */
+.mi-anno {
+  font: 500 18px/1.3 var(--script);
+  color: #5B8C6B;
+  display: block;
+  margin: 16px 0 0;
+  padding-left: 4px;
+}
+
+/* Bottom */
+.bottom-strip { padding:80px 0; display:grid; grid-template-columns:1fr 1fr; gap:64px; }
+.bs-h2 { font:300 clamp(28px,3vw,44px)/1.1 var(--serif); letter-spacing:-.016em; margin:0 0 20px; }
+.bs-body { font:400 17px/1.7 var(--sans); color:var(--sub); margin:0 0 14px; }
+.bs-contact { margin-top:32px; font:400 14px/1.6 var(--sans); }
+.bs-contact a { text-decoration:underline; text-underline-offset:3px; color:var(--ink); }
+
+@media(max-width:900px){
+  .metrics-item{grid-template-columns:1fr;}
+  .mi-right{order:-1;}
+  .mi-metrics{flex-wrap:wrap;}
+  .mi-metric{min-width:calc(50% - 1px);}
+  .bottom-strip{grid-template-columns:1fr;}
+}
+@media(max-width:480px){
+  .mi-metric{min-width:100%;}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="site-nav">
+    <a class="name" href="../index.html">Natthapath Damrongsri</a>
+    <ul><li><a href="#contact">Contact</a></li></ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="sect-label">UX/UI Product Designer · Bangkok</p>
+    <h1>Numbers before names. Outcomes before titles.</h1>
+    <p>The results of the work, up front — then the story of how they got there.</p>
+  </section>
+
+  <div class="metrics-list">
+
+    <!-- CDP -->
+    <div class="metrics-item">
+      <div class="mi-left">
+        <div class="mi-metrics">
+          <div class="mi-metric">
+            <span class="mi-metric-value">Shipped</span>
+            <span class="mi-metric-label">Segment builder in production</span>
+          </div>
+          <div class="mi-metric">
+            <span class="mi-metric-value">—</span>
+            <span class="mi-metric-label">Engineering dependency removed</span>
+          </div>
+          <div class="mi-metric">
+            <span class="mi-metric-value">+</span>
+            <span class="mi-metric-label">Non-technical users gained ownership</span>
+          </div>
+        </div>
+        <span class="mi-anno">marketing teams no longer needed a dev to change a segment</span>
+        <div class="mi-identity">
+          <span class="mi-num">01</span>
+          <h2 class="mi-headline">Complex logic that couldn't be simplified</h2>
+          <p class="mi-proj-name">Customer Data Platform — Segment &amp; Condition Builder</p>
+          <p class="mi-proj-meta">SaaS · Condition Logic · 2024</p>
+          <a class="mi-link" href="../cdp.html">Full case study →</a>
+        </div>
+      </div>
+      <div class="mi-right">
+        <img class="mi-img" src="../assets/projects/cdp/cover.png" alt="CDP">
+      </div>
+    </div>
+
+    <!-- 3BB -->
+    <div class="metrics-item">
+      <div class="mi-left">
+        <div class="mi-metrics">
+          <div class="mi-metric">
+            <span class="mi-metric-value">1M+</span>
+            <span class="mi-metric-label">Active users on platform</span>
+          </div>
+          <div class="mi-metric">
+            <span class="mi-metric-value">0</span>
+            <span class="mi-metric-label">Regression incidents post-migration</span>
+          </div>
+          <div class="mi-metric">
+            <span class="mi-metric-value">Live</span>
+            <span class="mi-metric-label">Throughout redesign — no feature freeze</span>
+          </div>
+        </div>
+        <span class="mi-anno">stayed live the whole time, no rollback</span>
+        <div class="mi-identity">
+          <span class="mi-num">02</span>
+          <h2 class="mi-headline">A migration with a system underneath</h2>
+          <p class="mi-proj-name">3BB Member App &amp; Website</p>
+          <p class="mi-proj-meta">Mobile · Web · Migration UX · 2024</p>
+          <a class="mi-link" href="../3bb-member.html">Full case study →</a>
+        </div>
+      </div>
+      <div class="mi-right">
+        <img class="mi-img" src="../assets/projects/3bb-member/cover.png" alt="3BB" style="filter:saturate(.4) brightness(1.05)">
+      </div>
+    </div>
+
+    <!-- POS -->
+    <div class="metrics-item">
+      <div class="mi-left">
+        <div class="mi-metrics">
+          <div class="mi-metric">
+            <span class="mi-metric-value">0</span>
+            <span class="mi-metric-label">Elements repositioned</span>
+          </div>
+          <div class="mi-metric">
+            <span class="mi-metric-value">0</span>
+            <span class="mi-metric-label">Retraining sessions required</span>
+          </div>
+          <div class="mi-metric">
+            <span class="mi-metric-value">↑</span>
+            <span class="mi-metric-label">Visual clarity under peak load</span>
+          </div>
+        </div>
+        <span class="mi-anno">same interface. clearer. faster.</span>
+        <div class="mi-identity">
+          <span class="mi-num">03</span>
+          <h2 class="mi-headline">A redesign that had to feel like no change</h2>
+          <p class="mi-proj-name">Counter Service POS Terminal</p>
+          <p class="mi-proj-meta">Retail · Operational UX</p>
+          <a class="mi-link" href="../counter-service-pos.html">View proposal →</a>
+        </div>
+      </div>
+      <div class="mi-right">
+        <img class="mi-img" src="../assets/projects/counter-service-pos/cover.png" alt="POS">
+      </div>
+    </div>
+
+  </div>
+
+  <section class="bottom-strip" id="contact">
+    <div>
+      <p class="sect-label">About</p>
+      <h2 class="bs-h2">I design complex systems people can use with confidence.</h2>
+      <p class="bs-body">Bangkok-based UX/UI designer. I work where the requirements are still shifting.</p>
+    </div>
+    <div>
+      <p class="sect-label">Get in touch</p>
+      <p class="bs-body">Open to complex work and the right teams.</p>
+      <div class="bs-contact">
+        <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a><br>
+        <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><p class="foot">Natthapath Damrongsri · 2026</p></div></footer>
+
+<nav class="proto-bar">
+  <span><strong>11 / 25</strong> — Metrics first</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>

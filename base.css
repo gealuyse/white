@@ -1,0 +1,59 @@
+/* base.css — shared foundation for all 25 design explorations
+   Each prototype HTML links to this + adds its own <style> block. */
+
+:root{
+  --ink:#1C1B1A;
+  --sub:#565450;
+  --hair:#D8D5D0;
+  --faint:#9A958D;
+  --paper:#FCFBF9;
+  --panel:#F4F2EE;
+  --serif:'Newsreader',Georgia,serif;
+  --sans:'Geist',-apple-system,'Segoe UI',sans-serif;
+  --script:'Caveat','Segoe Script',cursive;
+  --sp-1:8px;--sp-2:12px;--sp-3:16px;--sp-4:20px;--sp-5:24px;
+  --sp-6:32px;--sp-7:48px;--sp-8:64px;--sp-9:96px;--sp-10:128px;
+}
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+a{color:var(--ink);text-decoration:none;}
+img{display:block;max-width:100%;}
+
+.wrap{max-width:1240px;margin:0 auto;padding:0 48px;}
+.site-nav{display:flex;justify-content:space-between;align-items:baseline;padding:24px 0 20px;border-bottom:1px solid var(--hair);}
+.site-nav .name{font:500 14px/1 var(--sans);}
+.site-nav ul{list-style:none;margin:0;padding:0;display:flex;}
+.site-nav li+li::before{content:"·";color:var(--sub);padding:0 10px;}
+.site-nav a{font:400 14px/1 var(--sans);}
+.site-nav a:hover{text-decoration:underline;text-underline-offset:3px;}
+
+section{padding:0;}
+.sect{padding:var(--sp-10) 0 0;}
+.sect-label{font:500 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--sub);margin:0 0 36px;}
+.reading{max-width:660px;}
+
+.btn{display:inline-block;font:500 13px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:15px 24px;border:1px solid var(--ink);color:var(--paper);background:var(--ink);}
+.btn:hover{background:transparent;color:var(--ink);}
+
+.anno-anchor{
+  background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='90'%20height='6'%3E%3Cpath%20d='M1%204%20C18%202%2030%205%2046%203%20S74%204%2089%203'%20fill='none'%20stroke='%2334404C'%20stroke-width='2'%20stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left bottom;
+  background-size:100% 6px;padding-bottom:3px;
+}
+.anno-note{font:500 22px/1.25 var(--script);color:#34404C;}
+
+footer{margin-top:var(--sp-10);border-top:1px solid var(--hair);}
+.foot{font:400 12px/1 var(--sans);color:var(--sub);padding:var(--sp-5) 0 var(--sp-7);margin:0;}
+
+/* ---- proto nav bar (fixed bottom, every prototype) ---- */
+.proto-bar{
+  position:fixed;bottom:0;left:0;right:0;
+  background:var(--ink);color:rgba(252,251,249,.55);
+  font:500 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;
+  padding:11px 24px;display:flex;justify-content:space-between;align-items:center;z-index:999;
+}
+.proto-bar strong{color:var(--paper);}
+.proto-bar a{color:rgba(252,251,249,.55);}
+.proto-bar a:hover{color:var(--paper);}
+body{padding-bottom:40px;}/* clear the fixed bar */
+
+@media(max-width:768px){.wrap{padding:0 22px;}}

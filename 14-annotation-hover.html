@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>14 — Annotation Hover</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Annotation hover — handwritten notes appear when hovering specific words */
+
+.hero { padding: 72px 0 80px; }
+.hero h1 { font:300 clamp(36px,4.5vw,60px)/1.06 var(--serif); letter-spacing:-.018em; margin:0 0 20px; max-width:20ch; }
+.hero p { font:400 18px/1.72 var(--sans); color:var(--sub); max-width:50ch; }
+
+/* Hover-annotatable word */
+.an-word {
+  position: relative;
+  display: inline;
+  cursor: default;
+  /* underline to signal there's a note */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='4'%3E%3Cpath d='M1 3 C16 1 28 3.5 42 2 S64 3.2 79 2' fill='none' stroke='%2334404C' stroke-width='1.5' stroke-linecap='round' stroke-dasharray='4 3'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: left bottom 1px;
+  background-size: 80px 4px;
+  padding-bottom: 3px;
+}
+
+/* The annotation pop-up */
+.an-note {
+  position: absolute;
+  left: 50%; bottom: calc(100% + 12px);
+  transform: translateX(-50%) translateY(4px);
+  min-width: 200px; max-width: 280px;
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  box-shadow: 0 4px 20px rgba(28,27,26,.1);
+  padding: 14px 16px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .18s ease, transform .18s ease;
+  z-index: 100;
+  white-space: normal;
+}
+/* Small arrow */
+.an-note::after {
+  content: '';
+  position: absolute;
+  bottom: -6px; left: 50%;
+  transform: translateX(-50%);
+  width: 10px; height: 6px;
+  background: var(--paper);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-left: 1px solid var(--hair);
+  border-right: 1px solid var(--hair);
+  border-bottom: none;
+}
+.an-word:hover .an-note {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.an-note-text {
+  font: 500 19px/1.3 var(--script);
+  color: #34404C;
+  display: block;
+  margin: 0 0 4px;
+}
+.an-note-sub {
+  font: 400 12px/1.5 var(--sans);
+  color: var(--sub);
+  display: block;
+}
+
+/* Work section */
+.work-list { border-top: 1px solid var(--hair); }
+.proj-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,400px);
+  gap: 48px; align-items: start;
+  padding: 56px 0; border-bottom: 1px solid var(--hair);
+}
+.pr-num { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); display:block; margin:0 0 16px; }
+.pr-headline { font:400 clamp(24px,2.4vw,32px)/1.15 var(--serif); letter-spacing:-.01em; margin:0 0 12px; line-height:1.4; }
+.pr-meta { font:500 10px/1.5 var(--sans); letter-spacing:.07em; text-transform:uppercase; color:var(--sub); margin:0 0 14px; }
+.pr-meta .dot { padding:0 8px; color:var(--hair); }
+.pr-desc { font:400 16px/1.7 var(--sans); color:var(--sub); margin:0 0 20px; max-width:48ch; }
+.pr-link { font:500 12px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; text-decoration:underline; text-underline-offset:4px; }
+.pr-img { width:100%; aspect-ratio:16/9; object-fit:cover; filter:saturate(.65) brightness(1.04); }
+
+/* About section with annotatable text */
+.about-section { padding:80px 0; }
+.about-section h2 { font:300 clamp(28px,3vw,44px)/1.1 var(--serif); letter-spacing:-.016em; margin:0 0 20px; }
+.about-section p { font:400 18px/1.72 var(--sans); color:var(--sub); max-width:52ch; margin:0 0 14px; }
+
+.contact-row { padding:48px 0; border-top:1px solid var(--hair); }
+.contact-row a { font:400 14px/1.6 var(--sans); text-decoration:underline; text-underline-offset:3px; color:var(--ink); margin-right:24px; }
+
+@media(max-width:860px){
+  .proj-row{grid-template-columns:1fr;}
+  .an-note{min-width:160px;}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="site-nav">
+    <a class="name" href="../index.html">Natthapath Damrongsri</a>
+    <ul><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="sect-label">UX/UI Product Designer · Bangkok</p>
+    <h1>Hover the <span class="an-word">underlined words<span class="an-note"><span class="an-note-text">like this one</span><span class="an-note-sub">there are notes behind specific words throughout the page</span></span></span> to read the notes.</h1>
+    <p>The work speaks plainly. The annotations tell you what I was thinking at the time.</p>
+  </section>
+
+  <div class="work-list">
+
+    <div class="proj-row">
+      <div>
+        <span class="pr-num">01</span>
+        <h2 class="pr-headline"><span class="an-word">Complex logic<span class="an-note"><span class="an-note-text">boolean AND/OR/NOT</span><span class="an-note-sub">not just complex to build — complex to explain to non-engineers</span></span></span> that couldn't be simplified</h2>
+        <p class="pr-meta">SaaS<span class="dot">·</span>Segment Builder<span class="dot">·</span>Condition Logic</p>
+        <p class="pr-desc">Marketing teams build audience segments out of <span class="an-word">layered attributes<span class="an-note"><span class="an-note-text">50+ attributes</span><span class="an-note-sub">user properties, event history, consent flags — each could nest inside others</span></span></span>, events, and consent rules. I turned that tangle into a workspace they could read and trust.</p>
+        <a class="pr-link" href="../cdp.html">Read case study →</a>
+      </div>
+      <img class="pr-img" src="../assets/projects/cdp/cover.png" alt="CDP">
+    </div>
+
+    <div class="proj-row">
+      <div>
+        <span class="pr-num">02</span>
+        <h2 class="pr-headline">A migration with a <span class="an-word">system underneath<span class="an-note"><span class="an-note-text">massive inherited file</span><span class="an-note-sub">hundreds of screens, unknown which were current, app live in production throughout</span></span></span></h2>
+        <p class="pr-meta">Mobile<span class="dot">·</span>Web<span class="dot">·</span>Migration UX</p>
+        <p class="pr-desc">3BB Member was live for <span class="an-word">over a million users<span class="an-note"><span class="an-note-text">couldn't break anything</span><span class="an-note-sub">any regression would affect real users immediately. scope discipline was critical.</span></span></span>. My job was to ship only the flows where the migration changed the user's path.</p>
+        <a class="pr-link" href="../3bb-member.html">Read case study →</a>
+      </div>
+      <img class="pr-img" src="../assets/projects/3bb-member/cover.png" alt="3BB" style="filter:saturate(.5) brightness(1.05)">
+    </div>
+
+    <div class="proj-row">
+      <div>
+        <span class="pr-num">03</span>
+        <h2 class="pr-headline">A redesign that had to feel like <span class="an-word">no change<span class="an-note"><span class="an-note-text">muscle memory constraint</span><span class="an-note-sub">cashiers tap without looking. moving a button even 50px would create errors during peak hours</span></span></span></h2>
+        <p class="pr-meta">Retail<span class="dot">·</span>Physical Terminal<span class="dot">·</span>Operational UX</p>
+        <p class="pr-desc">POS terminals run on speed. Better hierarchy without <span class="an-word">moving what cashiers' hands already knew<span class="an-note"><span class="an-note-text">this was the brief</span><span class="an-note-sub">literally told not to change positions. all clarity had to come from weight and contrast alone.</span></span></span>.</p>
+        <a class="pr-link" href="../counter-service-pos.html">View proposal →</a>
+      </div>
+      <img class="pr-img" src="../assets/projects/counter-service-pos/cover.png" alt="POS">
+    </div>
+
+  </div>
+
+  <section class="about-section" id="about">
+    <p class="sect-label">About</p>
+    <h2>I design <span class="an-word">complex systems<span class="an-note"><span class="an-note-text">not simple ones</span><span class="an-note-sub">I find simpler work less interesting. I like when the constraints are real.</span></span></span> people can use with confidence.</h2>
+    <p>Bangkok-based UX/UI designer. I work where the <span class="an-word">requirements are still shifting<span class="an-note"><span class="an-note-text">ambiguity is the job</span><span class="an-note-sub">most of my work starts before the problem is well-defined. that's the part I'm good at.</span></span></span> — enterprise SaaS, mobile apps, operational tools.</p>
+    <p>I stay quiet at the start. I'd rather understand the messy reality before proposing a <span class="an-word">clean solution<span class="an-note"><span class="an-note-text">premature tidiness</span><span class="an-note-sub">jumping to solutions too early is how you solve the wrong problem cleanly</span></span></span>.</p>
+
+    <div class="contact-row" id="contact">
+      <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a>
+      <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a>
+      <a href="https://drive.google.com/file/d/1WIN_KxK0yWkhj0vepfugB8czmD9JqphX/view">Résumé</a>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><p class="foot">Natthapath Damrongsri · 2026</p></div></footer>
+
+<nav class="proto-bar">
+  <span><strong>14 / 25</strong> — Annotation hover</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>

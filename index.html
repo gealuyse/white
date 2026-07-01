@@ -3,176 +3,296 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Natthapath Damrongsri — UX/UI · Product Designer</title>
-<meta name="description" content="I work where the requirements are still shifting — turning unclear asks into interfaces that make sense. UX/UI &amp; product design, Bangkok.">
-
-<link rel="canonical" href="https://gealuyse.github.io/portfoilo/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Natthapath Damrongsri — UX/UI · Product Designer">
-<meta property="og:description" content="I work where the requirements are still shifting — turning unclear asks into interfaces that make sense. UX/UI &amp; product design, Bangkok.">
-<meta property="og:url" content="https://gealuyse.github.io/portfoilo/">
-<meta property="og:image" content="https://gealuyse.github.io/portfoilo/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Natthapath Damrongsri — UX/UI · Product Designer">
-<meta name="twitter:description" content="I work where the requirements are still shifting — turning unclear asks into interfaces that make sense. UX/UI &amp; product design, Bangkok.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23FCFBF9'/><text x='16' y='24' font-family='Georgia,serif' font-size='24' text-anchor='middle' fill='%231C1B1A'>N</text></svg>">
-
+<title>25 Design Directions — Portfolio Explorations</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&amp;family=Inter:wght@400;500;600&amp;family=Caveat:wght@400;500;600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<!-- arm the hand-annotation draw before first paint (only when motion is allowed) -->
-<script>if(matchMedia('(prefers-reduced-motion: no-preference)').matches)document.documentElement.classList.add('js-reveal');</script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1C1B1A;--sub:#565450;--hair:#D8D5D0;--paper:#FCFBF9;--panel:#F4F2EE;
+  --serif:'Newsreader',Georgia,serif;
+  --sans:'Geist',-apple-system,sans-serif;
+  --c-layout:#34404C;--c-work:#8B5E3C;--c-motion:#2D5A5A;--c-visual:#7A4A5A;--c-content:#4A6048;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+a{color:var(--ink);text-decoration:none;}
+.wrap{max-width:1200px;margin:0 auto;padding:0 48px;}
+
+.masthead{padding:56px 0 48px;border-bottom:1.5px solid var(--ink);}
+.masthead-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:24px;}
+.masthead h1{font:300 52px/1.05 var(--serif);letter-spacing:-.02em;}
+.masthead-meta{font:400 14px/1.6 var(--sans);color:var(--sub);max-width:44ch;text-align:right;}
+.masthead-note{font:400 13px/1.6 var(--sans);color:var(--sub);}
+
+.group{padding:56px 0 0;}
+.group-header{display:flex;align-items:baseline;gap:16px;margin-bottom:32px;padding-bottom:12px;border-bottom:1px solid var(--hair);}
+.group-num{font:300 28px/1 var(--serif);color:var(--hair);}
+.group-title{font:500 13px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;}
+.group-cat{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--hair);}
+.card{background:var(--paper);padding:24px 20px 20px;display:flex;flex-direction:column;gap:10px;text-decoration:none;color:var(--ink);transition:background .15s;}
+.card:hover{background:#F0EDE8;}
+.card-num{font:300 13px/1 var(--serif);color:var(--faint);}
+.card-title{font:400 16px/1.3 var(--sans);}
+.card-desc{font:400 12px/1.6 var(--sans);color:var(--sub);flex:1;}
+.card-link{font:500 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-top:4px;}
+.card-bar{height:2px;margin-bottom:6px;}
+
+footer{margin-top:80px;border-top:1px solid var(--hair);padding:24px 0 48px;}
+.foot{font:400 12px/1 var(--sans);color:var(--sub);}
+
+@media(max-width:1080px){.grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:720px){.grid{grid-template-columns:repeat(2,1fr);}.masthead h1{font-size:36px;}.masthead-meta{text-align:left;}}
+@media(max-width:480px){.grid{grid-template-columns:1fr;}.wrap{padding:0 22px;}}
+</style>
 </head>
 <body>
+<div class="wrap">
 
-<header class="wrap">
-  <nav class="site-nav" aria-label="Main">
-    <a class="name" href="index.html">Natthapath Damrongsri</a>
-    <ul>
-      <li><a href="#work">Work</a></li>
-      <li class="nav-approach"><a href="#approach">Approach</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-</header>
-
-<main class="wrap">
-
-  <!-- ============ hero ============ -->
-  <section class="hero" data-stagger>
-    <p class="role-label" data-reveal-item>UX/UI Product Designer · Bangkok</p>
-    <h1 class="thesis" data-reveal-item>I design complex systems people can use with confidence.</h1>
-    <p class="hero-para" data-reveal-item>Real product work rarely starts from a clear brief. I work where the requirements are still shifting — turning unclear asks into interfaces that make sense, and choosing what works over what just looks good.</p>
-    <p class="hero-cta" data-reveal-item><a class="btn" href="mailto:natthapath.d@gmail.com">Start a conversation</a></p>
-
-    <!-- right-margin hand note: the body of work behind the thesis -->
-    <span class="anno-mark anno-hero" data-reveal-note>
-      <span class="anno-note"><span class="anno-uline2">mobile app</span> <span class="anno-small">(1,000,000+ users)</span>,<br>CDP, POS &amp; custom tools</span>
-    </span>
-
-    <!-- scroll cue — note + a hand-drawn down arrow that draws itself on reveal -->
-    <span class="anno-mark anno-scroll">
-      <span class="anno-note">the work's just below</span>
-      <svg class="anno-arrow" viewBox="0 0 26 38" aria-hidden="true">
-        <path d="M13 2 C11 14 15 22 13 30"/>
-        <path d="M13 30 L7 23 M13 30 L19 23"/>
-      </svg>
-    </span>
-  </section>
-
-  <!-- ============ what gets easier ============ -->
-  <section class="sect sect-first" id="easier" data-stagger>
-    <h2 class="sect-label" data-reveal-item>What gets easier</h2>
-    <div class="easier reading" data-reveal-item>
-      <p>Complexity never really disappears — in good design it just <span class="anno-anchor">stops being the user's problem</span>. My job is to absorb it while designing, so the screen stays quiet.</p>
-      <span class="anno-mark">
-        <svg class="anno-conn" viewBox="0 0 96 54" aria-hidden="true">
-          <path d="M92 8 C60 6 34 14 6 17"/>
-          <path d="M6 17 L16 12 M6 17 L15 23"/>
-        </svg>
-        <span class="anno-note">do it well and no one sees it happened</span>
-      </span>
+  <header class="masthead">
+    <div class="masthead-top">
+      <h1>25 Design<br>Directions</h1>
+      <p class="masthead-meta">Portfolio explorations for Natthapath Damrongsri — each file tests one idea independently. Nothing is final; everything is a question.</p>
     </div>
-  </section>
+    <p class="masthead-note">5 categories · 25 prototypes · <a href="../index.html" style="text-decoration:underline;text-underline-offset:3px;">← back to current site</a></p>
+  </header>
 
-  <!-- ============ work ============ -->
-  <section class="sect" id="work" data-stagger>
-    <h2 class="sect-label" data-reveal-item>Situations I've worked through</h2>
-    <div class="proj-index">
-
-      <a class="proj-row" href="cdp.html" aria-label="Customer Data Platform — Segment &amp; Condition Builder, view case study" data-reveal-section>
-        <span class="pr-num">01</span>
-        <div class="pr-main">
-          <h3 class="pr-headline">Complex logic that couldn't be simplified</h3>
-          <p class="pr-meta">SaaS<span class="dot">·</span>Segment Builder<span class="dot">·</span>Condition Logic</p>
-          <p class="pr-title">Customer Data Platform — Segment &amp; Condition Builder</p>
-          <p class="pr-desc">Marketing teams build audience segments out of layered attributes, events, and consent rules. I turned that tangle of logic into a workspace they could read and build in with confidence. The advanced search underneath was the hardest piece to get right — and the piece they'd never have to think about.</p>
-        </div>
-        <div class="pr-preview">
-          <span class="pr-img"><img src="assets/projects/cdp/cover.png" alt="Customer Data Platform cover — segment and journey builder dashboard."></span>
-          <span class="pr-link">Case study →</span>
-        </div>
+  <!-- A: Layout / Structure -->
+  <section class="group">
+    <div class="group-header">
+      <div class="group-cat" style="background:var(--c-layout)"></div>
+      <span class="group-title">A — Layout &amp; Structure</span>
+      <span class="group-num">01–05</span>
+    </div>
+    <div class="grid">
+      <a class="card" href="01-reverse-order.html">
+        <div class="card-bar" style="background:var(--c-layout)"></div>
+        <span class="card-num">01</span>
+        <span class="card-title">Reverse order</span>
+        <span class="card-desc">Work first, no hero text. The portfolio opens with project 01 — full bleed. You learn who made it after you've seen what they made.</span>
+        <span class="card-link">Open →</span>
       </a>
-
-      <a class="proj-row" href="3bb-member.html" aria-label="3BB Member App and Website — view case study" data-reveal-section>
-        <span class="pr-num">02</span>
-        <div class="pr-main">
-          <h3 class="pr-headline">A migration with a system underneath</h3>
-          <p class="pr-meta">Mobile<span class="dot">·</span>Web<span class="dot">·</span>Migration UX</p>
-          <p class="pr-title">3BB Member App and Website</p>
-          <p class="pr-desc">3BB Member was already live for millions — my job wasn't to redesign it. It was to work inside a large inherited file, update the flows where migration logic actually changed the user's path, and get those screens ready for development and QA.</p>
-        </div>
-        <div class="pr-preview">
-          <span class="pr-img is-muted"><img src="assets/projects/3bb-member/cover.png" alt="3BB Member migration cover — 3BB to AIS, version 4.0.35."></span>
-          <span class="pr-link">Case study →</span>
-        </div>
+      <a class="card" href="02-two-pane.html">
+        <div class="card-bar" style="background:var(--c-layout)"></div>
+        <span class="card-num">02</span>
+        <span class="card-title">Two-pane fixed</span>
+        <span class="card-desc">Left column stays fixed: project list always visible. Right column shows expanding content. No page navigation.</span>
+        <span class="card-link">Open →</span>
       </a>
-
-      <a class="proj-row" href="counter-service-pos.html" aria-label="Counter Service POS — view proposal" data-reveal-section>
-        <span class="pr-num">03</span>
-        <div class="pr-main">
-          <h3 class="pr-headline">A redesign that had to feel like no change at all</h3>
-          <p class="pr-meta">Retail<span class="dot">·</span>Physical Terminal<span class="dot">·</span>Operational UX</p>
-          <p class="pr-title">Counter Service POS</p>
-          <p class="pr-desc">Point-of-sale terminals run on speed and muscle memory. The job was to improve the hierarchy without moving what cashiers' hands already knew — better, without making anyone relearn.</p>
-        </div>
-        <div class="pr-preview">
-          <span class="pr-img"><img src="assets/projects/counter-service-pos/cover.png" alt="Counter Service POS preview — categorized billers grid on the cashier home screen."></span>
-          <span class="pr-link">View proposal →</span>
-        </div>
+      <a class="card" href="03-stack-cards.html">
+        <div class="card-bar" style="background:var(--c-layout)"></div>
+        <span class="card-num">03</span>
+        <span class="card-title">Stack of cards</span>
+        <span class="card-desc">Projects are physical cards stacked on top of each other. Scroll peels the top card away, revealing the one beneath.</span>
+        <span class="card-link">Open →</span>
       </a>
-
+      <a class="card" href="04-one-document.html">
+        <div class="card-bar" style="background:var(--c-layout)"></div>
+        <span class="card-num">04</span>
+        <span class="card-title">One long document</span>
+        <span class="card-desc">No section gaps. Everything flows as one continuous piece — like reading an actual brief from start to finish.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="05-full-bleed.html">
+        <div class="card-bar" style="background:var(--c-layout)"></div>
+        <span class="card-num">05</span>
+        <span class="card-title">Full-bleed entry</span>
+        <span class="card-desc">Each project fills the full viewport. Scroll moves you from one "room" to the next. Work is the space, not a list inside it.</span>
+        <span class="card-link">Open →</span>
+      </a>
     </div>
   </section>
 
-  <!-- ============ around the table ============ -->
-  <section class="sect" id="approach" data-stagger>
-    <h2 class="sect-label" data-reveal-item>Around the table</h2>
-    <div class="reading" data-reveal-item>
-      <p class="table-opener">Shared understanding is the only way to build anything significant.</p>
-      <p class="table-breath">Design doesn't happen in a vacuum. It happens in meetings, Slack threads, and rough prototypes — I spend as much time writing and explaining as I do on pixels. If the engineer, the PM, and the designer aren't seeing the same problem, they won't build the same solution.</p>
+  <!-- B: Work Presentation -->
+  <section class="group">
+    <div class="group-header">
+      <div class="group-cat" style="background:var(--c-work)"></div>
+      <span class="group-title">B — Work Presentation</span>
+      <span class="group-num">06–11</span>
+    </div>
+    <div class="grid">
+      <a class="card" href="06-situation-first.html">
+        <div class="card-bar" style="background:var(--c-work)"></div>
+        <span class="card-num">06</span>
+        <span class="card-title">Situation first</span>
+        <span class="card-desc">Problem statement before project identity. The name is hidden. You read the constraint before you know whose work it is.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="07-one-decision.html">
+        <div class="card-bar" style="background:var(--c-work)"></div>
+        <span class="card-num">07</span>
+        <span class="card-title">One decision</span>
+        <span class="card-desc">Each project shows only the one decision that was hardest to make. That's the whole entry. Link goes deeper if you want more.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="08-locked-unlocked.html">
+        <div class="card-bar" style="background:var(--c-work)"></div>
+        <span class="card-num">08</span>
+        <span class="card-title">Locked vs unlocked</span>
+        <span class="card-desc">Each project shows what couldn't change (constraints) and what could (design space). The tension between them is the work.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="09-before-after.html">
+        <div class="card-bar" style="background:var(--c-work)"></div>
+        <span class="card-num">09</span>
+        <span class="card-title">Before / after</span>
+        <span class="card-desc">Project covers have a toggle. Flip between the before state and the after. Impact shown before anything is read.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="10-what-didnt-ship.html">
+        <div class="card-bar" style="background:var(--c-work)"></div>
+        <span class="card-num">10</span>
+        <span class="card-title">What didn't ship</span>
+        <span class="card-desc">A section showing directions that were explored and rejected. The reasoning for what was cut is as revealing as what stayed.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="11-metrics-first.html">
+        <div class="card-bar" style="background:var(--c-work)"></div>
+        <span class="card-num">11</span>
+        <span class="card-title">Metrics first</span>
+        <span class="card-desc">Outcome numbers appear before the project title. 1,000,000+ users · Shipped · 3 months. Then the name. Then the story.</span>
+        <span class="card-link">Open →</span>
+      </a>
     </div>
   </section>
 
-  <!-- ============ working habits ============ -->
-  <section class="sect" id="habits" data-stagger>
-    <h2 class="sect-label" data-reveal-item>How I work</h2>
-    <ul class="habits reading" data-reveal-item>
-      <li><span class="lead">Start from</span> what's there.</li>
-      <li><span class="lead">Make a first useful version.</span> <span class="expl">(Perfection is for iteration three.)</span></li>
-      <li><span class="lead">Reduce confusion</span> before adding polish.</li>
-      <li><span class="lead">Respect what can't change;</span> question what can.</li>
-      <li><span class="lead">Don't make people relearn.</span></li>
-      <li><span class="lead">Learn enough</span> for the next decision.</li>
-    </ul>
-  </section>
-
-  <!-- ============ about ============ -->
-  <section class="sect" id="about" data-stagger>
-    <h2 class="sect-label" data-reveal-item>About</h2>
-    <div class="about reading" data-reveal-item>
-      <p>I'm a Bangkok-based UX/UI designer who stays quiet at the start. I'd rather understand the messy reality before proposing a clean solution. And I care about what I leave behind — clean files, clear docs, a system that outlasts my time on the project.</p>
+  <!-- C: Interaction / Motion -->
+  <section class="group">
+    <div class="group-header">
+      <div class="group-cat" style="background:var(--c-motion)"></div>
+      <span class="group-title">C — Interaction &amp; Motion</span>
+      <span class="group-num">12–15</span>
+    </div>
+    <div class="grid">
+      <a class="card" href="12-blur-focus.html">
+        <div class="card-bar" style="background:var(--c-motion)"></div>
+        <span class="card-num">12</span>
+        <span class="card-title">Blur to focus</span>
+        <span class="card-desc">Project covers start blurred and desaturated. As you scroll into them, they sharpen and come to full colour — like focusing attention.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="13-inline-expand.html">
+        <div class="card-bar" style="background:var(--c-motion)"></div>
+        <span class="card-num">13</span>
+        <span class="card-title">Inline expand</span>
+        <span class="card-desc">Click a project and the case study expands in place — no new page. The homepage never empties. Everything lives in one scroll.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="14-annotation-hover.html">
+        <div class="card-bar" style="background:var(--c-motion)"></div>
+        <span class="card-num">14</span>
+        <span class="card-title">Annotation on hover</span>
+        <span class="card-desc">Hover over specific phrases and a handwritten note appears at that point. The annotation system becomes an active interaction.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="15-annotation-nav.html">
+        <div class="card-bar" style="background:var(--c-motion)"></div>
+        <span class="card-num">15</span>
+        <span class="card-title">Annotation nav</span>
+        <span class="card-desc">No navigation bar. Handwritten arrows on the page lead you to each section. The annotation system IS the navigation.</span>
+        <span class="card-link">Open →</span>
+      </a>
     </div>
   </section>
 
-
-</main>
-
-<footer id="contact">
-  <div class="wrap">
-    <div class="foot-row">
-      <p class="foot">Natthapath Damrongsri · 2026</p>
-      <p class="foot-links">
-        <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a><span class="dot">·</span><a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/" rel="me">LinkedIn</a><span class="dot">·</span><a href="https://drive.google.com/file/d/1WIN_KxK0yWkhj0vepfugB8czmD9JqphX/view?usp=sharing" target="_blank" rel="noopener noreferrer">Résumé</a>
-      </p>
+  <!-- D: Visual Direction -->
+  <section class="group">
+    <div class="group-header">
+      <div class="group-cat" style="background:var(--c-visual)"></div>
+      <span class="group-title">D — Visual Direction</span>
+      <span class="group-num">16–20</span>
     </div>
-  </div>
-</footer>
+    <div class="grid">
+      <a class="card" href="16-dark-paper.html">
+        <div class="card-bar" style="background:var(--c-visual)"></div>
+        <span class="card-num">16</span>
+        <span class="card-title">Dark paper</span>
+        <span class="card-desc">Inverted warm palette: deep off-black background, paper-coloured text. The annotation ink becomes amber. Same editorial feel, different weight.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="17-field-notes.html">
+        <div class="card-bar" style="background:var(--c-visual)"></div>
+        <span class="card-num">17</span>
+        <span class="card-title">Field notes</span>
+        <span class="card-desc">Site feels like a design notebook. Ruled-line background, tab markers on the right, page numbers. Structure that implies working documents.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="18-process-artifacts.html">
+        <div class="card-bar" style="background:var(--c-visual)"></div>
+        <span class="card-num">18</span>
+        <span class="card-title">Process artifacts</span>
+        <span class="card-desc">Show design ephemera alongside the work: sticky notes, comment screenshots, annotated briefs. Proof of process, not just outcomes.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="19-diagram-hero.html">
+        <div class="card-bar" style="background:var(--c-visual)"></div>
+        <span class="card-num">19</span>
+        <span class="card-title">Diagram hero</span>
+        <span class="card-desc">The hero isn't a project cover — it's a system diagram or conceptual sketch. Shows how you think, not just what you shipped.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="20-with-portrait.html">
+        <div class="card-bar" style="background:var(--c-visual)"></div>
+        <span class="card-num">20</span>
+        <span class="card-title">With portrait</span>
+        <span class="card-desc">A real photo integrated into the hero with a handwritten note pointing to it. Makes the site feel personal, not just a work archive.</span>
+        <span class="card-link">Open →</span>
+      </a>
+    </div>
+  </section>
 
-<!-- draw the hand annotations on scroll — native IntersectionObserver, no dependencies -->
-<script src="scroll.js"></script>
+  <!-- E: Content / Meta -->
+  <section class="group">
+    <div class="group-header">
+      <div class="group-cat" style="background:var(--c-content)"></div>
+      <span class="group-title">E — Content &amp; Meta</span>
+      <span class="group-num">21–25</span>
+    </div>
+    <div class="grid">
+      <a class="card" href="21-reader-modes.html">
+        <div class="card-bar" style="background:var(--c-content)"></div>
+        <span class="card-num">21</span>
+        <span class="card-title">Reader modes</span>
+        <span class="card-desc">Toggle between Recruiter mode (outcomes + timeline, 30 seconds) and Designer mode (full process, detailed). Same content, different depth.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="22-honest-headers.html">
+        <div class="card-bar" style="background:var(--c-content)"></div>
+        <span class="card-num">22</span>
+        <span class="card-title">Honest headers</span>
+        <span class="card-desc">Section names replaced with: "What I'm actually good at" / "What I'm still figuring out" / "Work I won't take on." Radical transparency.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="23-conversation.html">
+        <div class="card-bar" style="background:var(--c-content)"></div>
+        <span class="card-num">23</span>
+        <span class="card-title">Conversation opener</span>
+        <span class="card-desc">The hero isn't a self-introduction. It opens with a direct question to the reader. You introduce yourself after the reader has answered.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="24-meta-case-study.html">
+        <div class="card-bar" style="background:var(--c-content)"></div>
+        <span class="card-num">24</span>
+        <span class="card-title">Portfolio as case study</span>
+        <span class="card-desc">The portfolio IS the case study. The page documents itself: why each section exists, what was cut, what was hard. Meta proof of process.</span>
+        <span class="card-link">Open →</span>
+      </a>
+      <a class="card" href="25-say-less.html">
+        <div class="card-bar" style="background:var(--c-content)"></div>
+        <span class="card-num">25</span>
+        <span class="card-title">Say less</span>
+        <span class="card-desc">Ultra-minimal: one sentence, three project titles, one contact link. Nothing else. The restraint is the statement.</span>
+        <span class="card-link">Open →</span>
+      </a>
+    </div>
+  </section>
 
+  <footer>
+    <p class="foot">25 explorations · Natthapath Damrongsri · 2026</p>
+  </footer>
+
+</div>
 </body>
 </html>

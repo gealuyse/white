@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>21 — Reader Modes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Reader modes — toggle: Recruiter (30s scan) vs Designer (full process) */
+
+/* Mode switcher */
+.mode-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: var(--paper);
+  border-bottom: 1px solid var(--hair);
+  z-index: 200;
+  padding: 0;
+}
+.mode-bar-inner {
+  max-width: 1240px; margin: 0 auto; padding: 0 48px;
+  display: flex; align-items: center; justify-content: space-between; height: 52px;
+}
+.mode-name { font:500 13px/1 var(--sans); }
+.mode-toggle { display:flex; gap:0; border:1px solid var(--hair); }
+.mode-btn {
+  font:500 11px/1 var(--sans); letter-spacing:.08em; text-transform:uppercase;
+  padding:9px 16px; background:none; border:none; cursor:pointer;
+  color:var(--sub); transition:background .1s, color .1s;
+}
+.mode-btn.active { background:var(--ink); color:var(--paper); }
+.mode-btn:first-child { border-right:1px solid var(--hair); }
+
+/* Active mode indicator */
+.mode-label {
+  font:500 11px/1 var(--sans); letter-spacing:.07em; text-transform:uppercase;
+  padding:5px 10px; border:1px solid var(--hair);
+  color: var(--sub);
+}
+body.recruiter-mode .mode-label { color: #5B8C6B; border-color:#5B8C6B; }
+body.designer-mode .mode-label { color: #8B5E3C; border-color:#8B5E3C; }
+
+/* Offset content for fixed mode bar */
+header.wrap { margin-top: 52px; }
+
+/* Hero */
+.hero { padding: 64px 0 72px; }
+.hero h1 { font:300 clamp(36px,4.5vw,60px)/1.06 var(--serif); letter-spacing:-.018em; margin:0 0 16px; max-width:20ch; }
+.hero p { font:400 18px/1.72 var(--sans); color:var(--sub); max-width:50ch; }
+
+/* ---- RECRUITER MODE elements ---- */
+/* Fast scan: outcomes, short descriptions, no process */
+.recruiter-only { display:none; }
+.designer-only { display:block; }
+
+body.recruiter-mode .recruiter-only { display:block; }
+body.recruiter-mode .designer-only { display:none; }
+body.recruiter-mode .recruiter-hide { display:none; }
+
+/* ---- Project cards ---- */
+
+/* RECRUITER: compact outcome cards */
+.rc-proj-list { }
+.rc-proj-item {
+  display: grid;
+  grid-template-columns: 48px 1fr 200px;
+  gap: 24px; align-items: center;
+  padding: 24px 0; border-bottom: 1px solid var(--hair);
+}
+.rc-num { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
+.rc-headline { font:400 18px/1.25 var(--serif); letter-spacing:-.01em; }
+.rc-outcome { font:500 10px/1 var(--sans); letter-spacing:.08em; text-transform:uppercase; color:var(--sub); text-align:right; }
+.rc-link { font:500 11px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; text-decoration:underline; text-underline-offset:3px; text-align:right; display:block; margin-top:4px; }
+
+/* DESIGNER: full rows with images and process notes */
+.proj-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,400px);
+  gap: 48px; align-items: start;
+  padding: 56px 0; border-bottom: 1px solid var(--hair);
+}
+.pr-num { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); display:block; margin:0 0 16px; }
+.pr-headline { font:400 clamp(24px,2.4vw,34px)/1.15 var(--serif); letter-spacing:-.01em; margin:0 0 10px; }
+.pr-meta { font:500 10px/1.5 var(--sans); letter-spacing:.07em; text-transform:uppercase; color:var(--sub); margin:0 0 16px; }
+.pr-meta .dot { padding:0 8px; color:var(--hair); }
+.pr-desc { font:400 16px/1.7 var(--sans); color:var(--sub); margin:0 0 12px; max-width:48ch; }
+.pr-process { font:400 14px/1.65 var(--sans); color:var(--sub); max-width:48ch; margin:0 0 20px; border-left:2px solid var(--hair); padding-left:14px; }
+.pr-link { font:500 12px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; text-decoration:underline; text-underline-offset:4px; }
+.pr-img { width:100%; aspect-ratio:16/9; object-fit:cover; filter:saturate(.65) brightness(1.04); }
+
+/* About — recruiter vs designer */
+.rc-about { padding:48px 0; border-top:1px solid var(--hair); margin-top:40px; }
+.rc-about-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+.rc-about h2 { font:300 clamp(24px,2.4vw,34px)/1.12 var(--serif); letter-spacing:-.014em; margin:0 0 12px; }
+.rc-about p { font:400 16px/1.7 var(--sans); color:var(--sub); margin:0 0 10px; }
+.rc-about a { text-decoration:underline; text-underline-offset:3px; color:var(--ink); font:400 14px/1 var(--sans); margin-right:20px; }
+
+.ds-about { padding:80px 0; border-top:1px solid var(--hair); margin-top:40px; }
+.ds-about h2 { font:300 clamp(28px,3vw,44px)/1.1 var(--serif); letter-spacing:-.016em; margin:0 0 20px; }
+.ds-about p { font:400 17px/1.7 var(--sans); color:var(--sub); margin:0 0 14px; max-width:52ch; }
+.ds-about a { text-decoration:underline; text-underline-offset:3px; color:var(--ink); display:block; margin-bottom:4px; font:400 14px/1 var(--sans); }
+
+/* Mode intro hint */
+.mode-hint {
+  font:400 14px/1.5 var(--sans); color:var(--sub);
+  padding:14px 20px; border:1px solid var(--hair); margin-bottom:40px;
+  display:flex; align-items:center; gap:10px;
+}
+.hint-label { font:500 10px/1 var(--sans); letter-spacing:.09em; text-transform:uppercase; padding:4px 8px; border:1px solid var(--hair); }
+body.recruiter-mode .hint-label { background:#5B8C6B; color:var(--paper); border-color:#5B8C6B; }
+body.designer-mode .hint-label { background:#8B5E3C; color:var(--paper); border-color:#8B5E3C; }
+
+@media(max-width:760px){
+  .mode-bar-inner{padding:0 22px;}
+  .rc-proj-item{grid-template-columns:32px 1fr;gap:16px;}
+  .rc-outcome{display:none;}
+  .proj-row{grid-template-columns:1fr;}
+  .rc-about-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body class="recruiter-mode">
+
+<!-- Fixed mode switcher -->
+<div class="mode-bar">
+  <div class="mode-bar-inner">
+    <span class="mode-name">Natthapath Damrongsri</span>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <span class="mode-label" id="mode-label">Recruiter mode</span>
+      <div class="mode-toggle">
+        <button class="mode-btn active" id="btn-recruiter" onclick="setMode('recruiter')">Recruiter</button>
+        <button class="mode-btn" id="btn-designer" onclick="setMode('designer')">Designer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header class="wrap">
+  <nav class="site-nav">
+    <a class="name" href="../index.html">← Back</a>
+    <ul><li><a href="#contact">Contact</a></li></ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="sect-label">UX/UI Product Designer · Bangkok</p>
+    <h1>I design complex systems people can use with confidence.</h1>
+    <p class="recruiter-only">Three projects. Toggle to see full process if you have more time.</p>
+    <p class="designer-only">Three projects, shown in full. Toggle to recruiter mode for a 30-second scan.</p>
+  </section>
+
+  <div class="mode-hint">
+    <span class="hint-label" id="hint-label">Recruiter</span>
+    <span id="hint-text">Quick scan: project names, outcomes, and links. Toggle for full process detail.</span>
+  </div>
+
+  <!-- RECRUITER MODE: compact list -->
+  <div class="recruiter-only">
+    <div class="rc-proj-list" style="border-top:1px solid var(--hair);">
+      <div class="rc-proj-item">
+        <span class="rc-num">01</span>
+        <div>
+          <h2 class="rc-headline">Customer Data Platform — Segment Builder</h2>
+          <p style="font:400 13px/1 var(--sans);color:var(--sub);margin:4px 0 0;">SaaS · Condition Logic · 2024</p>
+        </div>
+        <div>
+          <span class="rc-outcome">Shipped · Non-technical users gained ownership</span>
+          <a class="rc-link" href="../cdp.html">Case study →</a>
+        </div>
+      </div>
+      <div class="rc-proj-item">
+        <span class="rc-num">02</span>
+        <div>
+          <h2 class="rc-headline">3BB Member App &amp; Website</h2>
+          <p style="font:400 13px/1 var(--sans);color:var(--sub);margin:4px 0 0;">Mobile · Migration UX · 2024</p>
+        </div>
+        <div>
+          <span class="rc-outcome">1M+ users · 0 regressions</span>
+          <a class="rc-link" href="../3bb-member.html">Case study →</a>
+        </div>
+      </div>
+      <div class="rc-proj-item">
+        <span class="rc-num">03</span>
+        <div>
+          <h2 class="rc-headline">Counter Service POS Terminal</h2>
+          <p style="font:400 13px/1 var(--sans);color:var(--sub);margin:4px 0 0;">Retail · Operational UX</p>
+        </div>
+        <div>
+          <span class="rc-outcome">0 positions moved · ↑ clarity</span>
+          <a class="rc-link" href="../counter-service-pos.html">Proposal →</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="rc-about" id="contact">
+      <div class="rc-about-grid">
+        <div>
+          <h2>I design complex systems people can use with confidence.</h2>
+          <p>Bangkok-based. Enterprise SaaS, mobile, and operational tools. Open to complex work and the right teams.</p>
+        </div>
+        <div>
+          <p style="font:500 13px/1 var(--sans);margin:0 0 12px;">Get in touch</p>
+          <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a>
+          <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a>
+          <a href="https://drive.google.com/file/d/1WIN_KxK0yWkhj0vepfugB8czmD9JqphX/view">Résumé</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- DESIGNER MODE: full rows with process -->
+  <div class="designer-only" style="border-top:1px solid var(--hair);">
+    <div class="proj-row">
+      <div>
+        <span class="pr-num">01</span>
+        <h2 class="pr-headline">Complex logic that couldn't be simplified</h2>
+        <p class="pr-meta">SaaS<span class="dot">·</span>Segment Builder<span class="dot">·</span>Condition Logic</p>
+        <p class="pr-desc">Marketing teams build audience segments out of layered attributes, events, and consent rules. I turned that tangle into a workspace they could read and trust.</p>
+        <p class="pr-process">The hard constraint: boolean logic had to stay intact. The challenge: non-technical users needed to own and audit their own segments without engineering help. I designed the structure that made the logic visible without pretending it was simpler than it was.</p>
+        <a class="pr-link" href="../cdp.html">Read case study →</a>
+      </div>
+      <img class="pr-img" src="../assets/projects/cdp/cover.png" alt="CDP">
+    </div>
+    <div class="proj-row">
+      <div>
+        <span class="pr-num">02</span>
+        <h2 class="pr-headline">A migration with a system underneath</h2>
+        <p class="pr-meta">Mobile<span class="dot">·</span>Web<span class="dot">·</span>Migration UX</p>
+        <p class="pr-desc">3BB Member was live for over a million users. My job was to ship only the flows where the migration changed the user's path.</p>
+        <p class="pr-process">Started by auditing every screen in a 200+ screen Figma file before designing anything. Identified 7 migration-affected flows. Designed those. Left the rest untouched — not because they were good, but because changing them would have added risk without migration benefit.</p>
+        <a class="pr-link" href="../3bb-member.html">Read case study →</a>
+      </div>
+      <img class="pr-img" src="../assets/projects/3bb-member/cover.png" alt="3BB" style="filter:saturate(.5) brightness(1.05)">
+    </div>
+    <div class="proj-row">
+      <div>
+        <span class="pr-num">03</span>
+        <h2 class="pr-headline">A redesign that had to feel like no change</h2>
+        <p class="pr-meta">Retail<span class="dot">·</span>Physical Terminal<span class="dot">·</span>Operational UX</p>
+        <p class="pr-desc">POS terminals run on speed and muscle memory. Better hierarchy without moving what cashiers' hands already knew.</p>
+        <p class="pr-process">Position constraints were absolute. All improvement had to come from within the existing spatial footprint — through weight, contrast, and proximity grouping alone. The constraint wasn't a limitation. It was the design problem.</p>
+        <a class="pr-link" href="../counter-service-pos.html">View proposal →</a>
+      </div>
+      <img class="pr-img" src="../assets/projects/counter-service-pos/cover.png" alt="POS">
+    </div>
+
+    <section class="ds-about" id="contact">
+      <h2>I design complex systems people can use with confidence.</h2>
+      <p>Bangkok-based UX/UI designer. I work where the requirements are still shifting — enterprise SaaS, mobile apps, and operational tools where a confusing interface has a real cost.</p>
+      <p>I stay quiet at the start. I'd rather understand the messy reality before proposing a clean solution.</p>
+      <div style="margin-top:28px;">
+        <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a>
+        <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a>
+        <a href="https://drive.google.com/file/d/1WIN_KxK0yWkhj0vepfugB8czmD9JqphX/view">Résumé</a>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer><div class="wrap"><p class="foot">Natthapath Damrongsri · 2026</p></div></footer>
+
+<script>
+function setMode(mode) {
+  document.body.className = mode + '-mode';
+  document.getElementById('btn-recruiter').classList.toggle('active', mode === 'recruiter');
+  document.getElementById('btn-designer').classList.toggle('active', mode === 'designer');
+  document.getElementById('mode-label').textContent = mode === 'recruiter' ? 'Recruiter mode' : 'Designer mode';
+  document.getElementById('hint-label').textContent = mode === 'recruiter' ? 'Recruiter' : 'Designer';
+  document.getElementById('hint-text').textContent = mode === 'recruiter'
+    ? 'Quick scan: project names, outcomes, and links. Toggle for full process detail.'
+    : 'Full detail: process, decisions, and constraints. Toggle for quick scan.';
+}
+</script>
+
+<nav class="proto-bar" style="z-index:100">
+  <span><strong>21 / 25</strong> — Reader modes</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>

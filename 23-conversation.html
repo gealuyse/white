@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>23 — Conversation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Conversation — hero opens with a question to the reader, not self-introduction */
+
+/* Question-driven hero */
+.hero { padding: 80px 0 96px; }
+.hero-question {
+  font: 300 clamp(40px,5vw,68px)/1.06 var(--serif);
+  letter-spacing: -.022em;
+  margin: 0 0 0;
+  max-width: 22ch;
+  color: var(--ink);
+}
+
+/* Response from page */
+.response-block { margin-top: 48px; display: flex; gap: 20px; align-items: flex-start; }
+.resp-marker {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--ink); color: var(--paper);
+  font: 500 11px/1 var(--sans); letter-spacing:.06em;
+  display: flex; align-items:center; justify-content:center;
+  flex-shrink: 0; margin-top: 3px;
+}
+.resp-text { font:400 18px/1.72 var(--sans); color:var(--sub); max-width:50ch; }
+.resp-name { font:500 13px/1 var(--sans); color:var(--ink); margin-bottom:8px; display:block; }
+
+/* Second question to reader */
+.second-question {
+  margin-top: 56px;
+  padding-top: 48px;
+  border-top: 1px solid var(--hair);
+}
+.sq-prompt { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--sub); margin:0 0 16px; display:block; }
+.sq-text { font:300 clamp(28px,3vw,44px)/1.1 var(--serif); letter-spacing:-.016em; margin:0 0 28px; max-width:22ch; }
+.sq-answers { display:flex; gap:12px; flex-wrap:wrap; }
+.sq-answer {
+  font:400 15px/1 var(--sans); color:var(--ink);
+  padding:12px 18px; border:1px solid var(--hair);
+  cursor:pointer; transition:background .1s, border-color .1s;
+  text-decoration:none;
+}
+.sq-answer:hover { background:var(--panel); border-color:var(--ink); }
+
+/* Work section */
+.work-section { padding-top:80px; border-top:1px solid var(--hair); margin-top:80px; }
+.ws-intro { font:400 18px/1.72 var(--sans); color:var(--sub); max-width:48ch; margin:0 0 48px; }
+
+.proj-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,400px);
+  gap: 48px; align-items: start;
+  padding: 52px 0; border-bottom: 1px solid var(--hair);
+}
+.pr-num { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); display:block; margin:0 0 14px; }
+.pr-headline { font:400 clamp(22px,2.2vw,30px)/1.2 var(--serif); letter-spacing:-.01em; margin:0 0 10px; }
+.pr-context { font:400 italic 17px/1.6 var(--serif); color:var(--sub); margin:0 0 16px; max-width:44ch; }
+.pr-desc { font:400 15px/1.65 var(--sans); color:var(--sub); max-width:48ch; margin:0 0 20px; }
+.pr-link { font:500 12px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; text-decoration:underline; text-underline-offset:4px; }
+.pr-img { width:100%; aspect-ratio:16/9; object-fit:cover; filter:saturate(.65) brightness(1.04); }
+
+/* Closing question */
+.closing { padding:80px 0; }
+.closing-q { font:300 clamp(28px,3vw,44px)/1.1 var(--serif); letter-spacing:-.016em; margin:0 0 28px; }
+.closing-actions { display:flex; gap:16px; flex-wrap:wrap; }
+.cta-main { font:500 12px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; display:inline-block; padding:14px 22px; border:1px solid var(--ink); color:var(--paper); background:var(--ink); }
+.cta-secondary { font:500 12px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; display:inline-block; padding:13px 22px; border:1px solid var(--hair); color:var(--sub); }
+.cta-secondary:hover { border-color:var(--ink); color:var(--ink); }
+
+@media(max-width:860px){
+  .proj-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="site-nav">
+    <a class="name" href="../index.html">Natthapath Damrongsri</a>
+    <ul><li><a href="#work">Work</a></li><li><a href="#contact">Contact</a></li></ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="sect-label">UX/UI Product Designer · Bangkok</p>
+    <h1 class="hero-question">What does it actually take to use the complex software your team ships?</h1>
+
+    <div class="response-block">
+      <div class="resp-marker">N</div>
+      <div>
+        <span class="resp-name">Natthapath Damrongsri</span>
+        <p class="resp-text">That question is the core of my work. I design the interfaces between complex systems and the people who have to use them — marketing teams, cashiers, and users in the middle of an infrastructure migration. The work isn't to simplify. It's to make the complexity readable.</p>
+      </div>
+    </div>
+
+    <div class="second-question">
+      <span class="sq-prompt">Quick question for you</span>
+      <h2 class="sq-text">What brought you here?</h2>
+      <div class="sq-answers">
+        <a class="sq-answer" href="#work">Looking at potential hires</a>
+        <a class="sq-answer" href="#work">Curious about the case studies</a>
+        <a class="sq-answer" href="#work">Figuring out if the approach fits a project</a>
+        <a class="sq-answer" href="#contact">Just want to get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="work-section" id="work">
+    <p class="sect-label">Work</p>
+    <p class="ws-intro">Three situations where the system had to stay complex but the interface had to become clear.</p>
+
+    <div class="proj-row">
+      <div>
+        <span class="pr-num">01</span>
+        <h2 class="pr-headline">Complex logic that couldn't be simplified</h2>
+        <p class="pr-context">"Can you build segments that work on AND/OR/NOT logic, with nested groups, and show me how big the audience is before I save?"</p>
+        <p class="pr-desc">I turned that into a structured builder where the logic stayed intact but became readable. Non-technical users could own their own configurations without engineering help.</p>
+        <a class="pr-link" href="../cdp.html">Read case study →</a>
+      </div>
+      <img class="pr-img" src="../assets/projects/cdp/cover.png" alt="CDP">
+    </div>
+
+    <div class="proj-row">
+      <div>
+        <span class="pr-num">02</span>
+        <h2 class="pr-headline">A migration with a system underneath</h2>
+        <p class="pr-context">"The app is live. We're migrating to a new backend. We need the affected flows redesigned — but nothing else should change."</p>
+        <p class="pr-desc">Working inside a large inherited file. Identifying what was current. Shipping only the migration-affected flows. Leaving the rest exactly as it was.</p>
+        <a class="pr-link" href="../3bb-member.html">Read case study →</a>
+      </div>
+      <img class="pr-img" src="../assets/projects/3bb-member/cover.png" alt="3BB" style="filter:saturate(.5) brightness(1.05)">
+    </div>
+
+    <div class="proj-row">
+      <div>
+        <span class="pr-num">03</span>
+        <h2 class="pr-headline">A redesign that had to feel like no change</h2>
+        <p class="pr-context">"Cashiers have been using this for years. Their hands know where everything is. Make it clearer — but don't move anything."</p>
+        <p class="pr-desc">Every improvement had to come from within the existing spatial footprint. Weight, contrast, and proximity — no repositioning, no retraining required.</p>
+        <a class="pr-link" href="../counter-service-pos.html">View proposal →</a>
+      </div>
+      <img class="pr-img" src="../assets/projects/counter-service-pos/cover.png" alt="POS">
+    </div>
+  </section>
+
+  <section class="closing" id="contact">
+    <h2 class="closing-q">Does this kind of work sound like something you're working on?</h2>
+    <div class="closing-actions">
+      <a class="cta-main" href="mailto:natthapath.d@gmail.com">Let's talk →</a>
+      <a class="cta-secondary" href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a>
+      <a class="cta-secondary" href="https://drive.google.com/file/d/1WIN_KxK0yWkhj0vepfugB8czmD9JqphX/view">Résumé</a>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><p class="foot">Natthapath Damrongsri · 2026</p></div></footer>
+
+<nav class="proto-bar">
+  <span><strong>23 / 25</strong> — Conversation</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>
