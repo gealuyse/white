@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>07 — One Decision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* One Decision — each project shows only its hardest single design decision */
+
+.hero { padding: 72px 0 80px; }
+.hero h1 { font:300 clamp(36px,4.5vw,60px)/1.06 var(--serif); letter-spacing:-.018em; margin:0 0 20px; max-width:20ch; }
+.hero p { font:400 18px/1.72 var(--sans); color:var(--sub); max-width:50ch; }
+
+.decision-list { border-top: 1px solid var(--hair); }
+
+.decision-item { padding: 64px 0; border-bottom: 1px solid var(--hair); }
+
+.di-header { display:flex; align-items:baseline; justify-content:space-between; gap:24px; margin-bottom:40px; flex-wrap:wrap; }
+.di-num { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
+.di-project { font:400 13px/1 var(--sans); color:var(--sub); }
+.di-link { font:500 11px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; text-decoration:underline; text-underline-offset:3px; }
+
+/* The decision itself — large and prominent */
+.di-decision-label {
+  font:500 11px/1 var(--sans); letter-spacing:.09em; text-transform:uppercase; color:var(--sub); margin:0 0 16px;
+}
+.di-decision {
+  font:300 clamp(28px,2.8vw,42px)/1.15 var(--serif);
+  letter-spacing:-.014em;
+  color:var(--ink);
+  margin:0 0 36px;
+  max-width:26ch;
+}
+
+/* Two-column: options considered */
+.di-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--hair);
+  margin: 0 0 32px;
+}
+.di-option {
+  background: var(--paper);
+  padding: 28px 32px;
+}
+.di-option.chosen { background: var(--panel); }
+.opt-label {
+  font:500 10px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase;
+  color:var(--faint); margin:0 0 12px; display:block;
+}
+.di-option.chosen .opt-label { color:var(--ink); }
+.opt-body { font:400 15px/1.65 var(--sans); color:var(--sub); margin:0; }
+.di-option.chosen .opt-body { color:var(--ink); }
+.opt-chosen-mark {
+  display:inline-block; margin:10px 0 0;
+  font:500 10px/1 var(--sans); letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink);
+}
+
+/* Reasoning */
+.di-why { font:400 16px/1.7 var(--sans); color:var(--sub); max-width:58ch; margin:0; }
+.di-why strong { color:var(--ink); font-weight:500; }
+
+/* About/Contact strip */
+.bottom-strip {
+  padding: 80px 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items:start;
+}
+.bs-h2 { font:300 clamp(28px,3vw,44px)/1.1 var(--serif); letter-spacing:-.016em; margin:0 0 20px; }
+.bs-body { font:400 17px/1.7 var(--sans); color:var(--sub); margin:0 0 14px; }
+.bs-contact { margin-top:32px; font:400 14px/1.6 var(--sans); }
+.bs-contact a { text-decoration:underline; text-underline-offset:3px; color:var(--ink); }
+
+@media(max-width:760px){
+  .di-options{grid-template-columns:1fr;}
+  .bottom-strip{grid-template-columns:1fr;}
+  .di-header{flex-direction:column;gap:8px;}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="site-nav">
+    <a class="name" href="../index.html">Natthapath Damrongsri</a>
+    <ul><li><a href="#contact">Contact</a></li></ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="sect-label">UX/UI Product Designer · Bangkok</p>
+    <h1>Every project has one decision that everything else hangs on.</h1>
+    <p>I show only that decision — what I considered, what I chose, and why.</p>
+  </section>
+
+  <div class="decision-list">
+
+    <!-- CDP -->
+    <div class="decision-item">
+      <div class="di-header">
+        <span class="di-num">01</span>
+        <span class="di-project">Customer Data Platform — Segment &amp; Condition Builder</span>
+        <a class="di-link" href="../cdp.html">Full case study →</a>
+      </div>
+
+      <p class="di-decision-label">The hardest decision</p>
+      <h2 class="di-decision">Should the logic builder let users type freely, or guide them through fixed steps?</h2>
+
+      <div class="di-options">
+        <div class="di-option">
+          <span class="opt-label">Option A — Free-form input</span>
+          <p class="opt-body">Let users type SQL-like expressions. Maximum power, minimum constraints. Familiar to technical users.</p>
+        </div>
+        <div class="di-option chosen">
+          <span class="opt-label">Option B — Guided builder ← chosen</span>
+          <p class="opt-body">Structured dropdowns: attribute → operator → value. Constrained but readable. Non-technical users could own their segments.</p>
+          <span class="opt-chosen-mark">↑ What shipped</span>
+        </div>
+      </div>
+
+      <p class="di-why"><strong>Why:</strong> The users were marketing teams, not engineers. They needed to understand their own segments at a glance — not reconstruct them from logic. Free-form expressions are powerful but they don't communicate their meaning to the next person who reads them. The builder made the logic visible without making it simplified.</p>
+    </div>
+
+    <!-- 3BB -->
+    <div class="decision-item">
+      <div class="di-header">
+        <span class="di-num">02</span>
+        <span class="di-project">3BB Member App &amp; Website</span>
+        <a class="di-link" href="../3bb-member.html">Full case study →</a>
+      </div>
+
+      <p class="di-decision-label">The hardest decision</p>
+      <h2 class="di-decision">Redesign the entire app, or work inside the existing structure and ship only what changed?</h2>
+
+      <div class="di-options">
+        <div class="di-option">
+          <span class="opt-label">Option A — Full redesign</span>
+          <p class="opt-body">Start from scratch. Clean structure, modern patterns. Solve every problem at once.</p>
+        </div>
+        <div class="di-option chosen">
+          <span class="opt-label">Option B — Surgical changes only ← chosen</span>
+          <p class="opt-body">Identify exactly which screens were touched by the migration. Design only those. Leave the rest as-is.</p>
+          <span class="opt-chosen-mark">↑ What shipped</span>
+        </div>
+      </div>
+
+      <p class="di-why"><strong>Why:</strong> A full redesign would have required rebuilding hundreds of flows that were working fine. The migration only changed specific paths. Scoping to those paths meant we could ship faster, with less regression risk, and without disrupting the 1M+ users who already knew the app.</p>
+    </div>
+
+    <!-- POS -->
+    <div class="decision-item">
+      <div class="di-header">
+        <span class="di-num">03</span>
+        <span class="di-project">Counter Service POS Terminal</span>
+        <a class="di-link" href="../counter-service-pos.html">View proposal →</a>
+      </div>
+
+      <p class="di-decision-label">The hardest decision</p>
+      <h2 class="di-decision">Improve the hierarchy by reorganizing the layout, or by refining what's already there in place?</h2>
+
+      <div class="di-options">
+        <div class="di-option">
+          <span class="opt-label">Option A — Reorganize positions</span>
+          <p class="opt-body">Move elements to where they logically belong. Better hierarchy. Breaks existing muscle memory.</p>
+        </div>
+        <div class="di-option chosen">
+          <span class="opt-label">Option B — Refine in place ← chosen</span>
+          <p class="opt-body">Keep every element in its existing position. Improve contrast, weight, and size hierarchy without spatial change.</p>
+          <span class="opt-chosen-mark">↑ What shipped</span>
+        </div>
+      </div>
+
+      <p class="di-why"><strong>Why:</strong> Cashiers process hundreds of transactions a day. Their hands know where to tap without looking. Moving elements — even to "better" positions — would have required retraining and introduced errors during the transition. The constraint wasn't the design. It was respecting the users' existing expertise.</p>
+    </div>
+
+  </div>
+
+  <section class="bottom-strip" id="contact">
+    <div>
+      <p class="sect-label">About</p>
+      <h2 class="bs-h2">I design complex systems people can use with confidence.</h2>
+      <p class="bs-body">Bangkok-based UX/UI designer. I work where the requirements are still shifting — finding the actual problem before proposing a clean solution.</p>
+    </div>
+    <div>
+      <p class="sect-label">Get in touch</p>
+      <p class="bs-body">Open to complex work and the right teams.</p>
+      <div class="bs-contact">
+        <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a><br>
+        <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a><br>
+        <a href="https://drive.google.com/file/d/1WIN_KxK0yWkhj0vepfugB8czmD9JqphX/view">Résumé</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><p class="foot">Natthapath Damrongsri · 2026</p></div></footer>
+
+<nav class="proto-bar">
+  <span><strong>07 / 25</strong> — One decision</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>

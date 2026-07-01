@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>02 — Two-Pane Fixed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+* { margin:0; padding:0; }
+body { overflow:hidden; height:100dvh; padding-bottom:0; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  height: 100dvh;
+}
+
+/* Left: fixed sidebar — project list always visible */
+.sidebar {
+  border-right: 1px solid var(--hair);
+  background: var(--panel);
+  display: flex; flex-direction: column;
+  overflow-y: auto;
+  padding: 0;
+}
+.sidebar-header {
+  padding: 24px 24px 20px;
+  border-bottom: 1px solid var(--hair);
+  flex-shrink: 0;
+}
+.sidebar-name { font:500 13px/1 var(--sans); }
+.sidebar-role { font:400 11px/1.4 var(--sans); color:var(--sub); margin-top:5px; letter-spacing:.04em; }
+
+.proj-list { flex: 1; padding: 12px 0; }
+.proj-btn {
+  display: block; width: 100%; text-align: left; background: none; border: none;
+  padding: 16px 24px; cursor: pointer; transition: background .12s;
+  border-left: 3px solid transparent;
+}
+.proj-btn:hover { background: rgba(28,27,26,.04); }
+.proj-btn.active { background: var(--paper); border-left-color: var(--ink); }
+.proj-btn-num { font:500 10px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); display:block; margin-bottom:5px; }
+.proj-btn-title { font:400 14px/1.35 var(--sans); color:var(--ink); display:block; }
+.proj-btn-meta { font:400 11px/1.4 var(--sans); color:var(--sub); margin-top:4px; display:block; }
+
+.sidebar-footer { padding:20px 24px; border-top:1px solid var(--hair); flex-shrink:0; }
+.sidebar-footer a { font:400 12px/1.6 var(--sans); color:var(--sub); display:block; }
+.sidebar-footer a:hover { color:var(--ink); }
+
+/* Right: scrollable content pane */
+.content-pane {
+  overflow-y: auto;
+  padding: 56px 64px;
+}
+.project-panel { display: none; }
+.project-panel.active { display: block; }
+
+.panel-label { font:500 11px/1 var(--sans); letter-spacing:.09em; text-transform:uppercase; color:var(--sub); margin:0 0 20px; }
+.panel-headline { font:300 clamp(32px,3.2vw,52px)/1.08 var(--serif); letter-spacing:-.018em; margin:0 0 8px; max-width:20ch; }
+.panel-meta { font:500 11px/1.5 var(--sans); letter-spacing:.07em; text-transform:uppercase; color:var(--sub); margin:0 0 32px; }
+.panel-meta .dot { padding:0 10px; color:var(--hair); }
+.panel-cover { width:100%; aspect-ratio:16/9; object-fit:cover; border:1px solid var(--hair); margin-bottom:40px; }
+.panel-desc { font:400 17px/1.7 var(--sans); color:var(--sub); max-width:58ch; margin-bottom:32px; }
+.panel-link { font:500 13px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; display:inline-block; padding:13px 22px; border:1px solid var(--ink); color:var(--paper); background:var(--ink); }
+
+/* about panel */
+.about-panel { display:none; }
+.about-panel.active { display:block; }
+.about-thesis { font:300 clamp(30px,3vw,46px)/1.1 var(--serif); letter-spacing:-.018em; margin:0 0 28px; max-width:20ch; }
+.about-text { font:400 17px/1.7 var(--sans); color:var(--sub); max-width:52ch; margin-bottom:16px; }
+
+@media(max-width:768px){
+  body{overflow:auto;height:auto;}
+  .layout{grid-template-columns:1fr;height:auto;}
+  .sidebar{height:auto;}
+  .content-pane{padding:32px 24px;}
+  .project-panel,.about-panel{display:block!important;}
+  .proj-btn.active{border-left-color:transparent;}
+}
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- LEFT: always-visible project list -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <p class="sidebar-name">Natthapath Damrongsri</p>
+      <p class="sidebar-role">UX/UI Product Designer · Bangkok</p>
+    </div>
+
+    <nav class="proj-list">
+      <button class="proj-btn active" onclick="show('cdp',this)">
+        <span class="proj-btn-num">01</span>
+        <span class="proj-btn-title">Customer Data Platform</span>
+        <span class="proj-btn-meta">SaaS · Segment Builder</span>
+      </button>
+      <button class="proj-btn" onclick="show('3bb',this)">
+        <span class="proj-btn-num">02</span>
+        <span class="proj-btn-title">3BB Member App</span>
+        <span class="proj-btn-meta">Mobile · Migration UX</span>
+      </button>
+      <button class="proj-btn" onclick="show('pos',this)">
+        <span class="proj-btn-num">03</span>
+        <span class="proj-btn-title">Counter Service POS</span>
+        <span class="proj-btn-meta">Retail · Operational UX</span>
+      </button>
+      <button class="proj-btn" onclick="show('about',this)" style="margin-top:8px;border-top:1px solid var(--hair);">
+        <span class="proj-btn-num" style="color:var(--sub)">—</span>
+        <span class="proj-btn-title">About</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a>
+      <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/" style="margin-top:4px;">LinkedIn</a>
+    </div>
+  </aside>
+
+  <!-- RIGHT: expanding content -->
+  <main class="content-pane">
+
+    <div class="project-panel active" id="panel-cdp">
+      <p class="panel-label">Enterprise SaaS / Condition Logic</p>
+      <h1 class="panel-headline">Complex logic that couldn't be simplified</h1>
+      <p class="panel-meta">SaaS<span class="dot">·</span>Segment Builder<span class="dot">·</span>Condition Logic<span class="dot">·</span>2024</p>
+      <img class="panel-cover" src="../assets/projects/cdp/cover.png" alt="CDP cover">
+      <p class="panel-desc">Marketing teams build audience segments out of layered attributes, events, and consent rules. I turned that tangle of logic into a workspace they could read, configure, and trust — with an autocomplete search that showed what you were choosing before you chose it.</p>
+      <a class="panel-link" href="../cdp.html">Read case study →</a>
+    </div>
+
+    <div class="project-panel" id="panel-3bb">
+      <p class="panel-label">Mobile / Web · Migration UX</p>
+      <h1 class="panel-headline">A migration with a system underneath</h1>
+      <p class="panel-meta">Mobile<span class="dot">·</span>Web<span class="dot">·</span>Migration UX<span class="dot">·</span>2024</p>
+      <img class="panel-cover" src="../assets/projects/3bb-member/cover.png" alt="3BB cover" style="filter:saturate(.55)">
+      <p class="panel-desc">3BB Member was already live for millions — my job was to work inside a large inherited file, find which screen was actually current, and ship only the flows where the migration changed the user's path.</p>
+      <a class="panel-link" href="../3bb-member.html">Read case study →</a>
+    </div>
+
+    <div class="project-panel" id="panel-pos">
+      <p class="panel-label">Retail / Physical Terminal</p>
+      <h1 class="panel-headline">A redesign that had to feel like no change</h1>
+      <p class="panel-meta">Retail<span class="dot">·</span>Physical Terminal<span class="dot">·</span>Operational UX</p>
+      <img class="panel-cover" src="../assets/projects/counter-service-pos/cover.png" alt="POS cover">
+      <p class="panel-desc">Point-of-sale terminals run on speed and muscle memory. The job was to improve the hierarchy without moving what cashiers' hands already knew.</p>
+      <a class="panel-link" href="../counter-service-pos.html">View proposal →</a>
+    </div>
+
+    <div class="about-panel" id="panel-about">
+      <p class="panel-label">About</p>
+      <h1 class="about-thesis">I design complex systems people can use with confidence.</h1>
+      <p class="about-text">Bangkok-based UX/UI designer. Enterprise SaaS, a mobile app used by over a million people, and operational tools where a confusing interface has real cost.</p>
+      <p class="about-text">I stay quiet at the start. I'd rather understand the messy reality before proposing a clean solution. And I care about what gets left behind — clean files, clear docs, a system that keeps working after I've moved on.</p>
+    </div>
+
+  </main>
+</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.project-panel,.about-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.proj-btn').forEach(b=>b.classList.remove('active'));
+  var target = document.getElementById('panel-'+id);
+  if(target) { target.classList.add('active'); btn.classList.add('active'); }
+  document.querySelector('.content-pane').scrollTop = 0;
+}
+</script>
+
+<nav class="proto-bar" style="position:fixed">
+  <span><strong>02 / 25</strong> — Two-pane fixed</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>19 — Diagram Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Diagram hero — a conceptual system sketch as hero instead of project cover */
+
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  min-height: calc(80vh - 76px);
+  padding: 40px 0 64px;
+}
+.hero-text { }
+.hero-label { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--sub); margin:0 0 24px; display:block; }
+.hero-h1 { font:300 clamp(36px,4.5vw,60px)/1.06 var(--serif); letter-spacing:-.018em; margin:0 0 20px; }
+.hero-sub { font:400 17px/1.7 var(--sans); color:var(--sub); max-width:44ch; margin:0 0 32px; }
+.hero-action { font:500 13px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; text-decoration:underline; text-underline-offset:4px; }
+
+/* The diagram — a conceptual sketch in SVG */
+.hero-diagram { position: relative; }
+.diagram-svg { width: 100%; height: auto; display: block; }
+
+/* Diagram draw animation */
+.d-path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  transition: stroke-dashoffset 1.8s cubic-bezier(.4,0,.2,1);
+}
+.diagram-svg.in .d-path { stroke-dashoffset: 0; }
+.d-path-2 { transition-delay: .3s; }
+.d-path-3 { transition-delay: .6s; }
+
+/* Work section */
+.work-section { border-top: 1px solid var(--hair); }
+.proj-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,400px);
+  gap: 48px; align-items: start;
+  padding: 56px 0; border-bottom: 1px solid var(--hair);
+}
+.pr-num { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); display:block; margin:0 0 16px; }
+.pr-headline { font:400 clamp(24px,2.4vw,34px)/1.15 var(--serif); letter-spacing:-.01em; margin:0 0 10px; }
+.pr-meta { font:500 10px/1.5 var(--sans); letter-spacing:.07em; text-transform:uppercase; color:var(--sub); margin:0 0 16px; }
+.pr-meta .dot { padding:0 8px; color:var(--hair); }
+.pr-desc { font:400 16px/1.7 var(--sans); color:var(--sub); margin:0 0 20px; max-width:48ch; }
+.pr-link { font:500 12px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; text-decoration:underline; text-underline-offset:4px; }
+.pr-img { width:100%; aspect-ratio:16/9; object-fit:cover; filter:saturate(.65) brightness(1.04); }
+
+/* About */
+.about-strip { padding:80px 0; display:grid; grid-template-columns:1fr 1fr; gap:64px; border-top:1px solid var(--hair); margin-top:80px; }
+.as-h2 { font:300 clamp(28px,3vw,44px)/1.1 var(--serif); letter-spacing:-.016em; margin:0 0 20px; }
+.as-body { font:400 17px/1.7 var(--sans); color:var(--sub); margin:0 0 14px; }
+.as-contact { margin-top:24px; font:400 14px/1.6 var(--sans); }
+.as-contact a { text-decoration:underline; text-underline-offset:3px; color:var(--ink); display:block; margin-bottom:4px; }
+
+@media(max-width:860px){
+  .hero-section{grid-template-columns:1fr;min-height:auto;padding:48px 0;}
+  .hero-diagram{order:-1;}
+  .proj-row{grid-template-columns:1fr;}
+  .about-strip{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="site-nav">
+    <a class="name" href="../index.html">Natthapath Damrongsri</a>
+    <ul><li><a href="#work">Work</a></li><li><a href="#contact">Contact</a></li></ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero-section">
+    <div class="hero-text">
+      <span class="hero-label">UX/UI Product Designer · Bangkok</span>
+      <h1 class="hero-h1">Designing systems that hold under complexity.</h1>
+      <p class="hero-sub">I work at the intersection of complex logic and everyday use — where the system has to be both technically accurate and humanly readable.</p>
+      <a class="hero-action" href="#work">See the projects ↓</a>
+    </div>
+
+    <!-- Conceptual diagram: user → interface → system → output, with design in the middle -->
+    <div class="hero-diagram">
+      <svg class="diagram-svg" id="hero-diagram" viewBox="0 0 480 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background grid dots -->
+        <circle cx="48" cy="48" r="2" fill="#D8D5D0"/>
+        <circle cx="96" cy="48" r="2" fill="#D8D5D0"/>
+        <circle cx="144" cy="48" r="2" fill="#D8D5D0"/>
+        <circle cx="192" cy="48" r="2" fill="#D8D5D0"/>
+        <circle cx="240" cy="48" r="2" fill="#D8D5D0"/>
+        <circle cx="288" cy="48" r="2" fill="#D8D5D0"/>
+        <circle cx="336" cy="48" r="2" fill="#D8D5D0"/>
+        <circle cx="384" cy="48" r="2" fill="#D8D5D0"/>
+        <circle cx="432" cy="48" r="2" fill="#D8D5D0"/>
+        <circle cx="48" cy="96" r="2" fill="#D8D5D0"/>
+        <circle cx="48" cy="144" r="2" fill="#D8D5D0"/>
+        <circle cx="48" cy="192" r="2" fill="#D8D5D0"/>
+        <circle cx="48" cy="240" r="2" fill="#D8D5D0"/>
+        <circle cx="432" cy="96" r="2" fill="#D8D5D0"/>
+        <circle cx="432" cy="144" r="2" fill="#D8D5D0"/>
+        <circle cx="432" cy="192" r="2" fill="#D8D5D0"/>
+        <circle cx="432" cy="240" r="2" fill="#D8D5D0"/>
+
+        <!-- Main flow path: left to right -->
+        <path class="d-path" d="M 80 170 L 140 170" stroke-width="1.5"/>
+        <path class="d-path d-path-2" d="M 200 170 L 280 170" stroke-width="1.5"/>
+        <path class="d-path d-path-3" d="M 340 170 L 400 170" stroke-width="1.5"/>
+
+        <!-- Arrowheads -->
+        <path class="d-path" d="M 134 164 L 140 170 L 134 176" stroke-width="1.5"/>
+        <path class="d-path d-path-2" d="M 274 164 L 280 170 L 274 176" stroke-width="1.5"/>
+        <path class="d-path d-path-3" d="M 394 164 L 400 170 L 394 176" stroke-width="1.5"/>
+
+        <!-- User (person icon — circle + body) -->
+        <circle class="d-path" cx="56" cy="155" r="12" stroke-width="1.5"/>
+        <path class="d-path" d="M 40 182 C 40 172 72 172 72 182" stroke-width="1.5"/>
+
+        <!-- Interface box -->
+        <rect class="d-path" x="140" y="140" width="60" height="60" rx="3" stroke-width="1.5"/>
+        <text x="170" y="168" font-family="Geist,-apple-system,sans-serif" font-size="9" fill="#565450" text-anchor="middle">Interface</text>
+        <text x="170" y="182" font-family="Geist,-apple-system,sans-serif" font-size="9" fill="#9A958D" text-anchor="middle">the screen</text>
+
+        <!-- System box (bigger) -->
+        <rect class="d-path d-path-2" x="280" y="128" width="60" height="84" rx="3" stroke-width="1.5"/>
+        <text x="310" y="162" font-family="Geist,-apple-system,sans-serif" font-size="9" fill="#565450" text-anchor="middle">System</text>
+        <text x="310" y="176" font-family="Geist,-apple-system,sans-serif" font-size="9" fill="#9A958D" text-anchor="middle">the rules</text>
+
+        <!-- Output (check mark) -->
+        <circle class="d-path d-path-3" cx="424" cy="170" r="18" stroke-width="1.5"/>
+        <path class="d-path d-path-3" d="M 415 170 L 421 176 L 433 162" stroke-width="1.5"/>
+
+        <!-- Design annotation at center (between interface and system) -->
+        <path class="d-path d-path-2" d="M 210 120 C 220 108 240 104 250 112" stroke-width="1.2" stroke="#34404C" stroke-dasharray="3 3"/>
+        <text x="224" y="100" font-family="'Caveat','Segoe Script',cursive" font-size="16" fill="#34404C">design lives here</text>
+
+        <!-- Complexity annotation below -->
+        <path class="d-path d-path-3" d="M 148 228 C 180 240 220 240 280 236" stroke-width="1.2" stroke="#34404C" stroke-dasharray="3 3"/>
+        <text x="172" y="258" font-family="'Caveat','Segoe Script',cursive" font-size="14" fill="#34404C">where it gets complex</text>
+
+        <!-- Labels -->
+        <text x="56" y="200" font-family="Geist,-apple-system,sans-serif" font-size="8" fill="#9A958D" text-anchor="middle">User</text>
+        <text x="424" y="200" font-family="Geist,-apple-system,sans-serif" font-size="8" fill="#9A958D" text-anchor="middle">Result</text>
+      </svg>
+    </div>
+  </section>
+
+  <div class="work-section" id="work">
+    <div class="proj-row">
+      <div>
+        <span class="pr-num">01</span>
+        <h2 class="pr-headline">Complex logic that couldn't be simplified</h2>
+        <p class="pr-meta">SaaS<span class="dot">·</span>Segment Builder<span class="dot">·</span>Condition Logic</p>
+        <p class="pr-desc">Marketing teams build audience segments out of layered attributes, events, and consent rules. I turned that tangle into a workspace they could read and trust.</p>
+        <a class="pr-link" href="../cdp.html">Read case study →</a>
+      </div>
+      <img class="pr-img" src="../assets/projects/cdp/cover.png" alt="CDP">
+    </div>
+    <div class="proj-row">
+      <div>
+        <span class="pr-num">02</span>
+        <h2 class="pr-headline">A migration with a system underneath</h2>
+        <p class="pr-meta">Mobile<span class="dot">·</span>Web<span class="dot">·</span>Migration UX</p>
+        <p class="pr-desc">3BB Member was live for over a million users. My job was to ship only the flows where the migration changed the user's path.</p>
+        <a class="pr-link" href="../3bb-member.html">Read case study →</a>
+      </div>
+      <img class="pr-img" src="../assets/projects/3bb-member/cover.png" alt="3BB" style="filter:saturate(.5) brightness(1.05)">
+    </div>
+    <div class="proj-row">
+      <div>
+        <span class="pr-num">03</span>
+        <h2 class="pr-headline">A redesign that had to feel like no change</h2>
+        <p class="pr-meta">Retail<span class="dot">·</span>Physical Terminal<span class="dot">·</span>Operational UX</p>
+        <p class="pr-desc">POS terminals run on speed and muscle memory. Better hierarchy without moving what cashiers' hands already knew.</p>
+        <a class="pr-link" href="../counter-service-pos.html">View proposal →</a>
+      </div>
+      <img class="pr-img" src="../assets/projects/counter-service-pos/cover.png" alt="POS">
+    </div>
+  </div>
+
+  <section class="about-strip" id="contact">
+    <div>
+      <p class="sect-label">About</p>
+      <h2 class="as-h2">I design complex systems people can use with confidence.</h2>
+      <p class="as-body">Bangkok-based UX/UI designer. Enterprise SaaS, mobile apps, and operational tools where complexity is the actual product challenge.</p>
+    </div>
+    <div>
+      <p class="sect-label">Get in touch</p>
+      <p class="as-body">Open to complex work and the right teams.</p>
+      <div class="as-contact">
+        <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a>
+        <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><p class="foot">Natthapath Damrongsri · 2026</p></div></footer>
+
+<script>
+// Trigger diagram draw on load
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function(){
+    document.getElementById('hero-diagram').classList.add('in');
+  }, 300);
+});
+</script>
+
+<nav class="proto-bar">
+  <span><strong>19 / 25</strong> — Diagram hero</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>

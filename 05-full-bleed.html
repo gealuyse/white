@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>05 — Full Bleed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Full-bleed: each "room" fills the viewport. One project per room. */
+
+html { scroll-snap-type: y mandatory; }
+body { padding-bottom: 0; }
+
+.room {
+  height: 100dvh;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+
+/* Intro room */
+.room-intro {
+  background: var(--paper);
+  justify-content: flex-end;
+  padding: 0 64px 80px;
+}
+.intro-label { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--sub); margin:0 0 20px; }
+.intro-h1 { font:300 clamp(48px,6vw,88px)/1.02 var(--serif); letter-spacing:-.022em; margin:0 0 24px; max-width:16ch; }
+.intro-sub { font:400 18px/1.65 var(--sans); color:var(--sub); max-width:44ch; }
+.scroll-cue { position:absolute; bottom:28px; right:64px; font:400 11px/1 var(--sans); letter-spacing:.08em; text-transform:uppercase; color:var(--faint); display:flex; align-items:center; gap:8px; }
+.scroll-cue::after { content:''; display:block; width:1px; height:28px; background:var(--hair); }
+
+/* Sticky nav inside intro */
+.room-nav {
+  position: absolute; top: 0; left: 0; right: 0;
+  padding: 24px 64px;
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-bottom: 1px solid var(--hair);
+  background: var(--paper);
+  z-index: 10;
+}
+.room-nav .name { font:500 14px/1 var(--sans); }
+.room-nav a { font:400 14px/1 var(--sans); }
+.room-nav a:hover { text-decoration:underline; text-underline-offset:3px; }
+
+/* Project rooms — image covers the full room */
+.room-proj {
+  background: var(--ink);
+  color: var(--paper);
+  justify-content: flex-end;
+}
+.room-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform 8s ease;
+}
+.room-proj:hover .room-bg { transform: scale(1.03); }
+.room-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(28,27,26,.85) 30%, rgba(28,27,26,.1) 80%);
+}
+.room-content {
+  position: relative; z-index: 2;
+  padding: 0 64px 80px;
+}
+.room-num { font:500 11px/1 var(--sans); letter-spacing:.12em; text-transform:uppercase; color:rgba(252,251,249,.45); margin:0 0 14px; display:block; }
+.room-headline { font:300 clamp(36px,4vw,60px)/1.06 var(--serif); letter-spacing:-.018em; color:var(--paper); margin:0 0 12px; max-width:20ch; }
+.room-meta { font:500 11px/1.5 var(--sans); letter-spacing:.07em; text-transform:uppercase; color:rgba(252,251,249,.5); margin:0 0 24px; }
+.room-meta .dot { padding:0 10px; color:rgba(252,251,249,.2); }
+.room-link {
+  display: inline-block;
+  font:500 12px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase;
+  padding:12px 20px; border:1px solid rgba(252,251,249,.4); color:var(--paper);
+  transition: background .15s, border-color .15s;
+}
+.room-link:hover { background:rgba(252,251,249,.1); border-color:var(--paper); }
+
+/* About room */
+.room-about {
+  background: var(--panel);
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 64px;
+}
+.about-inner { max-width: 680px; }
+.about-h2 { font:300 clamp(36px,4vw,60px)/1.06 var(--serif); letter-spacing:-.018em; margin:0 0 28px; }
+.about-body { font:400 18px/1.72 var(--sans); color:var(--sub); margin:0 0 16px; max-width:52ch; }
+.about-contact { margin-top:40px; font:400 15px/1.6 var(--sans); }
+.about-contact a { text-decoration:underline; text-underline-offset:3px; color:var(--ink); }
+
+/* Room counter */
+.room-counter {
+  position: fixed; right: 28px; top: 50%; transform: translateY(-50%);
+  z-index: 100; display: flex; flex-direction: column; gap: 6px;
+}
+.room-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--hair);
+  transition: background .2s, transform .2s;
+}
+.room-dot.active { background: var(--ink); transform: scale(1.5); }
+
+@media(max-width:860px){
+  .room-intro,.room-content,.room-nav,.room-about{padding-left:24px;padding-right:24px;}
+  .scroll-cue{right:24px;}
+  .room-counter{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="room-counter" id="counter">
+  <div class="room-dot active" data-room="0"></div>
+  <div class="room-dot" data-room="1"></div>
+  <div class="room-dot" data-room="2"></div>
+  <div class="room-dot" data-room="3"></div>
+  <div class="room-dot" data-room="4"></div>
+</div>
+
+<!-- Room 0: Intro -->
+<section class="room room-intro" id="room-0">
+  <nav class="room-nav">
+    <span class="name">Natthapath Damrongsri</span>
+    <a href="#room-4">Contact</a>
+  </nav>
+  <p class="intro-label">UX/UI Product Designer · Bangkok</p>
+  <h1 class="intro-h1">I design complex systems people can use with confidence.</h1>
+  <p class="intro-sub">Scroll to see the work — one project per room.</p>
+  <span class="scroll-cue">Scroll</span>
+</section>
+
+<!-- Room 1: CDP -->
+<section class="room room-proj" id="room-1">
+  <div class="room-bg" style="background-image:url('../assets/projects/cdp/cover.png')"></div>
+  <div class="room-overlay"></div>
+  <div class="room-content">
+    <span class="room-num">01</span>
+    <h2 class="room-headline">Complex logic that couldn't be simplified</h2>
+    <p class="room-meta">SaaS<span class="dot">·</span>Segment Builder<span class="dot">·</span>Condition Logic</p>
+    <a class="room-link" href="../cdp.html">Read case study →</a>
+  </div>
+</section>
+
+<!-- Room 2: 3BB -->
+<section class="room room-proj" id="room-2">
+  <div class="room-bg" style="background-image:url('../assets/projects/3bb-member/cover.png');filter:saturate(.4);"></div>
+  <div class="room-overlay"></div>
+  <div class="room-content">
+    <span class="room-num">02</span>
+    <h2 class="room-headline">A migration with a system underneath</h2>
+    <p class="room-meta">Mobile<span class="dot">·</span>Web<span class="dot">·</span>Migration UX</p>
+    <a class="room-link" href="../3bb-member.html">Read case study →</a>
+  </div>
+</section>
+
+<!-- Room 3: POS -->
+<section class="room room-proj" id="room-3">
+  <div class="room-bg" style="background-image:url('../assets/projects/counter-service-pos/cover.png')"></div>
+  <div class="room-overlay"></div>
+  <div class="room-content">
+    <span class="room-num">03</span>
+    <h2 class="room-headline">A redesign that had to feel like no change</h2>
+    <p class="room-meta">Retail<span class="dot">·</span>Physical Terminal<span class="dot">·</span>Operational UX</p>
+    <a class="room-link" href="../counter-service-pos.html">View proposal →</a>
+  </div>
+</section>
+
+<!-- Room 4: About + Contact -->
+<section class="room room-about" id="room-4">
+  <div class="about-inner">
+    <p class="sect-label">Who made this</p>
+    <h2 class="about-h2">I design complex systems people can use with confidence.</h2>
+    <p class="about-body">Bangkok-based UX/UI designer. I work where the requirements are still shifting — enterprise SaaS, mobile apps for millions, and operational tools where a confusing interface has a real cost.</p>
+    <div class="about-contact">
+      <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a> ·
+      <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a> ·
+      <a href="https://drive.google.com/file/d/1WIN_KxK0yWkhj0vepfugB8czmD9JqphX/view">Résumé</a>
+    </div>
+  </div>
+</section>
+
+<script>
+var rooms = document.querySelectorAll('.room');
+var dots = document.querySelectorAll('.room-dot');
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting && e.intersectionRatio > .5){
+      var i = Array.prototype.indexOf.call(rooms, e.target);
+      dots.forEach(function(d,j){ d.classList.toggle('active',i===j); });
+    }
+  });
+},{threshold:.5});
+rooms.forEach(function(r){ io.observe(r); });
+</script>
+
+<nav class="proto-bar" style="z-index:200">
+  <span><strong>05 / 25</strong> — Full bleed</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>

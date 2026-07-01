@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>06 — Situation First</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Situation first — the problem statement comes before the project name/identity */
+
+.hero { padding: 72px 0 96px; max-width: 640px; }
+.hero h1 { font:300 clamp(36px,4.5vw,60px)/1.06 var(--serif); letter-spacing:-.018em; margin:0 0 20px; }
+.hero p { font:400 18px/1.72 var(--sans); color:var(--sub); max-width:50ch; }
+
+/* Each work entry leads with the situation/problem, then reveals the project */
+.situ-list { border-top: 1px solid var(--hair); }
+
+.situ-item {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--hair);
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 64px;
+  align-items: start;
+}
+
+/* LEFT — the situation/problem text */
+.situ-left {}
+.situ-num { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); display:block; margin:0 0 20px; }
+.situ-problem {
+  font: 400 clamp(22px,2.2vw,30px)/1.3 var(--serif);
+  letter-spacing: -.01em;
+  color: var(--ink);
+  margin: 0 0 28px;
+}
+/* The project identity comes AFTER the problem, smaller */
+.situ-project {
+  padding: 20px 0 0;
+  border-top: 1px solid var(--hair);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+}
+.situ-proj-name { font:500 13px/1 var(--sans); color:var(--ink); }
+.situ-proj-meta { font:400 12px/1 var(--sans); color:var(--sub); }
+.situ-proj-link {
+  font:500 11px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase;
+  text-decoration:underline; text-underline-offset:3px;
+  white-space: nowrap;
+}
+
+/* RIGHT — cover image */
+.situ-right {}
+.situ-img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; filter:saturate(.65) brightness(1.04); }
+
+/* About strip */
+.about-strip { padding: 80px 0; }
+.as-inner { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+.as-h2 { font:300 clamp(28px,3vw,44px)/1.1 var(--serif); letter-spacing:-.016em; margin:0 0 20px; }
+.as-body { font:400 17px/1.7 var(--sans); color:var(--sub); margin:0 0 14px; }
+.as-contact { font:400 14px/1.6 var(--sans); margin-top:32px; }
+.as-contact a { text-decoration:underline; text-underline-offset:3px; color:var(--ink); }
+
+@media(max-width:900px){
+  .situ-item{grid-template-columns:1fr;}
+  .situ-right{order:-1;}
+  .as-inner{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="site-nav">
+    <a class="name" href="../index.html">Natthapath Damrongsri</a>
+    <ul><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="sect-label">UX/UI Product Designer · Bangkok</p>
+    <h1>Each project started as someone's actual problem.</h1>
+    <p>I lead with the situation — what was broken, what was unclear, what had to be navigated — before naming the project or showing the outcome.</p>
+  </section>
+
+  <div class="situ-list">
+
+    <div class="situ-item">
+      <div class="situ-left">
+        <span class="situ-num">01</span>
+        <p class="situ-problem">"We need to target users who did X, then Y, but not if they opted out of Z — and we need to preview the size of that segment before saving."</p>
+        <div class="situ-project">
+          <div>
+            <span class="situ-proj-name">Customer Data Platform — Segment &amp; Condition Builder</span>
+            <span class="situ-proj-meta"> · SaaS · Condition Logic</span>
+          </div>
+          <a class="situ-proj-link" href="../cdp.html">Case study →</a>
+        </div>
+      </div>
+      <div class="situ-right">
+        <img class="situ-img" src="../assets/projects/cdp/cover.png" alt="CDP">
+      </div>
+    </div>
+
+    <div class="situ-item">
+      <div class="situ-left">
+        <span class="situ-num">02</span>
+        <p class="situ-problem">"The app is live for 1 million users. We're migrating to a new system but the old screens are still being updated. We need to know which one is current."</p>
+        <div class="situ-project">
+          <div>
+            <span class="situ-proj-name">3BB Member App &amp; Website</span>
+            <span class="situ-proj-meta"> · Mobile · Web · Migration UX</span>
+          </div>
+          <a class="situ-proj-link" href="../3bb-member.html">Case study →</a>
+        </div>
+      </div>
+      <div class="situ-right">
+        <img class="situ-img" src="../assets/projects/3bb-member/cover.png" alt="3BB" style="filter:saturate(.4) brightness(1.05)">
+      </div>
+    </div>
+
+    <div class="situ-item">
+      <div class="situ-left">
+        <span class="situ-num">03</span>
+        <p class="situ-problem">"Cashiers are trained on this screen. They process hundreds of transactions a day with it. We want to improve it — but if you move things, they'll slow down."</p>
+        <div class="situ-project">
+          <div>
+            <span class="situ-proj-name">Counter Service POS Terminal</span>
+            <span class="situ-proj-meta"> · Retail · Operational UX</span>
+          </div>
+          <a class="situ-proj-link" href="../counter-service-pos.html">Proposal →</a>
+        </div>
+      </div>
+      <div class="situ-right">
+        <img class="situ-img" src="../assets/projects/counter-service-pos/cover.png" alt="POS">
+      </div>
+    </div>
+
+  </div>
+
+  <section class="about-strip" id="about">
+    <div class="as-inner">
+      <div>
+        <p class="sect-label">About</p>
+        <h2 class="as-h2">I design complex systems people can use with confidence.</h2>
+        <p class="as-body">Bangkok-based UX/UI designer. I work where the requirements are still shifting — finding the actual problem underneath the ask before designing around it.</p>
+        <p class="as-body">Enterprise SaaS, a mobile app used by over a million people, and operational tools where a confusing interface has a real cost.</p>
+      </div>
+      <div id="contact">
+        <p class="sect-label">Get in touch</p>
+        <p class="as-body">Open to complex work and the right teams.</p>
+        <div class="as-contact">
+          <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a><br>
+          <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a><br>
+          <a href="https://drive.google.com/file/d/1WIN_KxK0yWkhj0vepfugB8czmD9JqphX/view">Résumé</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><p class="foot">Natthapath Damrongsri · 2026</p></div></footer>
+
+<nav class="proto-bar">
+  <span><strong>06 / 25</strong> — Situation first</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>

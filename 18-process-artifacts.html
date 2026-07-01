@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>18 — Process Artifacts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Process Artifacts — sticky notes, annotated briefs, process ephemera */
+
+.hero { padding: 72px 0 80px; }
+.hero h1 { font:300 clamp(36px,4.5vw,60px)/1.06 var(--serif); letter-spacing:-.018em; margin:0 0 20px; max-width:20ch; }
+.hero p { font:400 18px/1.72 var(--sans); color:var(--sub); max-width:50ch; }
+
+/* Artifact canvas — freeform scattered layout per project */
+.project-artifact { padding: 64px 0; border-bottom: 1px solid var(--hair); }
+.pa-header { display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:48px; }
+.pa-num { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
+.pa-proj { font:500 14px/1 var(--sans); color:var(--ink); }
+.pa-link { font:500 11px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; text-decoration:underline; text-underline-offset:3px; }
+
+/* Artifact board */
+.artifact-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+/* Base artifact card */
+.artifact {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--hair);
+  padding: 24px;
+  box-shadow: 0 3px 12px rgba(28,27,26,.07);
+}
+
+/* Sticky note */
+.sticky {
+  background: #FFF8C4;
+  border: none;
+  box-shadow: 2px 3px 8px rgba(28,27,26,.15), inset 0 1px 0 rgba(255,255,255,.6);
+  padding: 20px 20px 28px;
+}
+.sticky.pink { background: #FFD6D6; }
+.sticky.blue { background: #D4E8FF; }
+.sticky.green { background: #D4F0D4; }
+.sticky-text { font:500 20px/1.35 var(--script); color:#1C1B1A; margin:0; }
+.sticky-author { font:400 11px/1 var(--sans); color:rgba(28,27,26,.5); margin:12px 0 0; display:block; }
+
+/* Brief excerpt */
+.brief-card { }
+.brief-label { font:500 10px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--sub); margin:0 0 12px; display:block; border-bottom:1px solid var(--hair); padding-bottom:10px; }
+.brief-text { font:400 14px/1.65 var(--sans); color:var(--ink); margin:0 0 10px; }
+.brief-anno { font:500 17px/1.3 var(--script); color:#34404C; display:block; border-left:2px solid #34404C; padding-left:12px; margin-top:12px; }
+
+/* Cover thumbnail */
+.thumb-card { padding: 0; overflow: hidden; }
+.thumb-card img { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; filter:saturate(.6) brightness(1.04); }
+.thumb-caption { padding:14px 16px; font:400 13px/1.5 var(--sans); color:var(--sub); }
+
+/* Decision card */
+.decision-card { background: var(--panel); }
+.decision-q { font:400 16px/1.4 var(--serif); letter-spacing:-.008em; color:var(--ink); margin:0 0 14px; }
+.decision-a { font:400 14px/1.5 var(--sans); color:var(--sub); margin:0; }
+.decision-a strong { color:var(--ink); font-weight:500; }
+
+/* Rotation for scattered feel */
+.rotate-1 { transform: rotate(.8deg); }
+.rotate-2 { transform: rotate(-.6deg); }
+.rotate-3 { transform: rotate(1.2deg); }
+.rotate-neg { transform: rotate(-1.4deg); }
+
+/* Span 2 columns */
+.span-2 { grid-column: span 2; }
+
+/* About + Contact */
+.bottom-strip { padding:80px 0; display:grid; grid-template-columns:1fr 1fr; gap:64px; border-top:1px solid var(--hair); }
+.bs-h2 { font:300 clamp(28px,3vw,44px)/1.1 var(--serif); letter-spacing:-.016em; margin:0 0 20px; }
+.bs-body { font:400 17px/1.7 var(--sans); color:var(--sub); margin:0 0 14px; }
+.bs-contact { margin-top:28px; font:400 14px/1.6 var(--sans); }
+.bs-contact a { text-decoration:underline; text-underline-offset:3px; color:var(--ink); display:block; margin-bottom:4px; }
+
+@media(max-width:900px){
+  .artifact-board{grid-template-columns:1fr 1fr;}
+  .span-2{grid-column:span 1;}
+  .bottom-strip{grid-template-columns:1fr;}
+}
+@media(max-width:560px){
+  .artifact-board{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="site-nav">
+    <a class="name" href="../index.html">Natthapath Damrongsri</a>
+    <ul><li><a href="#contact">Contact</a></li></ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="sect-label">UX/UI Product Designer · Bangkok</p>
+    <h1>The artifacts left behind during the work.</h1>
+    <p>Notes, questions, decisions, and the moments before things got clean.</p>
+  </section>
+
+  <!-- CDP Artifacts -->
+  <div class="project-artifact">
+    <div class="pa-header">
+      <span class="pa-num">01</span>
+      <span class="pa-proj">Customer Data Platform — Segment Builder</span>
+      <a class="pa-link" href="../cdp.html">Case study →</a>
+    </div>
+
+    <div class="artifact-board">
+      <div class="artifact sticky rotate-1">
+        <p class="sticky-text">"marketers need to own their own segments. NO engineering dependency."</p>
+        <span class="sticky-author">stakeholder feedback · week 1</span>
+      </div>
+
+      <div class="artifact brief-card">
+        <span class="brief-label">Original brief excerpt</span>
+        <p class="brief-text">Users need to build audience segments using boolean logic (AND/OR/NOT) with support for attributes, events, and consent flags. The system must support nested condition groups and preview segment size before saving.</p>
+        <span class="brief-anno">49 attributes. most users knew maybe 12 of them.</span>
+      </div>
+
+      <div class="artifact thumb-card rotate-2">
+        <img src="../assets/projects/cdp/cover.png" alt="CDP">
+        <p class="thumb-caption">Final segment builder — readable boolean tree</p>
+      </div>
+
+      <div class="artifact decision-card span-2 rotate-neg">
+        <p class="decision-q">Should the condition builder be free-form text or a guided structured form?</p>
+        <p class="decision-a">Went with <strong>guided structure</strong> — tested free-form with 3 non-technical users who couldn't verify if the system had understood their logic. The builder made the result readable at a glance. Power users got field-level operators. Everyone else got legibility.</p>
+      </div>
+
+      <div class="artifact sticky pink rotate-3">
+        <p class="sticky-text">"how does a user know if AND applies to the whole group or just the row above it?"</p>
+        <span class="sticky-author">my note · design review 2</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3BB Artifacts -->
+  <div class="project-artifact">
+    <div class="pa-header">
+      <span class="pa-num">02</span>
+      <span class="pa-proj">3BB Member App &amp; Website</span>
+      <a class="pa-link" href="../3bb-member.html">Case study →</a>
+    </div>
+
+    <div class="artifact-board">
+      <div class="artifact brief-card">
+        <span class="brief-label">Handoff situation</span>
+        <p class="brief-text">Received a Figma file with 200+ screens. Multiple pages, unclear which was current. App live in production, migration scheduled in 6 weeks.</p>
+        <span class="brief-anno">audited every screen before touching anything</span>
+      </div>
+
+      <div class="artifact sticky green rotate-neg">
+        <p class="sticky-text">"scope to migration-affected flows ONLY. anything else is risk with no benefit."</p>
+        <span class="sticky-author">PM alignment · day 3</span>
+      </div>
+
+      <div class="artifact thumb-card rotate-1">
+        <img src="../assets/projects/3bb-member/cover.png" alt="3BB" style="filter:saturate(.4) brightness(1.04)">
+        <p class="thumb-caption">3BB Member — redesigned migration flows</p>
+      </div>
+
+      <div class="artifact decision-card span-2">
+        <p class="decision-q">Full redesign of account management, or surgical changes to migration-touched flows only?</p>
+        <p class="decision-a">Surgical changes only. Full redesign would have touched 60+ screens and added 3 months. The migration impacted 7 key flows. Designed those. Left the rest — not perfect, but <strong>the right risk trade</strong> for a live product.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- POS Artifacts -->
+  <div class="project-artifact">
+    <div class="pa-header">
+      <span class="pa-num">03</span>
+      <span class="pa-proj">Counter Service POS Terminal</span>
+      <a class="pa-link" href="../counter-service-pos.html">Proposal →</a>
+    </div>
+
+    <div class="artifact-board">
+      <div class="artifact sticky blue rotate-2">
+        <p class="sticky-text">"do NOT move anything. cashiers are trained on this exact layout."</p>
+        <span class="sticky-author">ops manager · kickoff</span>
+      </div>
+
+      <div class="artifact brief-card rotate-neg">
+        <span class="brief-label">Design constraint</span>
+        <p class="brief-text">Every element must stay in its existing position. No new features. No new flows. Improvement must come from within the existing spatial footprint.</p>
+        <span class="brief-anno">this IS the design challenge</span>
+      </div>
+
+      <div class="artifact decision-card">
+        <p class="decision-q">If layout can't change, what CAN we improve?</p>
+        <p class="decision-a"><strong>Typography weight, contrast, and proximity grouping.</strong> Lighter inactive states. Stronger active states. Visual hierarchy without spatial change. The same screen — but readable at speed.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="bottom-strip" id="contact">
+    <div>
+      <p class="sect-label">About</p>
+      <h2 class="bs-h2">I design complex systems people can use with confidence.</h2>
+      <p class="bs-body">Bangkok-based. Enterprise SaaS, mobile apps, and operational tools. I work where the requirements are still shifting.</p>
+    </div>
+    <div>
+      <p class="sect-label">Get in touch</p>
+      <p class="bs-body">Open to complex work and the right teams.</p>
+      <div class="bs-contact">
+        <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a>
+        <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><p class="foot">Natthapath Damrongsri · 2026</p></div></footer>
+
+<nav class="proto-bar">
+  <span><strong>18 / 25</strong> — Process artifacts</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>

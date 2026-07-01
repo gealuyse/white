@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 — What Didn't Ship</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* What Didn't Ship — rejected design directions, shown honestly */
+
+.hero { padding: 72px 0 80px; }
+.hero h1 { font:300 clamp(36px,4.5vw,60px)/1.06 var(--serif); letter-spacing:-.018em; margin:0 0 20px; max-width:22ch; }
+.hero p { font:400 18px/1.72 var(--sans); color:var(--sub); max-width:50ch; }
+
+.shipped-section { border-top: 1px solid var(--hair); padding-top: 64px; }
+.shipped-section h2 { font:300 clamp(28px,2.8vw,40px)/1.1 var(--serif); letter-spacing:-.014em; margin:0 0 8px; }
+.shipped-section .sub { font:400 16px/1.65 var(--sans); color:var(--sub); max-width:48ch; margin:0 0 40px; }
+
+/* What shipped — clean row */
+.shipped-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,360px); gap:48px; align-items:start; padding:32px 0; border-bottom:1px solid var(--hair); }
+.sr-num { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); display:block; margin:0 0 12px; }
+.sr-headline { font:400 clamp(22px,2.2vw,30px)/1.2 var(--serif); letter-spacing:-.01em; margin:0 0 10px; }
+.sr-meta { font:500 10px/1.5 var(--sans); letter-spacing:.07em; text-transform:uppercase; color:var(--sub); margin:0 0 16px; }
+.sr-link { font:500 11px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; text-decoration:underline; text-underline-offset:3px; }
+.sr-img { width:100%; aspect-ratio:16/9; object-fit:cover; filter:saturate(.65) brightness(1.04); }
+
+/* Didn't ship section */
+.didnt-section { padding-top: 80px; }
+.didnt-section h2 { font:300 clamp(28px,2.8vw,40px)/1.1 var(--serif); letter-spacing:-.014em; margin:0 0 8px; }
+.didnt-section .sub { font:400 16px/1.65 var(--sans); color:var(--sub); max-width:48ch; margin:0 0 40px; }
+
+.rejected-list { border-top: 1px solid var(--hair); }
+
+.rejected-item {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--hair);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.ri-proj { font:500 11px/1 var(--sans); letter-spacing:.08em; text-transform:uppercase; color:var(--sub); padding:0 0 16px; border-bottom:1px solid var(--hair); }
+
+.ri-body { }
+.ri-what { font:400 clamp(20px,2vw,26px)/1.25 var(--serif); letter-spacing:-.01em; margin:0 0 16px; }
+.ri-reason-label { font:500 10px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--sub); margin:0 0 10px; display:block; }
+.ri-reason { font:400 15px/1.65 var(--sans); color:var(--ink); margin:0 0 16px; max-width:54ch; }
+.ri-lesson { font:400 italic 16px/1.6 var(--serif); color:var(--sub); margin:0; border-left:2px solid var(--hair); padding-left:16px; }
+
+/* Strikethrough visual treatment for rejected ideas */
+.ri-what { text-decoration: line-through; text-decoration-color: var(--hair); text-decoration-thickness: 1px; }
+.ri-what:hover { text-decoration-color: var(--sub); }
+
+/* Bottom */
+.bottom-strip { padding:80px 0; display:grid; grid-template-columns:1fr 1fr; gap:64px; }
+.bs-h2 { font:300 clamp(28px,3vw,44px)/1.1 var(--serif); letter-spacing:-.016em; margin:0 0 20px; }
+.bs-body { font:400 17px/1.7 var(--sans); color:var(--sub); margin:0 0 14px; }
+.bs-contact { margin-top:32px; font:400 14px/1.6 var(--sans); }
+.bs-contact a { text-decoration:underline; text-underline-offset:3px; color:var(--ink); }
+
+@media(max-width:860px){
+  .shipped-row{grid-template-columns:1fr;}
+  .rejected-item{grid-template-columns:1fr;gap:24px;}
+  .bottom-strip{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="site-nav">
+    <a class="name" href="../index.html">Natthapath Damrongsri</a>
+    <ul><li><a href="#contact">Contact</a></li></ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="sect-label">UX/UI Product Designer · Bangkok</p>
+    <h1>What I tried, chose not to use, and why.</h1>
+    <p>The rejected directions aren't failures. They're the evidence of a process. Showing them honestly is part of the work.</p>
+  </section>
+
+  <!-- What shipped -->
+  <section class="shipped-section">
+    <h2>What shipped</h2>
+    <p class="sub">The three projects in the portfolio.</p>
+
+    <div class="shipped-row">
+      <div>
+        <span class="sr-num">01</span>
+        <h3 class="sr-headline">Customer Data Platform — Segment Builder</h3>
+        <p class="sr-meta">SaaS · Condition Logic</p>
+        <a class="sr-link" href="../cdp.html">Case study →</a>
+      </div>
+      <img class="sr-img" src="../assets/projects/cdp/cover.png" alt="">
+    </div>
+    <div class="shipped-row">
+      <div>
+        <span class="sr-num">02</span>
+        <h3 class="sr-headline">3BB Member App &amp; Website</h3>
+        <p class="sr-meta">Mobile · Migration UX</p>
+        <a class="sr-link" href="../3bb-member.html">Case study →</a>
+      </div>
+      <img class="sr-img" src="../assets/projects/3bb-member/cover.png" alt="" style="filter:saturate(.4) brightness(1.05)">
+    </div>
+    <div class="shipped-row">
+      <div>
+        <span class="sr-num">03</span>
+        <h3 class="sr-headline">Counter Service POS Terminal</h3>
+        <p class="sr-meta">Retail · Operational UX</p>
+        <a class="sr-link" href="../counter-service-pos.html">Proposal →</a>
+      </div>
+      <img class="sr-img" src="../assets/projects/counter-service-pos/cover.png" alt="">
+    </div>
+  </section>
+
+  <!-- What didn't -->
+  <section class="didnt-section">
+    <h2>What didn't ship</h2>
+    <p class="sub">Directions I explored and set aside — with the honest reason why.</p>
+
+    <div class="rejected-list">
+
+      <div class="rejected-item">
+        <div class="ri-proj">CDP · Segment Builder</div>
+        <div class="ri-body">
+          <h3 class="ri-what">A natural language input for building conditions</h3>
+          <span class="ri-reason-label">Why it didn't ship</span>
+          <p class="ri-reason">It tested well with technical users who already knew what they wanted. For marketers building segments for the first time, it created ambiguity — "did the system understand me?" was a constant uncertainty. Guided structure removed that anxiety.</p>
+          <p class="ri-lesson">"Powerful" and "clear" are often in tension. Clear won.</p>
+        </div>
+      </div>
+
+      <div class="rejected-item">
+        <div class="ri-proj">CDP · Segment Builder</div>
+        <div class="ri-body">
+          <h3 class="ri-what">A visual tree diagram to show nested logic groups</h3>
+          <span class="ri-reason-label">Why it didn't ship</span>
+          <p class="ri-reason">Beautiful in Figma. Too abstract in practice — users with non-trivial segments (5+ conditions) couldn't map the diagram back to what they were building. Indentation and inline structure was more literal and more trusted.</p>
+          <p class="ri-lesson">Some things read as "design" in the mockup but add friction in use.</p>
+        </div>
+      </div>
+
+      <div class="rejected-item">
+        <div class="ri-proj">3BB Member · Migration</div>
+        <div class="ri-body">
+          <h3 class="ri-what">A full redesign of the account management section</h3>
+          <span class="ri-reason-label">Why it didn't ship</span>
+          <p class="ri-reason">The scope creep would have delayed the migration by months. The existing account management UX had issues — but none of them were caused by the migration. Out of scope. A full redesign would have introduced regression risk for no migration benefit.</p>
+          <p class="ri-lesson">Good design knows when to stop.</p>
+        </div>
+      </div>
+
+      <div class="rejected-item">
+        <div class="ri-proj">Counter Service POS</div>
+        <div class="ri-body">
+          <h3 class="ri-what">A reorganized layout with better logical grouping</h3>
+          <span class="ri-reason-label">Why it didn't ship</span>
+          <p class="ri-reason">The logical grouping made sense on paper. But cashiers had trained on the existing positions. Moving elements — even to clearly better positions — required retraining during peak season. The business case didn't justify it. Working within constraints is the design skill.</p>
+          <p class="ri-lesson">The best layout is the one they can use tomorrow, not the ideal one they'd need a week to learn.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="bottom-strip" id="contact">
+    <div>
+      <p class="sect-label">About</p>
+      <h2 class="bs-h2">I design complex systems people can use with confidence.</h2>
+      <p class="bs-body">Bangkok-based UX/UI designer. I work where the requirements are still shifting.</p>
+    </div>
+    <div>
+      <p class="sect-label">Get in touch</p>
+      <p class="bs-body">Open to complex work and the right teams.</p>
+      <div class="bs-contact">
+        <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a><br>
+        <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><p class="foot">Natthapath Damrongsri · 2026</p></div></footer>
+
+<nav class="proto-bar">
+  <span><strong>10 / 25</strong> — What didn't ship</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>

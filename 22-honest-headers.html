@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>22 — Honest Headers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Honest headers — "What I'm actually good at" / "Still figuring out" / "Won't take on" */
+
+.hero { padding: 72px 0 80px; }
+.hero h1 { font:300 clamp(36px,4.5vw,60px)/1.06 var(--serif); letter-spacing:-.018em; margin:0 0 20px; max-width:22ch; }
+.hero p { font:400 18px/1.72 var(--sans); color:var(--sub); max-width:50ch; }
+
+/* Honest sections */
+.honest-section { border-top: 1px solid var(--hair); }
+
+.honest-block { padding: 64px 0; border-bottom: 1px solid var(--hair); }
+
+.hb-header { margin-bottom: 40px; }
+.hb-label { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--sub); margin:0 0 10px; display:block; }
+.hb-title { font:300 clamp(28px,3vw,44px)/1.1 var(--serif); letter-spacing:-.016em; margin:0; }
+
+/* Content grid */
+.hb-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+
+/* Items */
+.hb-item { padding:20px 0; border-bottom:1px solid rgba(28,27,26,.06); }
+.hb-item:last-child { border-bottom:none; }
+.hb-item-title { font:500 15px/1.35 var(--sans); color:var(--ink); margin:0 0 8px; }
+.hb-item-desc { font:400 14px/1.65 var(--sans); color:var(--sub); margin:0; }
+
+/* "What I'm good at" — green-tinted marker */
+.section-good .hb-title { color:var(--ink); }
+.section-good .hb-label::before {
+  content:'';
+  display:inline-block; width:8px; height:8px; border-radius:50%;
+  background:#5B8C6B; margin-right:8px;
+}
+
+/* "Still figuring out" — neutral marker */
+.section-figuring .hb-title { color:var(--ink); }
+.section-figuring .hb-label::before {
+  content:'';
+  display:inline-block; width:8px; height:8px; border-radius:50%;
+  background:var(--faint); margin-right:8px;
+}
+.section-figuring .hb-item-title { color:var(--sub); }
+
+/* "Won't take on" — honest, not apologetic */
+.section-wont .hb-title { color:var(--ink); }
+.section-wont .hb-label::before {
+  content:'';
+  display:inline-block; width:8px; height:8px; border-radius:50%;
+  background:var(--hair); margin-right:8px;
+}
+.section-wont .hb-item-title { color:var(--sub); text-decoration:line-through; text-decoration-color:var(--hair); }
+.section-wont .hb-item-desc { font-style:italic; }
+
+/* Work — compact list below the honest headers */
+.work-block { padding:64px 0; }
+.work-block h2 { font:300 clamp(28px,3vw,44px)/1.1 var(--serif); letter-spacing:-.016em; margin:0 0 8px; }
+.work-block .sub { font:400 16px/1.65 var(--sans); color:var(--sub); margin:0 0 40px; }
+
+.work-row {
+  display:grid; grid-template-columns:48px 1fr 180px;
+  gap:20px; align-items:center;
+  padding:18px 0; border-bottom:1px solid var(--hair);
+}
+.wr-num { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
+.wr-name { font:400 18px/1.25 var(--serif); letter-spacing:-.01em; }
+.wr-meta { font:400 12px/1.5 var(--sans); color:var(--sub); margin-top:4px; }
+.wr-link { font:500 11px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; text-decoration:underline; text-underline-offset:3px; text-align:right; }
+
+/* Contact */
+.contact-block { padding:64px 0; border-top:1px solid var(--hair); display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+.cb-h2 { font:300 clamp(24px,2.8vw,40px)/1.1 var(--serif); letter-spacing:-.014em; margin:0 0 16px; }
+.cb-body { font:400 16px/1.7 var(--sans); color:var(--sub); margin:0 0 12px; }
+.cb-contact { font:400 14px/1.6 var(--sans); }
+.cb-contact a { text-decoration:underline; text-underline-offset:3px; color:var(--ink); display:block; margin-bottom:4px; }
+
+@media(max-width:760px){
+  .hb-grid{grid-template-columns:1fr;}
+  .work-row{grid-template-columns:32px 1fr;gap:12px;}
+  .wr-link{display:none;}
+  .contact-block{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="site-nav">
+    <a class="name" href="../index.html">Natthapath Damrongsri</a>
+    <ul><li><a href="#work">Work</a></li><li><a href="#contact">Contact</a></li></ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="sect-label">UX/UI Product Designer · Bangkok</p>
+    <h1>An honest profile, not a highlight reel.</h1>
+    <p>What I'm actually good at. What I'm still figuring out. What I won't take on. In that order.</p>
+  </section>
+
+  <div class="honest-section">
+
+    <!-- Good at -->
+    <div class="honest-block section-good">
+      <div class="hb-header">
+        <span class="hb-label">What I'm actually good at</span>
+        <h2 class="hb-title">The work I do consistently well.</h2>
+      </div>
+      <div class="hb-grid">
+        <div>
+          <div class="hb-item">
+            <p class="hb-item-title">Working with complex, ambiguous briefs</p>
+            <p class="hb-item-desc">I find the actual problem before designing around it. Enterprise SaaS and operational tools are where I operate best — where simplifying the interface isn't the goal, understanding it is.</p>
+          </div>
+          <div class="hb-item">
+            <p class="hb-item-title">Surgical changes on live products</p>
+            <p class="hb-item-desc">I know how to scope. Working inside a large inherited file, figuring out what's current, and shipping only what needs to change is something I've done and can do again.</p>
+          </div>
+          <div class="hb-item">
+            <p class="hb-item-title">Designing within hard constraints</p>
+            <p class="hb-item-desc">The constraint IS the design problem. When nothing can move and clarity still has to improve — that's where I work well. Not against constraints, within them.</p>
+          </div>
+        </div>
+        <div>
+          <div class="hb-item">
+            <p class="hb-item-title">Translating logic into visual structure</p>
+            <p class="hb-item-desc">Boolean logic, nested conditions, multi-step flows — I can take something technically accurate and make it humanly readable. Not by simplifying. By structuring.</p>
+          </div>
+          <div class="hb-item">
+            <p class="hb-item-title">Handoff discipline</p>
+            <p class="hb-item-desc">Clean files, clear annotation, component documentation. I care about what I leave behind. A system that keeps working after I've moved on is part of the deliverable.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Still figuring out -->
+    <div class="honest-block section-figuring">
+      <div class="hb-header">
+        <span class="hb-label">Still figuring out</span>
+        <h2 class="hb-title">Things I'm actively learning. Not gaps — growing edges.</h2>
+      </div>
+      <div class="hb-grid">
+        <div>
+          <div class="hb-item">
+            <p class="hb-item-title">Leading research at scale</p>
+            <p class="hb-item-desc">I've done user research and synthesis — but not at org-wide scale. I'm learning how to design research programs that other teams can participate in and trust.</p>
+          </div>
+          <div class="hb-item">
+            <p class="hb-item-title">Designing for AI-generated interfaces</p>
+            <p class="hb-item-desc">What does good UX look like when the interface is partially generated at runtime? I'm thinking about it. I don't have strong convictions yet.</p>
+          </div>
+        </div>
+        <div>
+          <div class="hb-item">
+            <p class="hb-item-title">Cross-platform design systems at scale</p>
+            <p class="hb-item-desc">I've contributed to and extended design systems, but I haven't built one from 0 to 1 across mobile, web, and tablet for a large product family. Something I want to do.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Won't take on -->
+    <div class="honest-block section-wont">
+      <div class="hb-header">
+        <span class="hb-label">Won't take on</span>
+        <h2 class="hb-title">Not because I can't. Because they don't need what I do well.</h2>
+      </div>
+      <div class="hb-grid">
+        <div>
+          <div class="hb-item">
+            <p class="hb-item-title">Pure visual / brand design</p>
+            <p class="hb-item-desc">I'm not a brand designer. I can respect and work within a brand system. I'm not the right person to create it from scratch.</p>
+          </div>
+          <div class="hb-item">
+            <p class="hb-item-title">High-churn, low-complexity execution roles</p>
+            <p class="hb-item-desc">If the work is pixel-pushing screens with no ambiguity or constraint, I'll get bored and produce mediocre work. I need problem complexity to do my best.</p>
+          </div>
+        </div>
+        <div>
+          <div class="hb-item">
+            <p class="hb-item-title">Work that ignores the operational reality</p>
+            <p class="hb-item-desc">Beautiful designs that can't ship, or that solve the wrong problem cleanly. I won't pretend a brief makes sense if it doesn't. That's not useful to anyone.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Work -->
+  <div class="work-block" id="work">
+    <h2>The work that demonstrates this</h2>
+    <p class="sub">Three projects. Each one reflects a different combination of the above.</p>
+    <div style="border-top:1px solid var(--hair);">
+      <div class="work-row">
+        <span class="wr-num">01</span>
+        <div>
+          <p class="wr-name">Customer Data Platform — Segment Builder</p>
+          <p class="wr-meta">SaaS · Complex logic · Constraint: non-technical users must own it</p>
+        </div>
+        <a class="wr-link" href="../cdp.html">Case study →</a>
+      </div>
+      <div class="work-row">
+        <span class="wr-num">02</span>
+        <div>
+          <p class="wr-name">3BB Member App &amp; Website</p>
+          <p class="wr-meta">Mobile · Live product · Constraint: scope to migration-affected flows only</p>
+        </div>
+        <a class="wr-link" href="../3bb-member.html">Case study →</a>
+      </div>
+      <div class="work-row">
+        <span class="wr-num">03</span>
+        <div>
+          <p class="wr-name">Counter Service POS Terminal</p>
+          <p class="wr-meta">Operational · Physical terminal · Constraint: nothing can move</p>
+        </div>
+        <a class="wr-link" href="../counter-service-pos.html">Proposal →</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="contact-block" id="contact">
+    <div>
+      <h2 class="cb-h2">If this sounds like what you need</h2>
+      <p class="cb-body">I'm open to complex work and the right teams. If the brief is ambiguous and the constraints are real, that's where I do my best work.</p>
+    </div>
+    <div>
+      <p class="cb-body" style="color:var(--ink);font-weight:500;">Get in touch</p>
+      <div class="cb-contact">
+        <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a>
+        <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a>
+        <a href="https://drive.google.com/file/d/1WIN_KxK0yWkhj0vepfugB8czmD9JqphX/view">Résumé</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><p class="foot">Natthapath Damrongsri · 2026</p></div></footer>
+
+<nav class="proto-bar">
+  <span><strong>22 / 25</strong> — Honest headers</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>

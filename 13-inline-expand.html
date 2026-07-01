@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>13 — Inline Expand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Inline expand — case study content expands in-place, no navigation */
+
+.hero { padding: 72px 0 80px; }
+.hero h1 { font:300 clamp(36px,4.5vw,60px)/1.06 var(--serif); letter-spacing:-.018em; margin:0 0 20px; max-width:20ch; }
+.hero p { font:400 18px/1.72 var(--sans); color:var(--sub); max-width:50ch; }
+
+.proj-list { border-top: 1px solid var(--hair); }
+
+/* Collapsed row */
+.proj-item { border-bottom: 1px solid var(--hair); }
+
+.proj-trigger {
+  display: grid;
+  grid-template-columns: 48px 1fr 200px 80px;
+  gap: 24px; align-items: center;
+  padding: 28px 0;
+  cursor: pointer;
+  width: 100%;
+  background: none; border: none; text-align: left;
+  transition: background .1s;
+}
+.proj-trigger:hover { background: rgba(28,27,26,.02); margin:0 -24px; padding-left:24px; padding-right:24px; width:calc(100% + 48px); }
+
+.pt-num { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
+.pt-title { font:400 18px/1.25 var(--serif); letter-spacing:-.01em; color:var(--ink); text-align:left; }
+.pt-meta { font:500 10px/1 var(--sans); letter-spacing:.08em; text-transform:uppercase; color:var(--sub); text-align:right; }
+.pt-expand { font:500 12px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; color:var(--sub); text-align:right; transition:color .15s; }
+.proj-item.open .pt-expand { color:var(--ink); }
+.pt-expand::after { content:' +'; }
+.proj-item.open .pt-expand::after { content:' −'; }
+
+/* Expanded content */
+.proj-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s cubic-bezier(.4,0,.2,1);
+}
+.proj-item.open .proj-body { max-height: 1200px; }
+
+.pb-inner { padding: 0 0 56px; }
+.pb-cover { width:100%; aspect-ratio:16/9; object-fit:cover; filter:saturate(.65) brightness(1.04); margin-bottom:40px; }
+.pb-desc { font:400 17px/1.72 var(--sans); color:var(--sub); max-width:56ch; margin:0 0 24px; }
+.pb-heading { font:500 12px/1 var(--sans); letter-spacing:.08em; text-transform:uppercase; color:var(--ink); margin:0 0 12px; }
+.pb-points { list-style:none; margin:0 0 28px; padding:0; }
+.pb-points li {
+  font:400 15px/1.65 var(--sans); color:var(--sub);
+  padding:8px 0; border-bottom:1px solid var(--hair);
+  display:flex; gap:12px;
+}
+.pb-points li::before { content:'→'; color:var(--faint); flex-shrink:0; }
+.pb-actions { display:flex; gap:16px; flex-wrap:wrap; }
+.pb-link { font:500 12px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; display:inline-block; padding:13px 22px; border:1px solid var(--ink); color:var(--paper); background:var(--ink); }
+.pb-link-ghost { font:500 12px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; display:inline-block; padding:12px 22px; border:1px solid var(--hair); color:var(--sub); }
+.pb-link-ghost:hover { border-color:var(--ink); color:var(--ink); }
+
+/* About + Contact */
+.bottom-strip { padding:80px 0; display:grid; grid-template-columns:1fr 1fr; gap:64px; border-top:1px solid var(--hair); margin-top:80px; }
+.bs-h2 { font:300 clamp(28px,3vw,44px)/1.1 var(--serif); letter-spacing:-.016em; margin:0 0 20px; }
+.bs-body { font:400 17px/1.7 var(--sans); color:var(--sub); margin:0 0 14px; }
+.bs-contact { margin-top:28px; font:400 14px/1.6 var(--sans); }
+.bs-contact a { text-decoration:underline; text-underline-offset:3px; color:var(--ink); }
+
+@media(max-width:760px){
+  .proj-trigger{grid-template-columns:32px 1fr;gap:16px;}
+  .pt-meta,.pt-expand{display:none;}
+  .bottom-strip{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="site-nav">
+    <a class="name" href="../index.html">Natthapath Damrongsri</a>
+    <ul><li><a href="#contact">Contact</a></li></ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="sect-label">UX/UI Product Designer · Bangkok</p>
+    <h1>Everything on one page. Expand what you want to see.</h1>
+    <p>No navigation, no new tabs — the case studies open inline below each project title.</p>
+  </section>
+
+  <div class="proj-list">
+
+    <!-- CDP -->
+    <div class="proj-item" id="item-cdp">
+      <button class="proj-trigger" onclick="toggle('item-cdp')">
+        <span class="pt-num">01</span>
+        <span class="pt-title">Customer Data Platform — Segment Builder</span>
+        <span class="pt-meta">SaaS · Condition Logic</span>
+        <span class="pt-expand">Read</span>
+      </button>
+      <div class="proj-body">
+        <div class="pb-inner">
+          <img class="pb-cover" src="../assets/projects/cdp/cover.png" alt="CDP">
+          <p class="pb-desc">Marketing teams build audience segments out of layered attributes, events, and consent rules. I turned that tangle of logic into a workspace they could read, configure, and trust — with an autocomplete search that showed what you were choosing before you chose it.</p>
+          <p class="pb-heading">What I worked on</p>
+          <ul class="pb-points">
+            <li>Segment condition builder with AND/OR/NOT grouping</li>
+            <li>Autocomplete search for attribute selection</li>
+            <li>Live preview of segment size before saving</li>
+            <li>Error and validation state design</li>
+          </ul>
+          <p class="pb-heading">The hard part</p>
+          <ul class="pb-points">
+            <li>Boolean logic had to stay fully intact — no simplification</li>
+            <li>Non-technical users needed to own and audit their own segments</li>
+            <li>The UI had to communicate what a condition meant, not just represent it</li>
+          </ul>
+          <div class="pb-actions">
+            <a class="pb-link" href="../cdp.html">Full case study →</a>
+            <button class="pb-link-ghost" onclick="toggle('item-cdp')">Collapse</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3BB -->
+    <div class="proj-item" id="item-3bb">
+      <button class="proj-trigger" onclick="toggle('item-3bb')">
+        <span class="pt-num">02</span>
+        <span class="pt-title">3BB Member App &amp; Website</span>
+        <span class="pt-meta">Mobile · Migration UX</span>
+        <span class="pt-expand">Read</span>
+      </button>
+      <div class="proj-body">
+        <div class="pb-inner">
+          <img class="pb-cover" src="../assets/projects/3bb-member/cover.png" alt="3BB" style="filter:saturate(.5) brightness(1.04)">
+          <p class="pb-desc">3BB Member was already live for millions. My job was to work inside a large inherited file, find which screen was actually current, and ship only the flows where the migration changed the user's path.</p>
+          <p class="pb-heading">What I worked on</p>
+          <ul class="pb-points">
+            <li>Migration-affected flow identification and scoping</li>
+            <li>Account linking UX for the new system transition</li>
+            <li>Error states for edge cases the old system didn't have</li>
+            <li>Copy and tone for the migration messaging</li>
+          </ul>
+          <p class="pb-heading">The hard part</p>
+          <ul class="pb-points">
+            <li>The app was live the entire time — no feature freeze</li>
+            <li>Working in an inherited file with multiple outdated versions</li>
+            <li>Deciding what NOT to redesign was more important than what to change</li>
+          </ul>
+          <div class="pb-actions">
+            <a class="pb-link" href="../3bb-member.html">Full case study →</a>
+            <button class="pb-link-ghost" onclick="toggle('item-3bb')">Collapse</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POS -->
+    <div class="proj-item" id="item-pos">
+      <button class="proj-trigger" onclick="toggle('item-pos')">
+        <span class="pt-num">03</span>
+        <span class="pt-title">Counter Service POS Terminal</span>
+        <span class="pt-meta">Retail · Operational UX</span>
+        <span class="pt-expand">Read</span>
+      </button>
+      <div class="proj-body">
+        <div class="pb-inner">
+          <img class="pb-cover" src="../assets/projects/counter-service-pos/cover.png" alt="POS">
+          <p class="pb-desc">Point-of-sale terminals run on speed and muscle memory. The job was to improve the hierarchy without moving what cashiers' hands already knew.</p>
+          <p class="pb-heading">What I worked on</p>
+          <ul class="pb-points">
+            <li>Typography weight and size hierarchy improvements</li>
+            <li>Color contrast and visual clarity at a glance</li>
+            <li>State differentiation for active vs inactive items</li>
+            <li>Grouping by proximity within existing spatial footprint</li>
+          </ul>
+          <p class="pb-heading">The hard part</p>
+          <ul class="pb-points">
+            <li>Nothing could move — position constraints were absolute</li>
+            <li>Improvement had to come from within the existing footprint</li>
+            <li>Every change needed to be invisible to trained hands</li>
+          </ul>
+          <div class="pb-actions">
+            <a class="pb-link" href="../counter-service-pos.html">View proposal →</a>
+            <button class="pb-link-ghost" onclick="toggle('item-pos')">Collapse</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="bottom-strip" id="contact">
+    <div>
+      <p class="sect-label">About</p>
+      <h2 class="bs-h2">I design complex systems people can use with confidence.</h2>
+      <p class="bs-body">Bangkok-based UX/UI designer. I work where the requirements are still shifting — enterprise SaaS, mobile apps, operational tools.</p>
+    </div>
+    <div>
+      <p class="sect-label">Get in touch</p>
+      <p class="bs-body">Open to complex work and the right teams.</p>
+      <div class="bs-contact">
+        <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a><br>
+        <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><p class="foot">Natthapath Damrongsri · 2026</p></div></footer>
+
+<script>
+function toggle(id) {
+  var item = document.getElementById(id);
+  item.classList.toggle('open');
+  if (item.classList.contains('open')) {
+    setTimeout(function(){ item.scrollIntoView({behavior:'smooth',block:'start'}); }, 50);
+  }
+}
+</script>
+
+<nav class="proto-bar">
+  <span><strong>13 / 25</strong> — Inline expand</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>

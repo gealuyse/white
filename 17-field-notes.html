@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>17 — Field Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Field notes — notebook aesthetic: ruled lines, tab markers, page numbers */
+
+:root {
+  --ruled: rgba(28,27,26,.07);
+  --margin-rule: rgba(192,128,96,.25);
+}
+
+body {
+  background-image:
+    /* horizontal ruled lines every 32px */
+    repeating-linear-gradient(
+      to bottom,
+      transparent, transparent 31px,
+      var(--ruled) 31px, var(--ruled) 32px
+    );
+  background-size: 100% 32px;
+}
+
+/* Red margin line */
+.ruled-body {
+  position: relative;
+}
+.ruled-body::before {
+  content: '';
+  position: fixed;
+  left: calc((100vw - 1240px) / 2 + 48px - 1px);
+  top: 0; bottom: 0;
+  width: 1px;
+  background: var(--margin-rule);
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* Notebook header area */
+.notebook-cover {
+  padding: 48px 0 40px;
+  margin-bottom: 48px;
+}
+.nb-title-line {
+  font: 500 10px/1 var(--sans); letter-spacing:.12em; text-transform:uppercase;
+  color:var(--sub); margin:0 0 8px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--ink);
+  display: flex; justify-content: space-between;
+}
+.nb-main-title { font:400 clamp(36px,5vw,68px)/1.04 var(--serif); letter-spacing:-.018em; margin:0 0 8px; }
+.nb-subtitle { font:500 22px/1.3 var(--script); color:var(--sub); }
+
+/* Tab markers — sticky section tabs on right edge */
+.tab-marker {
+  position: fixed;
+  right: 0; z-index: 100;
+  writing-mode: vertical-rl;
+  font: 500 10px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase;
+  color: var(--paper); background: var(--ink);
+  padding: 14px 8px;
+  cursor: pointer;
+}
+.tab-marker:nth-child(1) { top: 120px; }
+.tab-marker:nth-child(2) { top: 190px; }
+.tab-marker:nth-child(3) { top: 260px; }
+.tab-marker:hover { background: var(--sub); }
+
+/* Page number */
+.page-num { font:400 12px/1 var(--sans); color:var(--faint); text-align:right; margin:0 0 48px; }
+
+/* Each section feels like a notebook entry */
+.nb-section { margin-bottom: 80px; }
+.nb-section-label {
+  font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase;
+  color:var(--sub); display:flex; align-items:center; gap:16px; margin:0 0 40px;
+}
+.nb-section-label::after { content:''; flex:1; height:1px; background:var(--hair); }
+
+/* Work entries in notebook style */
+.nb-entry { padding: 32px 0; border-bottom: 1px solid rgba(28,27,26,.08); }
+.nb-entry-num { font:500 16px/1 var(--script); color:var(--faint); margin:0 0 10px; display:block; }
+.nb-entry h2 { font:400 clamp(22px,2.2vw,30px)/1.2 var(--serif); letter-spacing:-.01em; margin:0 0 8px; }
+.nb-entry-meta { font:400 12px/1.5 var(--sans); color:var(--sub); margin:0 0 14px; }
+.nb-entry-body { font:400 16px/1.72 var(--sans); color:var(--sub); max-width:52ch; margin:0 0 16px; }
+.nb-entry-note { font:500 19px/1.35 var(--script); color:#34404C; margin:0 0 16px; display:block; }
+.nb-entry-link { font:500 11px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; text-decoration:underline; text-underline-offset:4px; }
+.nb-entry-img { width:100%; max-width:560px; aspect-ratio:16/9; object-fit:cover; filter:saturate(.55) brightness(1.04); margin:16px 0; }
+
+/* About in notebook style */
+.nb-about { padding:32px 0; }
+.nb-about h2 { font:300 clamp(28px,3vw,44px)/1.1 var(--serif); letter-spacing:-.016em; margin:0 0 16px; }
+.nb-about p { font:400 17px/1.72 var(--sans); color:var(--sub); max-width:52ch; margin:0 0 14px; }
+.nb-contact { padding:24px 0; border-top:1px solid var(--hair); font:400 14px/1.6 var(--sans); }
+.nb-contact a { text-decoration:underline; text-underline-offset:3px; color:var(--ink); margin-right:24px; }
+
+@media(max-width:1380px){ .ruled-body::before{display:none;} }
+@media(max-width:768px){ .tab-marker{display:none;} }
+</style>
+</head>
+<body>
+
+<!-- Tab markers (right edge navigation) -->
+<a class="tab-marker" href="#work" style="text-decoration:none">Work</a>
+<a class="tab-marker" href="#about" style="text-decoration:none">About</a>
+<a class="tab-marker" href="#contact" style="text-decoration:none">Contact</a>
+
+<div class="ruled-body">
+  <header class="wrap">
+    <nav class="site-nav">
+      <a class="name" href="../index.html">Natthapath Damrongsri</a>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="wrap">
+
+    <div class="notebook-cover">
+      <p class="nb-title-line">
+        <span>Portfolio · 2026</span>
+        <span>UX/UI Product Designer · Bangkok</span>
+      </p>
+      <h1 class="nb-main-title">I design complex<br>systems people can use<br>with confidence.</h1>
+      <p class="nb-subtitle">— field notes from three projects</p>
+    </div>
+
+    <p class="page-num">p. 01</p>
+
+    <section class="nb-section" id="work">
+      <p class="nb-section-label">Project entries</p>
+
+      <div class="nb-entry">
+        <span class="nb-entry-num">01.</span>
+        <h2>Complex logic that couldn't be simplified</h2>
+        <p class="nb-entry-meta">Customer Data Platform · SaaS · Segment Builder · Condition Logic</p>
+        <img class="nb-entry-img" src="../assets/projects/cdp/cover.png" alt="CDP">
+        <p class="nb-entry-body">Marketing teams build audience segments out of layered attributes, events, and consent rules. I turned that tangle of logic into a workspace they could read, configure, and trust.</p>
+        <span class="nb-entry-note">the logic had to stay intact — I made it readable, not simpler</span>
+        <a class="nb-entry-link" href="../cdp.html">Read case study →</a>
+      </div>
+
+      <div class="nb-entry">
+        <span class="nb-entry-num">02.</span>
+        <h2>A migration with a system underneath</h2>
+        <p class="nb-entry-meta">3BB Member App · Mobile · Web · Migration UX</p>
+        <img class="nb-entry-img" src="../assets/projects/3bb-member/cover.png" alt="3BB" style="filter:saturate(.4) brightness(1.04)">
+        <p class="nb-entry-body">3BB Member was already live for millions. My job was to work inside a large inherited file and ship only the flows where the migration changed the user's path.</p>
+        <span class="nb-entry-note">the hardest part was deciding what NOT to redesign</span>
+        <a class="nb-entry-link" href="../3bb-member.html">Read case study →</a>
+      </div>
+
+      <div class="nb-entry">
+        <span class="nb-entry-num">03.</span>
+        <h2>A redesign that had to feel like no change</h2>
+        <p class="nb-entry-meta">Counter Service POS · Retail · Physical Terminal · Operational UX</p>
+        <img class="nb-entry-img" src="../assets/projects/counter-service-pos/cover.png" alt="POS">
+        <p class="nb-entry-body">POS terminals run on speed and muscle memory. The job was to improve the hierarchy without moving what cashiers' hands already knew.</p>
+        <span class="nb-entry-note">nothing could move. all clarity from weight and contrast alone.</span>
+        <a class="nb-entry-link" href="../counter-service-pos.html">View proposal →</a>
+      </div>
+    </section>
+
+    <p class="page-num">p. 02</p>
+
+    <section class="nb-section" id="about">
+      <p class="nb-section-label">About the author</p>
+      <div class="nb-about">
+        <h2>Who made this notebook</h2>
+        <p>Bangkok-based UX/UI designer. I work where the requirements are still shifting — finding the actual problem underneath the ask before designing around it.</p>
+        <p>Enterprise SaaS, a mobile app used by over a million people, and operational tools where a confusing interface has a real cost.</p>
+        <p>I stay quiet at the start. I'd rather understand the messy reality before proposing a clean solution. And I care about what gets left behind — clean files, clear docs, a system that keeps working after I've moved on.</p>
+        <div class="nb-contact" id="contact">
+          <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a>
+          <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a>
+          <a href="https://drive.google.com/file/d/1WIN_KxK0yWkhj0vepfugB8czmD9JqphX/view">Résumé</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer><div class="wrap"><p class="foot">Natthapath Damrongsri · 2026</p></div></footer>
+</div>
+
+<nav class="proto-bar">
+  <span><strong>17 / 25</strong> — Field notes</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>

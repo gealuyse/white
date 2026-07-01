@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>25 — Say Less</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Say less — ultra-minimal: one sentence, three project titles, contact link */
+
+/* Entire page is a single centered column, very generous whitespace */
+.page {
+  min-height: 100dvh;
+  display: flex; flex-direction: column;
+  justify-content: center;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 64px 48px;
+}
+
+/* One sentence */
+.the-sentence {
+  font: 300 clamp(32px,4vw,52px)/1.1 var(--serif);
+  letter-spacing: -.016em;
+  margin: 0 0 80px;
+  color: var(--ink);
+}
+
+/* Three titles — nothing else, just the names */
+.project-titles { margin: 0 0 80px; }
+.proj-title-item {
+  display: block;
+  font: 400 18px/1.4 var(--sans);
+  color: var(--ink);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--hair);
+  transition: color .12s;
+}
+.proj-title-item:first-child { border-top: 1px solid var(--hair); }
+.proj-title-item:hover { color: var(--sub); }
+.proj-title-num { font:500 10px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin-right:16px; }
+
+/* Contact — one line */
+.contact-line {
+  font: 400 15px/1 var(--sans);
+  color: var(--sub);
+}
+.contact-line a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Subtle annotation */
+.page-anno {
+  margin-top: 64px;
+  font: 500 19px/1.3 var(--script);
+  color: var(--faint);
+}
+
+/* No nav, no footer, no framing */
+@media(max-width:640px){
+  .page{padding:48px 22px;}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <h1 class="the-sentence">I design complex systems people can use with confidence.</h1>
+
+  <div class="project-titles">
+    <a class="proj-title-item" href="../cdp.html">
+      <span class="proj-title-num">01</span>Customer Data Platform — Segment Builder
+    </a>
+    <a class="proj-title-item" href="../3bb-member.html">
+      <span class="proj-title-num">02</span>3BB Member App &amp; Website
+    </a>
+    <a class="proj-title-item" href="../counter-service-pos.html">
+      <span class="proj-title-num">03</span>Counter Service POS Terminal
+    </a>
+  </div>
+
+  <p class="contact-line">
+    Natthapath Damrongsri · Bangkok ·
+    <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a> ·
+    <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a> ·
+    <a href="https://drive.google.com/file/d/1WIN_KxK0yWkhj0vepfugB8czmD9JqphX/view">Résumé</a>
+  </p>
+
+  <span class="page-anno">everything else is on the case study pages</span>
+
+</div>
+
+<nav class="proto-bar">
+  <span><strong>25 / 25</strong> — Say less</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>

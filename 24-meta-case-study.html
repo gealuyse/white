@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>24 — Meta Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Meta case study — the portfolio documents its own design decisions */
+
+/* Case study reading layout */
+.cs-header { padding: 72px 0 64px; border-bottom: 1px solid var(--hair); }
+.cs-label { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--sub); margin:0 0 20px; display:block; }
+.cs-title { font:300 clamp(36px,5vw,68px)/1.04 var(--serif); letter-spacing:-.022em; margin:0 0 16px; }
+.cs-subtitle { font:400 18px/1.65 var(--sans); color:var(--sub); max-width:52ch; margin:0 0 32px; }
+.cs-meta { display:flex; gap:32px; flex-wrap:wrap; padding:24px 0; border-top:1px solid var(--hair); }
+.cs-meta-item { }
+.cs-meta-label { font:500 10px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); margin:0 0 6px; display:block; }
+.cs-meta-value { font:400 14px/1 var(--sans); color:var(--ink); }
+
+/* Case study body */
+.cs-body { max-width: 760px; margin: 0 auto; padding: 64px 0; }
+
+/* TOC sidebar — sticky */
+.cs-layout { display: grid; grid-template-columns: 1fr 240px; gap: 80px; align-items: start; }
+.cs-toc { position: sticky; top: 32px; padding: 24px; border: 1px solid var(--hair); background: var(--panel); }
+.cs-toc h3 { font:500 10px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--sub); margin:0 0 16px; }
+.cs-toc a { display:block; font:400 13px/1.5 var(--sans); color:var(--sub); padding:5px 0; border-bottom:1px solid rgba(28,27,26,.05); }
+.cs-toc a:hover { color:var(--ink); }
+.cs-toc a:last-child { border-bottom:none; }
+
+/* Sections */
+.cs-section { margin-bottom: 72px; }
+.cs-section-num { font:500 10px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); display:block; margin:0 0 10px; }
+.cs-h2 { font:300 clamp(28px,2.8vw,40px)/1.1 var(--serif); letter-spacing:-.014em; margin:0 0 24px; }
+.cs-p { font:400 17px/1.75 var(--sans); color:var(--sub); margin:0 0 18px; max-width:60ch; }
+.cs-p strong { color:var(--ink); font-weight:500; }
+
+/* Callout / decision box */
+.cs-callout {
+  border-left: 3px solid var(--ink);
+  padding: 20px 24px;
+  margin: 28px 0;
+  background: var(--panel);
+}
+.cs-callout-label { font:500 10px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--sub); margin:0 0 8px; display:block; }
+.cs-callout-text { font:400 15px/1.65 var(--sans); color:var(--ink); margin:0; }
+
+/* Option comparison */
+.cs-options { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--hair); margin:24px 0; }
+.cs-option { background:var(--paper); padding:20px 24px; }
+.cs-option.chosen { background:var(--panel); }
+.opt-label { font:500 10px/1 var(--sans); letter-spacing:.08em; text-transform:uppercase; color:var(--sub); margin:0 0 8px; display:block; }
+.cs-option.chosen .opt-label { color:var(--ink); }
+.opt-text { font:400 14px/1.6 var(--sans); color:var(--sub); margin:0; }
+.cs-option.chosen .opt-text { color:var(--ink); }
+
+/* Hand annotation */
+.cs-anno { font:500 20px/1.35 var(--script); color:#34404C; display:block; margin:12px 0; }
+
+/* Work showcase */
+.cs-work-list { margin:32px 0; }
+.cs-work-item { display:grid; grid-template-columns:40px 1fr 140px; gap:16px; align-items:center; padding:14px 0; border-bottom:1px solid var(--hair); }
+.cwi-num { font:500 10px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
+.cwi-name { font:400 16px/1.25 var(--sans); color:var(--ink); }
+.cwi-link { font:500 10px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; text-decoration:underline; text-underline-offset:3px; text-align:right; }
+
+/* Contact */
+.cs-contact { padding:64px 0; border-top:1px solid var(--hair); }
+.cc-h2 { font:300 clamp(28px,3vw,44px)/1.1 var(--serif); letter-spacing:-.016em; margin:0 0 20px; }
+.cc-body { font:400 17px/1.7 var(--sans); color:var(--sub); max-width:48ch; margin:0 0 24px; }
+.cc-links a { text-decoration:underline; text-underline-offset:3px; color:var(--ink); font:400 14px/1 var(--sans); margin-right:24px; }
+
+@media(max-width:900px){
+  .cs-layout{grid-template-columns:1fr;}
+  .cs-toc{display:none;}
+  .cs-options{grid-template-columns:1fr;}
+  .cs-work-item{grid-template-columns:32px 1fr;gap:12px;}
+  .cwi-link{display:none;}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="site-nav">
+    <a class="name" href="../index.html">Natthapath Damrongsri</a>
+    <ul><li><a href="#contact">Contact</a></li></ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- Case study header -->
+  <header class="cs-header">
+    <span class="cs-label">Portfolio · Meta Case Study</span>
+    <h1 class="cs-title">The portfolio as a design problem</h1>
+    <p class="cs-subtitle">Every design decision made on this site, documented as a case study. What I tried, what I chose, and why — applied to the artifact you're reading right now.</p>
+    <div class="cs-meta">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Project type</span>
+        <span class="cs-meta-value">Self-directed</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Audience</span>
+        <span class="cs-meta-value">Hiring managers, designers, potential collaborators</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Constraint</span>
+        <span class="cs-meta-value">Pure static HTML/CSS. No frameworks.</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Layout: body + sticky TOC -->
+  <div class="cs-layout" style="padding-top:64px;">
+    <div class="cs-body">
+
+      <section class="cs-section" id="overview">
+        <span class="cs-section-num">01 — Overview</span>
+        <h2 class="cs-h2">What is this, exactly?</h2>
+        <p class="cs-p">A portfolio is a design problem. You have a user (the recruiter, the hiring manager, the curious peer), a job to do (evaluate fit), and a system with real constraints (reading time, attention, trust). Most designers treat it as a presentation. I treated it as a product.</p>
+        <p class="cs-p">This page documents the decisions made. Not to show off the process — but because <strong>the reasoning is the evidence</strong>. If you want to see how I think about design problems, this is one.</p>
+        <span class="cs-anno">the product is also the case study</span>
+      </section>
+
+      <section class="cs-section" id="situation">
+        <span class="cs-section-num">02 — Situation</span>
+        <h2 class="cs-h2">The brief</h2>
+        <p class="cs-p">I needed a portfolio that could communicate design ability to someone who may have 30 seconds — or 30 minutes. That showed real work without obscuring the signal. That had a clear voice without turning it into a personality showcase.</p>
+        <div class="cs-callout">
+          <span class="cs-callout-label">Core tension</span>
+          <p class="cs-callout-text">Portfolio sites optimized for first-impression aesthetics often hide the actual design thinking. Sites optimized for depth are skipped by time-constrained readers. How do you serve both?</p>
+        </div>
+      </section>
+
+      <section class="cs-section" id="decisions">
+        <span class="cs-section-num">03 — Key decisions</span>
+        <h2 class="cs-h2">The hard choices</h2>
+
+        <p class="cs-p" style="font-weight:500;color:var(--ink);">Decision 1: Thesis-led vs work-led opening</p>
+        <div class="cs-options">
+          <div class="cs-option">
+            <span class="opt-label">Work first</span>
+            <p class="opt-text">Lead with project thumbnails. Let the work speak immediately. No intro text, no thesis statement.</p>
+          </div>
+          <div class="cs-option chosen">
+            <span class="opt-label">Thesis first ← chosen</span>
+            <p class="opt-text">"I design complex systems people can use with confidence." One sentence. Then the work. The sentence frames what follows.</p>
+          </div>
+        </div>
+        <p class="cs-p">The thesis creates a filter. Someone looking for a visual designer will know immediately this isn't the right fit. Someone looking for a systems designer knows to keep reading. Clarity serves everyone, even when it narrows the audience.</p>
+
+        <p class="cs-p" style="font-weight:500;color:var(--ink);margin-top:36px;">Decision 2: Problem headline vs project name</p>
+        <div class="cs-options">
+          <div class="cs-option">
+            <span class="opt-label">Project name</span>
+            <p class="opt-text">"Customer Data Platform" — what it is. Clear, searchable, professional.</p>
+          </div>
+          <div class="cs-option chosen">
+            <span class="opt-label">Problem headline ← chosen</span>
+            <p class="opt-text">"Complex logic that couldn't be simplified" — what was hard about it. Gives the reader a reason to keep reading before they know the project name.</p>
+          </div>
+        </div>
+        <p class="cs-p">The project name communicates what was built. The problem headline communicates what was designed. Those are different things. The second is more interesting to the audience I want to reach.</p>
+
+        <p class="cs-p" style="font-weight:500;color:var(--ink);margin-top:36px;">Decision 3: Annotation system</p>
+        <p class="cs-p">The handwritten annotation system (draw-in on scroll, <code style="font:400 13px/1 var(--sans);background:var(--panel);padding:2px 6px;">.anno-mark</code> + SVG path draw via CSS stroke-dashoffset) was kept from the original design. The reasoning:</p>
+        <div class="cs-callout">
+          <span class="cs-callout-label">Why keep it</span>
+          <p class="cs-callout-text">The annotations communicate that design is a thinking process, not just an output. They carry voice without adding copy. They're a visual signal that someone made choices — the same signal a portfolio is supposed to transmit.</p>
+        </div>
+      </section>
+
+      <section class="cs-section" id="constraints">
+        <span class="cs-section-num">04 — Constraints</span>
+        <h2 class="cs-h2">What I worked within</h2>
+        <p class="cs-p"><strong>Pure static HTML/CSS.</strong> No frameworks, no build tools. Everything had to be interpretable as plain text. The constraint forced discipline — if something couldn't be done in CSS, it probably shouldn't be done at all.</p>
+        <p class="cs-p"><strong>Warm paper palette only.</strong> No jarring rebrands or visual pivots. The existing identity — off-white paper, warm ink, faint rules — had to remain continuous across old and new pages.</p>
+        <p class="cs-p"><strong>Laws of UX spacing.</strong> Proximity over dividers. Whitespace to signal grouping. No hairlines where whitespace can do the job. This is the spacing discipline the site runs on.</p>
+      </section>
+
+      <section class="cs-section" id="reflection">
+        <span class="cs-section-num">05 — Reflection</span>
+        <h2 class="cs-h2">What this site doesn't do well</h2>
+        <p class="cs-p">Mobile. The two-column layouts compress rather than gracefully adapt. This is a known tradeoff — prioritized desktop because that's where portfolios are evaluated in most hiring contexts. Not a great excuse. A real issue.</p>
+        <p class="cs-p">Depth vs speed. The case studies are long. For a recruiter with 45 seconds, even a well-structured case study is too much. The solution (a "recruiter mode" toggle, a TL;DR at the top) is a prototype I haven't shipped.</p>
+        <span class="cs-anno">honest self-review is part of the brief</span>
+      </section>
+
+      <section class="cs-section" id="work">
+        <span class="cs-section-num">06 — Work</span>
+        <h2 class="cs-h2">What this portfolio contains</h2>
+        <div class="cs-work-list" style="border-top:1px solid var(--hair);">
+          <div class="cs-work-item">
+            <span class="cwi-num">01</span>
+            <span class="cwi-name">Customer Data Platform — Segment Builder</span>
+            <a class="cwi-link" href="../cdp.html">Read →</a>
+          </div>
+          <div class="cs-work-item">
+            <span class="cwi-num">02</span>
+            <span class="cwi-name">3BB Member App &amp; Website</span>
+            <a class="cwi-link" href="../3bb-member.html">Read →</a>
+          </div>
+          <div class="cs-work-item">
+            <span class="cwi-num">03</span>
+            <span class="cwi-name">Counter Service POS Terminal</span>
+            <a class="cwi-link" href="../counter-service-pos.html">Read →</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Sticky TOC -->
+    <div class="cs-toc">
+      <h3>Contents</h3>
+      <a href="#overview">01 — Overview</a>
+      <a href="#situation">02 — Situation</a>
+      <a href="#decisions">03 — Key decisions</a>
+      <a href="#constraints">04 — Constraints</a>
+      <a href="#reflection">05 — Reflection</a>
+      <a href="#work">06 — Work</a>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <section class="cs-contact" id="contact">
+    <h2 class="cc-h2">I design complex systems people can use with confidence.</h2>
+    <p class="cc-body">Bangkok-based. Open to complex work and the right teams.</p>
+    <div class="cc-links">
+      <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a>
+      <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a>
+      <a href="https://drive.google.com/file/d/1WIN_KxK0yWkhj0vepfugB8czmD9JqphX/view">Résumé</a>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><p class="foot">Natthapath Damrongsri · 2026</p></div></footer>
+
+<nav class="proto-bar">
+  <span><strong>24 / 25</strong> — Meta case study</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>

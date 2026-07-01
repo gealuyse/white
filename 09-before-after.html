@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>09 — Before / After</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Geist:wght@400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Before / After — toggle between states on project covers */
+
+.hero { padding: 72px 0 80px; }
+.hero h1 { font:300 clamp(36px,4.5vw,60px)/1.06 var(--serif); letter-spacing:-.018em; margin:0 0 20px; max-width:20ch; }
+.hero p { font:400 18px/1.72 var(--sans); color:var(--sub); max-width:50ch; }
+
+.ba-list { border-top: 1px solid var(--hair); }
+.ba-item { padding: 60px 0; border-bottom: 1px solid var(--hair); }
+
+.ba-header { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:32px; }
+.ba-num { font:500 11px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
+.ba-proj-name { font:500 14px/1 var(--sans); color:var(--ink); }
+.ba-link { font:500 11px/1 var(--sans); letter-spacing:.06em; text-transform:uppercase; text-decoration:underline; text-underline-offset:3px; }
+
+.ba-toggle { display:flex; align-items:center; gap: 0; margin-bottom:24px; }
+.ba-toggle button {
+  font:500 11px/1 var(--sans); letter-spacing:.08em; text-transform:uppercase;
+  padding:9px 18px; border:1px solid var(--hair); background:none; cursor:pointer;
+  color:var(--sub); transition:background .12s, color .12s;
+}
+.ba-toggle button:first-child { border-radius:2px 0 0 2px; }
+.ba-toggle button:last-child { border-radius:0 2px 2px 0; border-left:none; }
+.ba-toggle button.active { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+/* Image frame */
+.ba-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--panel);
+}
+.ba-state { position:absolute; inset:0; transition:opacity .4s ease; }
+.ba-state img { width:100%; height:100%; object-fit:cover; }
+.ba-state.hidden { opacity:0; pointer-events:none; }
+
+/* State labels on image */
+.state-badge {
+  position: absolute; top: 16px; left: 16px;
+  font:500 10px/1 var(--sans); letter-spacing:.09em; text-transform:uppercase;
+  padding:6px 10px; background:rgba(28,27,26,.72); color:var(--paper); border-radius:2px;
+}
+
+/* Description below */
+.ba-desc-wrap { margin-top: 24px; display:grid; grid-template-columns: 1fr 1fr; gap:40px; }
+.ba-desc-col { }
+.ba-desc-label { font:500 10px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; color:var(--sub); margin:0 0 10px; }
+.ba-desc-text { font:400 15px/1.65 var(--sans); color:var(--ink); margin:0; }
+.ba-desc-text.muted { color:var(--sub); }
+
+/* Bottom */
+.bottom-strip { padding:80px 0; display:grid; grid-template-columns:1fr 1fr; gap:64px; }
+.bs-h2 { font:300 clamp(28px,3vw,44px)/1.1 var(--serif); letter-spacing:-.016em; margin:0 0 20px; }
+.bs-body { font:400 17px/1.7 var(--sans); color:var(--sub); margin:0 0 14px; }
+.bs-contact { margin-top:32px; font:400 14px/1.6 var(--sans); }
+.bs-contact a { text-decoration:underline; text-underline-offset:3px; color:var(--ink); }
+
+@media(max-width:760px){
+  .ba-desc-wrap{grid-template-columns:1fr;}
+  .bottom-strip{grid-template-columns:1fr;}
+  .ba-header{flex-direction:column;gap:8px;}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="site-nav">
+    <a class="name" href="../index.html">Natthapath Damrongsri</a>
+    <ul><li><a href="#contact">Contact</a></li></ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="sect-label">UX/UI Product Designer · Bangkok</p>
+    <h1>Every project starts somewhere. Toggle to see where it ended up.</h1>
+    <p>Before and after — not to show the gap, but to show what the constraints actually were.</p>
+  </section>
+
+  <div class="ba-list">
+
+    <!-- CDP -->
+    <div class="ba-item">
+      <div class="ba-header">
+        <span class="ba-num">01</span>
+        <span class="ba-proj-name">Customer Data Platform — Segment Builder</span>
+        <a class="ba-link" href="../cdp.html">Full case study →</a>
+      </div>
+
+      <div class="ba-toggle">
+        <button class="active" onclick="baSwitch(this,'cdp','before')">Before</button>
+        <button onclick="baSwitch(this,'cdp','after')">After</button>
+      </div>
+
+      <div class="ba-frame" id="ba-cdp">
+        <div class="ba-state" id="cdp-before">
+          <img src="../assets/projects/cdp/cover.png" alt="CDP before" style="filter:saturate(.2) brightness(.9);">
+          <span class="state-badge">Before</span>
+        </div>
+        <div class="ba-state hidden" id="cdp-after">
+          <img src="../assets/projects/cdp/cover.png" alt="CDP after" style="filter:saturate(.65) brightness(1.04);">
+          <span class="state-badge">After</span>
+        </div>
+      </div>
+
+      <div class="ba-desc-wrap">
+        <div class="ba-desc-col">
+          <p class="ba-desc-label">Before</p>
+          <p class="ba-desc-text muted">Free-text logic expressions. High power, low readability. Non-technical users couldn't own their own segment configuration.</p>
+        </div>
+        <div class="ba-desc-col">
+          <p class="ba-desc-label">After</p>
+          <p class="ba-desc-text">Structured builder with contextual autocomplete. Every condition was readable at a glance. Marketers could configure and audit their own segments without engineering help.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3BB -->
+    <div class="ba-item">
+      <div class="ba-header">
+        <span class="ba-num">02</span>
+        <span class="ba-proj-name">3BB Member App &amp; Website</span>
+        <a class="ba-link" href="../3bb-member.html">Full case study →</a>
+      </div>
+
+      <div class="ba-toggle">
+        <button class="active" onclick="baSwitch(this,'3bb','before')">Before</button>
+        <button onclick="baSwitch(this,'3bb','after')">After</button>
+      </div>
+
+      <div class="ba-frame" id="ba-3bb">
+        <div class="ba-state" id="3bb-before">
+          <img src="../assets/projects/3bb-member/cover.png" alt="3BB before" style="filter:saturate(.15) brightness(.85);">
+          <span class="state-badge">Before</span>
+        </div>
+        <div class="ba-state hidden" id="3bb-after">
+          <img src="../assets/projects/3bb-member/cover.png" alt="3BB after" style="filter:saturate(.5) brightness(1.05);">
+          <span class="state-badge">After</span>
+        </div>
+      </div>
+
+      <div class="ba-desc-wrap">
+        <div class="ba-desc-col">
+          <p class="ba-desc-label">Before</p>
+          <p class="ba-desc-text muted">Multiple versions of the same screen in the same file. Unclear which was production-current. Migration created new edge-case states with no designed equivalent.</p>
+        </div>
+        <div class="ba-desc-col">
+          <p class="ba-desc-label">After</p>
+          <p class="ba-desc-text">A clear single source of truth for migration-affected flows. New account linking UX, error states, and migration prompts designed for the specific moments users encountered them.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- POS -->
+    <div class="ba-item">
+      <div class="ba-header">
+        <span class="ba-num">03</span>
+        <span class="ba-proj-name">Counter Service POS Terminal</span>
+        <a class="ba-link" href="../counter-service-pos.html">View proposal →</a>
+      </div>
+
+      <div class="ba-toggle">
+        <button class="active" onclick="baSwitch(this,'pos','before')">Before</button>
+        <button onclick="baSwitch(this,'pos','after')">After</button>
+      </div>
+
+      <div class="ba-frame" id="ba-pos">
+        <div class="ba-state" id="pos-before">
+          <img src="../assets/projects/counter-service-pos/cover.png" alt="POS before" style="filter:saturate(.15) brightness(.82) contrast(1.05);">
+          <span class="state-badge">Before</span>
+        </div>
+        <div class="ba-state hidden" id="pos-after">
+          <img src="../assets/projects/counter-service-pos/cover.png" alt="POS after" style="filter:saturate(.7) brightness(1.04);">
+          <span class="state-badge">After</span>
+        </div>
+      </div>
+
+      <div class="ba-desc-wrap">
+        <div class="ba-desc-col">
+          <p class="ba-desc-label">Before</p>
+          <p class="ba-desc-text muted">Flat visual hierarchy. Active and inactive items at the same visual weight. High cognitive load during peak transaction volume.</p>
+        </div>
+        <div class="ba-desc-col">
+          <p class="ba-desc-label">After</p>
+          <p class="ba-desc-text">Improved contrast and weight — nothing moved, everything clearer. State differentiation so cashiers can scan rather than read. Zero retraining required.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="bottom-strip" id="contact">
+    <div>
+      <p class="sect-label">About</p>
+      <h2 class="bs-h2">I design complex systems people can use with confidence.</h2>
+      <p class="bs-body">Bangkok-based UX/UI designer. Enterprise SaaS, mobile apps, and operational tools where design has a real cost.</p>
+    </div>
+    <div>
+      <p class="sect-label">Get in touch</p>
+      <p class="bs-body">Open to complex work and the right teams.</p>
+      <div class="bs-contact">
+        <a href="mailto:natthapath.d@gmail.com">natthapath.d@gmail.com</a><br>
+        <a href="https://www.linkedin.com/in/natthapath-damrongsri-63b698299/">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap"><p class="foot">Natthapath Damrongsri · 2026</p></div></footer>
+
+<script>
+function baSwitch(btn, proj, state) {
+  var wrap = btn.closest('.ba-item');
+  wrap.querySelectorAll('.ba-toggle button').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById(proj+'-before').classList.toggle('hidden', state !== 'before');
+  document.getElementById(proj+'-after').classList.toggle('hidden', state !== 'after');
+}
+</script>
+
+<nav class="proto-bar">
+  <span><strong>09 / 25</strong> — Before / After</span>
+  <a href="index.html">← All explorations</a>
+</nav>
+</body>
+</html>
